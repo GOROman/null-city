@@ -1,4 +1,18 @@
 {
+  "specification": {
+    "id": "general-six-button",
+    "status": "confirmed",
+    "dedicated_game": null,
+    "decision_url": "https://github.com/GOROman/null-city/issues/2#issuecomment-6889331965",
+    "main_button_count": 6,
+    "main_button_type": "functional_switches",
+    "dummy_plug_count": 0,
+    "auxiliary_button_count": 2,
+    "lever_direction_input_count": 4,
+    "minimum_digital_input_count": 12,
+    "indicator_led_count": 16,
+    "game_specific_button_legends": false
+  },
   "layout": "Sega Blast City 1P, six-button subset",
   "source": "https://www.slagcoin.com/joystick/layout.html",
   "diagram": "https://www.slagcoin.com/joystick/layout/sega1_m.png",
