@@ -4,7 +4,7 @@ bpy.ops.object.select_all(action='SELECT'); bpy.ops.object.delete(use_global=Fal
 OUT=os.path.dirname(bpy.data.filepath) if bpy.data.filepath else os.getcwd()
 def mat(n,c,metal=0,rough=.35):
  m=bpy.data.materials.new(n);m.diffuse_color=(*c,1);m.use_nodes=True;p=m.node_tree.nodes.get('Principled BSDF');p.inputs['Base Color'].default_value=(*c,1);p.inputs['Metallic'].default_value=metal;p.inputs['Roughness'].default_value=rough;return m
-ivory=mat('Pearl white PETG',(.85,.86,.92));navy=mat('Deep navy',(.012,.019,.075));green=mat('Lime green',(.05,.95,.025));clear=mat('Transparent button placeholder',(.65,.8,.95));purple=mat('Purple balltop',(.34,.08,.8),.1,.12);pink=mat('Magenta accent',(.95,.01,.43));black=mat('Black',(.018,.018,.025))
+ivory=mat('Pearl white PETG',(.85,.86,.92));navy=mat('Deep navy',(.012,.019,.075));green=mat('Lime green',(.018,.72,.001));clear=mat('Transparent button placeholder',(.65,.8,.95));purple=mat('Purple balltop',(.26,.015,.72),.1,.12);pink=mat('Magenta accent',(.95,.01,.43));black=mat('Black',(.018,.018,.025))
 def cube(n,loc,dim,ma=None,bev=0):
  bpy.ops.mesh.primitive_cube_add(size=1,location=loc);o=bpy.context.object;o.name=n;o.dimensions=dim;bpy.ops.object.transform_apply(location=False,rotation=False,scale=True)
  if bev: mod=o.modifiers.new('Rounded printable edges','BEVEL');mod.width=bev;mod.segments=3;o.modifiers.new('Weighted normals','WEIGHTED_NORMAL')
@@ -110,8 +110,9 @@ for x in (-135,135):
 for x in (-113,113):
  for y in (-66,66):cyl('PRINT_TPU_foot_%d_%d'%(x,y),x,y,-2,11,4,black)
 # Use planar local coordinates for the exposed deck, preserving physical holes.
-texture=mat('Printed NC-03 graphic',(1,1,1),.1,.26)
+texture=mat('Printed NC-03 graphic',(1,1,1),.03,.38)
 panel.data.materials.append(texture);uv=panel.data.uv_layers.new(name='Deck artwork')
+uv.active_render=True
 for face in panel.data.polygons:
  if face.normal.z>.999 and face.center.z>46.9:face.material_index=1
  for li in face.loop_indices:
@@ -141,7 +142,7 @@ for name,pos,power,size,color in [('Softbox left',(-190,-140,250),1500000,170,(.
  bpy.ops.object.light_add(type='AREA',location=pos);o=bpy.context.object;o.name=name;o.data.energy=power;o.data.shape='DISK';o.data.size=size;o.data.color=color;aim(o,(0,0,25))
 floor=cube('STUDIO_floor',(0,0,-6),(2500,2500,4),mat('Studio graphite',(.022,.023,.036),.25,.32))
 scene.world.use_nodes=True;scene.world.node_tree.nodes['Background'].inputs[0].default_value=(.32,.34,.42,1)
-scene.render.engine='CYCLES';scene.cycles.samples=12;scene.cycles.use_denoising=True
+scene.render.engine='CYCLES';scene.cycles.samples=96;scene.cycles.use_denoising=False
 scene.render.resolution_x=1152;scene.render.resolution_y=730;scene.render.resolution_percentage=100
 # Export each component in its local printing orientation, resting at Z=0.
 deps=bpy.context.evaluated_depsgraph_get()
