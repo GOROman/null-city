@@ -12,6 +12,7 @@ const exposure=document.querySelector('#exposure');
 const led=document.querySelector('#led');
 const transparent=document.querySelector('#transparent');
 const rotate=document.querySelector('#rotate');
+const rotateView=document.querySelector('#rotate-view');
 const environment=document.querySelector('#environment');
 const environmentAngle=document.querySelector('#environment-angle');
 const background=document.querySelector('#background');
@@ -59,9 +60,14 @@ function setExposure(){viewer.exposure=Number(exposure.value);document.querySele
 function setRotation(){
   // Start immediately and at a visible speed; on mobile the switch can be below the viewport.
   viewer.autoRotateDelay=0;viewer.rotationPerSecond='20deg';viewer.autoRotate=rotate.checked;
-  const rect=viewer.getBoundingClientRect();
-  if(rotate.checked&&(rect.bottom<100||rect.top>innerHeight-100)){
-    viewer.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  rotateView.setAttribute('aria-pressed',String(rotate.checked));
+  if(rotate.checked){
+    // A touch change is followed by native focus scrolling. Wait until that completes;
+    // smooth scrolling here can be cancelled by the focus scroll on mobile Chromium.
+    requestAnimationFrame(()=>{
+      const rect=viewer.getBoundingClientRect();
+      if(rect.bottom<100||rect.top>innerHeight-100)viewer.scrollIntoView({block:'center',behavior:'instant'});
+    });
   }
 }
 function setEnvironmentAngle(){
@@ -112,6 +118,7 @@ exposure.addEventListener('input',setExposure);
 led.addEventListener('change',setLights);
 transparent.addEventListener('change',setTransparency);
 rotate.addEventListener('change',setRotation);
+rotateView.addEventListener('click',()=>{if(ready){rotate.checked=!rotate.checked;setRotation();}});
 environment.addEventListener('change',setEnvironment);
 environmentAngle.addEventListener('input',setEnvironmentAngle);
 background.addEventListener('change',setBackground);

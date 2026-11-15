@@ -58,6 +58,13 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Test desktop and mobile under the Pages project path
         run: npm test
+      - name: Save browser diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-diagnostics
+          path: web/test-results
+          retention-days: 3
       - name: Upload GitHub Pages site
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v4

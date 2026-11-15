@@ -31,6 +31,7 @@ test('PBR model, meter scale, artwork, camera and assembly controls',async({page
   await page.locator('#rotate').check({force:true});
   expect(await page.locator('#viewer').evaluate(v=>v.autoRotate)).toBe(true);
   expect(await page.locator('#viewer').evaluate(v=>v.autoRotateDelay)).toBe(0);
+  await expect.poll(()=>page.locator('#viewer').evaluate(v=>v.modelIsVisible),{timeout:8000}).toBe(true);
   const initialAngle=await page.locator('#viewer').evaluate(v=>v.turntableRotation);
   await expect.poll(()=>page.locator('#viewer').evaluate((v,initial)=>Math.abs(v.turntableRotation-initial),initialAngle),{timeout:8000}).toBeGreaterThan(.05);
   await page.locator('#rotate').uncheck({force:true});
@@ -57,6 +58,12 @@ test('PBR model, meter scale, artwork, camera and assembly controls',async({page
   await expect(page.locator('#led')).toBeChecked();await expect(page.locator('#rotate')).not.toBeChecked();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await expect(page.locator('.wordmark')).toHaveCSS('font-family',/Null/);
+  await page.getByRole('button',{name:'自動回転を切り替える'}).click();
+  await expect(page.locator('#rotate')).toBeChecked();
+  const overlayAngle=await page.locator('#viewer').evaluate(v=>v.turntableRotation);
+  await expect.poll(()=>page.locator('#viewer').evaluate((v,initial)=>Math.abs(v.turntableRotation-initial),overlayAngle),{timeout:8000}).toBeGreaterThan(.05);
+  await page.getByRole('button',{name:'自動回転を切り替える'}).click();
+  await expect(page.locator('#rotate')).not.toBeChecked();
   await page.waitForTimeout(1200);
   await page.screenshot({path:testInfo.outputPath('viewer.png'),fullPage:true});
   expect(errors).toEqual([]);

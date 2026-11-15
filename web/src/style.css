@@ -10,3 +10,6 @@
 @media(min-width:701px){.workspace{height:calc(100svh - 123px);min-height:720px}.inspector{min-height:0;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#514755 #17171c}.inspector-bottom{margin-top:16px}}
 .environment-label{display:block;font-size:11px;margin-bottom:10px}select{width:100%;background:#24222a;color:#e6e1ec;border:1px solid #49424e;border-radius:4px;padding:10px 8px;font:inherit;font-size:11px;margin:0;cursor:pointer}select:focus-visible{outline:2px solid var(--pink);outline-offset:3px}.environment-credit{font-size:8px;color:#aaa2b4;line-height:1.7;margin:8px 0 18px}.environment-credit a:hover{color:var(--pink)}effect-composer,ssao-effect,smaa-effect,color-grade-effect{display:none}.stage[data-environment-loading=true] #load-status{color:#ad117e}
 @media(max-width:700px){select{font-size:16px;padding:8px 5px}.environment-label{font-size:10px}.environment-credit{font-size:8px}.inspector-bottom{margin-top:0}.workspace{height:auto}}
+
+.view-bar #rotate-view{min-width:36px;font-size:21px}.view-bar #rotate-view[aria-pressed=true]{background:#ad087c;color:white}
+@media(max-width:700px){.view-bar button{min-width:49px}.view-bar #rotate-view,.view-bar #reset{min-width:31px}}

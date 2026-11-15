@@ -53,4 +53,4 @@ Poly Havenの **Studio Small 03 / Studio Small 02**（Greg Zaal、CC0）を1K Ra
 
 `@google/model-viewer-effects` の高精度バッファでSSAO→SMAA→Khronos Neutralの順に処理する。SSAOはON／OFF可能。MSAAは無効にして深度効果との不整合を避ける。環境回転は公開されているcustom-pass API経由でThree.jsのSceneへ適用し、モデルの回転角とは独立させる。
 
-自動回転は待ち時間0 ms・20°/秒。スマートフォンでスイッチがモデル表示領域より下にある場合は、ON時にモデルが見える位置へ戻す。テストではONという属性だけでなく、実際の角度増加とOFF後の停止を確認する。
+自動回転は待ち時間0 ms・20°/秒。スマートフォンでスイッチがモデル表示領域より下にある場合は、ON時にネイティブのフォーカス移動完了後、モデルが見える位置へ即座に戻す。モデル上の回転ボタンからもON／OFFできる。テストではONという属性だけでなく、実際の角度増加とOFF後の停止を確認する。
