@@ -193,7 +193,9 @@ export class Arcade {
     this.frame=requestAnimationFrame(t=>this.tick(t));
     if(document.hidden||!this.viewer.modelIsVisible){this.last=now;return;}
     if(now-this.lastPaint<32)return;
-    const dt=Math.min(.05,Math.max(0,(now-this.last)/1000));this.last=now;this.lastPaint=now;this.clock+=dt;
+    // Keep springs in wall-clock time even when software rendering drops frames.
+    // Spring.step substeps at 240 Hz, so long visible frames remain stable.
+    const dt=Math.min(1,Math.max(0,(now-this.last)/1000));this.last=now;this.lastPaint=now;this.clock+=dt;
     const moving=this.active&&this.updatePhysics(dt);this.pulse*=Math.exp(-dt*5);
     const animated=this.power&&(this.mode==='rainbow'||this.mode==='pulse'||this.pulse>.001||moving);
     if(animated||moving){this.updateLEDs();if(moving)this.scene.queueShadowRender?.();this.composer.queueRender();}
