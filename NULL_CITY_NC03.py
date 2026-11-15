@@ -39,9 +39,10 @@ def shell(name, levels, material):
  obj=bpy.data.objects.new(name,mesh);bpy.context.collection.objects.link(obj);obj.data.materials.append(material)
  return obj
 
-def front_prism(name,outline,y0,y1,material):
+def front_prism(name,outline,y0,y1,material,back=None):
  # outline is counterclockwise in X,Z; positive face normal is toward the front.
- v=[(x,y,z) for y in (y0,y1) for x,z in outline];n=len(outline)
+ # back, when given, is the outline at y1 (same vertex count) for a tapered prism.
+ v=[(x,y0,z) for x,z in outline]+[(x,y1,z) for x,z in (back or outline)];n=len(outline)
  faces=[tuple(range(n)),tuple(reversed(range(n,2*n)))]
  for i in range(n):
   j=(i+1)%n;faces.append((j,i,i+n,j+n))
@@ -63,9 +64,11 @@ cut(rim,cube('Upper opening',(0,0,34),(274,164,28)))
 panel=shell('PRINT_03_control_panel',[(43,288,178,5),(46.5,288,178,5),(47,287,177,5)],navy)
 
 # Recess remains within the solid front wall; the light and lettering are display geometry.
-recess=[(-102,5),(102,5),(90,22),(-90,22)]
-cut(base,front_prism('front pocket',recess,-97,-91.8,black))
-front_prism('VISUAL_smoked_front_window',[(-101.2,5.4),(101.2,5.4),(89.6,21.6),(-89.6,21.6)],-92.2,-91.9,black)
+# The pocket ceiling rises 45 degrees toward the front so it prints without support:
+# Z=22 at the front face (Y=-95), Z=18.8 at the pocket back (Y=-91.8). Side planes are unchanged.
+def recess_at(z):return [(-102,5),(102,5),(102-12*(z-5)/17,z),(-102+12*(z-5)/17,z)]
+cut(base,front_prism('front pocket',recess_at(24),-97,-91.8,black,recess_at(18.8)))
+front_prism('VISUAL_smoked_front_window',[(-101.2,5.4),(101.2,5.4),(92,18.6),(-92,18.6)],-92.2,-91.9,black)
 def emission(name,color,strength):
  m=mat(name,color);bs=m.node_tree.nodes.get('Principled BSDF')
  bs.inputs['Emission Color'].default_value=(*color,1);bs.inputs['Emission Strength'].default_value=strength
@@ -118,14 +121,16 @@ for led in led_layout['leds']:
  x,y=led['x'],led['y']
  cut(panel,cyl('LED bore '+led['name'],x,y,45,led_layout['hole_diameter_mm']/2,12))
  cyl('VISUAL_LED_'+led['name'],x,y,47.4,1.5,.8,led_material,32)
-# Seimitsu LS-55-01 with MS mounting plate, 85 x 40 mm centers.
+# Seimitsu LS-55-01 with MS mounting plate; pitch and plate orientation come from control_layout.json.
 mount=control_layout['lever_mount']
 for dx in (-mount['pitch_mm'][0]/2,mount['pitch_mm'][0]/2):
  for dy in (-mount['pitch_mm'][1]/2,mount['pitch_mm'][1]/2):
   cut(panel,cyl('M4 lever mounting clearance',lever_x+dx,lever_y+dy,45,mount['clearance_diameter_mm']/2,12))
-# Clear the 95 x 50 x 1.6 mm plate below 3 mm LED-lead spacers, with 0.5 mm side clearance.
-# Extends the upper opening locally without cutting the exterior wall.
-cut(rim,cube('MS plate underside clearance',(lever_x,lever_y,40.5),(96,51,8)))
+# Clear the 1.6 mm plate below 3 mm LED-lead spacers, with 0.5 mm side clearance.
+# Only cuts the frame where the plate reaches past the 274 x 164 mm upper opening.
+plate_x,plate_y=mount['plate_size_mm'][0]+1,mount['plate_size_mm'][1]+1
+if abs(lever_x)+plate_x/2>137 or abs(lever_y)+plate_y/2>82:
+ cut(rim,cube('MS plate underside clearance',(lever_x,lever_y,40.5),(plate_x,plate_y,8)))
 cut(panel,cyl('lever opening',lever_x,lever_y,45,12,12))
 cyl('VISUAL_dust_washer',lever_x,lever_y,47.8,18,1.6,black)
 cyl('VISUAL_shaft',lever_x,lever_y,59,4.2,24,steel)
@@ -135,7 +140,8 @@ for x in (-135,135):
  for y in (-80,80):
   for obj,z,depth in [(base,14,20),(rim,33.5,19)]:
    boolean(obj,cyl('corner boss',x,y,z,11,depth),'UNION')
-  cut(base,cyl('M3 insert pilot',x,y,21.5,2.05,7))
+  # 7.5 mm deep from the Z=24 split line: 6 mm insert plus 1.5 mm relief for displaced plastic.
+  cut(base,cyl('M3 insert pilot',x,y,20.75,2.05,8.5))
   cut(rim,cyl('M3 clearance',x,y,33.5,1.7,24));cut(panel,cyl('M3 clearance',x,y,45,1.7,8))
   screw=cyl('VISUAL_M3_button_head',x,y,48,3.25,2,steel)
   cut(screw,cyl('hex socket',x,y,49,1.25,1.8,None,6))

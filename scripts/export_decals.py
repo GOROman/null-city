@@ -23,7 +23,8 @@ for guide in (False,True):
  if guide:
   cuts='<path d="M25 0 H1415 L1440 25 V865 L1415 890 H25 L0 865 V25 Z"/>'+''.join(circle(*h) for h in holes)
   marks=''.join(circle(l['x'],l['y'],leds['hole_diameter_mm']/2) for l in leds['leds'])
-  svg=svg.replace('</svg>','<g id="cut-guides" fill="none" stroke="#ff00ff" stroke-width="1.5" stroke-dasharray="8 4">'+cuts+'</g><g id="led-cut-guides" fill="none" stroke="#ff00ff" stroke-width="1.5" stroke-dasharray="4 2">'+marks+'</g></svg>')
+  # panel.svg nests the wordmark <svg>; append the guides only before the final closing tag.
+  head,_,tail=svg.rpartition('</svg>');svg=head+('<g id="cut-guides" fill="none" stroke="#ff00ff" stroke-width="1.5" stroke-dasharray="8 4">'+cuts+'</g><g id="led-cut-guides" fill="none" stroke="#ff00ff" stroke-width="1.5" stroke-dasharray="4 2">'+marks+'</g></svg>')+tail
  (out/(name+'.svg')).write_text(svg)
  with tempfile.TemporaryDirectory(prefix='nc03-decal-') as folder:
   html=Path(folder)/'print.html'
