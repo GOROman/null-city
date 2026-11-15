@@ -90,13 +90,16 @@ def cap(name,x,y,r,material):
 def bezel(name,x,y,r,material):
  bpy.ops.mesh.primitive_torus_add(location=(x,y,47.9),major_radius=r,minor_radius=1.45,major_segments=80,minor_segments=12)
  o=bpy.context.object;o.name=name;o.data.materials.append(material);polish(o)
-buttons=[(-24,28),(10,38),(-30,-11),(44,31),(5,-6),(41,-10)]
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'artwork','control_layout.json')) as f:
+ control_layout=json.load(f)
+buttons=control_layout['buttons']
+lever_x,lever_y=control_layout['lever']
 for i,(x,y) in enumerate(buttons):
  cut(panel,cyl('button bore',x,y,45,15.2,12))
  m=green if i<3 else glass
  cap('PRINT_button_cap_%02d'%i,x,y,13,m);bezel('VISUAL_switch_bezel_%02d'%i,x,y,15.4,m)
 # 1P moves 33 mm toward the rear; START retains its original position.
-menu_buttons=[(90,45),(120,12)]
+menu_buttons=control_layout['menu_buttons']
 for i,(x,y) in enumerate(menu_buttons):
  cut(panel,cyl('menu bore',x,y,45,6.2,12));cap('PRINT_menu_cap_%d'%i,x,y,7.6,green)
 # Provisional 3 mm discrete indicator LEDs; actual LED hardware is not specified yet.
@@ -107,10 +110,10 @@ for led in led_layout['leds']:
  x,y=led['x'],led['y']
  cut(panel,cyl('LED bore '+led['name'],x,y,45,led_layout['hole_diameter_mm']/2,12))
  cyl('VISUAL_LED_'+led['name'],x,y,47.4,1.5,.8,led_material,32)
-cut(panel,cyl('lever opening',-93,-9,45,12,12))
-cyl('VISUAL_dust_washer',-93,-9,47.8,18,1.6,black)
-cyl('VISUAL_shaft',-93,-9,59,4.2,24,steel)
-bpy.ops.mesh.primitive_uv_sphere_add(segments=72,ring_count=40,radius=14.5,location=(-93,-9,80))
+cut(panel,cyl('lever opening',lever_x,lever_y,45,12,12))
+cyl('VISUAL_dust_washer',lever_x,lever_y,47.8,18,1.6,black)
+cyl('VISUAL_shaft',lever_x,lever_y,59,4.2,24,steel)
+bpy.ops.mesh.primitive_uv_sphere_add(segments=72,ring_count=40,radius=14.5,location=(lever_x,lever_y,80))
 o=bpy.context.object;o.name='VISUAL_purple_balltop';o.data.materials.append(purple);polish(o)
 for x in (-135,135):
  for y in (-80,80):

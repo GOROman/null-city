@@ -1,0 +1,47 @@
+{
+  "layout": "Sega Blast City 1P, six-button subset",
+  "source": "https://www.slagcoin.com/joystick/layout.html",
+  "diagram": "https://www.slagcoin.com/joystick/layout/sega1_m.png",
+  "coordinate_system": "millimeters; panel center origin; +X right, +Y rear; pre-tilt deck plane",
+  "lever": [
+    -90,
+    18
+  ],
+  "buttons": [
+    [
+      -24,
+      28
+    ],
+    [
+      9,
+      42
+    ],
+    [
+      -31,
+      -10.5
+    ],
+    [
+      44.5,
+      36
+    ],
+    [
+      2.5,
+      3.5
+    ],
+    [
+      38,
+      -2.5
+    ]
+  ],
+  "menu_buttons": [
+    [
+      90,
+      45
+    ],
+    [
+      120,
+      12
+    ]
+  ],
+  "reference": "Top-left action button retained at (-24,28). Blast City uses the higher lever position and bottom middle button shifted 0.5 mm right."
+}
