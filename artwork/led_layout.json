@@ -5,43 +5,43 @@
   "leds": [
     {
       "name": "direction_000",
-      "x": -65.0,
+      "x": -52.0,
       "y": 18.0
     },
     {
       "name": "direction_045",
-      "x": -72.32233,
-      "y": 35.67767
+      "x": -63.12994,
+      "y": 44.87006
     },
     {
       "name": "direction_090",
       "x": -90.0,
-      "y": 43.0
+      "y": 56.0
     },
     {
       "name": "direction_135",
-      "x": -107.67767,
-      "y": 35.67767
+      "x": -116.87006,
+      "y": 44.87006
     },
     {
       "name": "direction_180",
-      "x": -115.0,
+      "x": -128.0,
       "y": 18.0
     },
     {
       "name": "direction_225",
-      "x": -107.67767,
-      "y": 0.32233
+      "x": -116.87006,
+      "y": -8.87006
     },
     {
       "name": "direction_270",
       "x": -90.0,
-      "y": -7.0
+      "y": -20.0
     },
     {
       "name": "direction_315",
-      "x": -72.32233,
-      "y": 0.32233
+      "x": -63.12994,
+      "y": -8.87006
     },
     {
       "name": "button_1",
@@ -83,5 +83,7 @@
       "x": 100,
       "y": 12
     }
-  ]
+  ],
+  "direction_radius_mm": 38,
+  "note": "Direction LED ring expanded from 25 to 38 mm to keep the bores clear of direct 40x40 mounting holes. LED package, lead routing and housing/PCB interference require physical verification; no spacer gap is assumed."
 }

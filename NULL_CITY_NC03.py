@@ -121,16 +121,13 @@ for led in led_layout['leds']:
  x,y=led['x'],led['y']
  cut(panel,cyl('LED bore '+led['name'],x,y,45,led_layout['hole_diameter_mm']/2,12))
  cyl('VISUAL_LED_'+led['name'],x,y,47.4,1.5,.8,led_material,32)
-# Seimitsu LS-55-01 with MS mounting plate; pitch and plate orientation come from control_layout.json.
+# Direct housing mount confirmed with the 40 x 40 x 4 mm fit coupon.
 mount=control_layout['lever_mount']
+assert mount['mounting_mode']=='direct_housing'
 for dx in (-mount['pitch_mm'][0]/2,mount['pitch_mm'][0]/2):
  for dy in (-mount['pitch_mm'][1]/2,mount['pitch_mm'][1]/2):
-  cut(panel,cyl('M4 lever mounting clearance',lever_x+dx,lever_y+dy,45,mount['clearance_diameter_mm']/2,12))
-# Clear the 1.6 mm plate below 3 mm LED-lead spacers, with 0.5 mm side clearance.
-# Only cuts the frame where the plate reaches past the 274 x 164 mm upper opening.
-plate_x,plate_y=mount['plate_size_mm'][0]+1,mount['plate_size_mm'][1]+1
-if abs(lever_x)+plate_x/2>137 or abs(lever_y)+plate_y/2>82:
- cut(rim,cube('MS plate underside clearance',(lever_x,lever_y,40.5),(plate_x,plate_y,8)))
+  cut(panel,cyl('Original screw clearance',lever_x+dx,lever_y+dy,45,mount['clearance_diameter_mm']/2,12))
+# No MS plate or spacers; keep the upper opening intact.
 cut(panel,cyl('lever opening',lever_x,lever_y,45,12,12))
 cyl('VISUAL_dust_washer',lever_x,lever_y,47.8,18,1.6,black)
 cyl('VISUAL_shaft',lever_x,lever_y,59,4.2,24,steel)
