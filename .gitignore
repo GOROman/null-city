@@ -4,3 +4,5 @@
 /print/h3c/*.log
 
 /print/fit/*.log
+
+__pycache__/

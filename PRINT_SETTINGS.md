@@ -68,3 +68,7 @@ Bambu Studio CLIで5プレートを一括スライスし終了コード0、各�
 ```sh
 /Applications/BambuStudio.app/Contents/MacOS/BambuStudio --slice 0 --export-3mf "$PWD/print/h3c/NC03_H3C_5plates_fast_sliced.3mf" "$PWD/print/h3c/NC03_H3C_5plates_fast.3mf"
 ```
+
+## 天板単独のGUI読み込み
+
+`03_control_panel.3mf`は壁4周・上下面5層・Gyroid15%・外周ブリム5 mmの個別標準設定。CLI出力では`different_settings_to_system`が空のためGUIで内蔵標準値へ戻る場合がある。天板3MFには意図した変更キーを記録済み。`slice_plates.py`は各単独ジョブの出力後に`preserve_overrides.py`でこの情報を保持する。形状・G-code・数値設定は変更せず、読み込み用メタデータのみを更新する。GUIで再スライスし、壁・充填・ブリムを確認して送信する。
