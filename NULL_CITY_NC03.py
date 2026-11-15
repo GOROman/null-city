@@ -1,4 +1,4 @@
-import bpy, os
+import bpy, os, json
 from mathutils import Vector
 bpy.ops.object.select_all(action='SELECT'); bpy.ops.object.delete(use_global=False)
 OUT=os.path.dirname(bpy.data.filepath) if bpy.data.filepath else os.getcwd()
@@ -99,6 +99,14 @@ for i,(x,y) in enumerate(buttons):
 menu_buttons=[(90,45),(120,12)]
 for i,(x,y) in enumerate(menu_buttons):
  cut(panel,cyl('menu bore',x,y,45,6.2,12));cap('PRINT_menu_cap_%d'%i,x,y,7.6,green)
+# Provisional 3 mm discrete indicator LEDs; actual LED hardware is not specified yet.
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'artwork','led_layout.json')) as f:
+ led_layout=json.load(f)
+led_material=emission('Indicator LED cyan',(.02,.65,1),2)
+for led in led_layout['leds']:
+ x,y=led['x'],led['y']
+ cut(panel,cyl('LED bore '+led['name'],x,y,45,led_layout['hole_diameter_mm']/2,12))
+ cyl('VISUAL_LED_'+led['name'],x,y,47.4,1.5,.8,led_material,32)
 cut(panel,cyl('lever opening',-93,-9,45,12,12))
 cyl('VISUAL_dust_washer',-93,-9,47.8,18,1.6,black)
 cyl('VISUAL_shaft',-93,-9,59,4.2,24,steel)
@@ -116,10 +124,10 @@ for x in (-113,113):
  for y in (-66,66):cyl('PRINT_TPU_foot_%d_%d'%(x,y),x,y,-2,11,4,black)
 # Use planar local coordinates for the exposed deck, preserving physical holes.
 texture=mat('Printed NC-03 graphic',(1,1,1),.03,.38)
-panel.data.materials.append(texture);uv=panel.data.uv_layers.new(name='Deck artwork')
+panel.data.materials.append(texture);texture_index=len(panel.data.materials)-1;uv=panel.data.uv_layers.new(name='Deck artwork')
 uv.active_render=True
 for face in panel.data.polygons:
- if face.normal.z>.999 and face.center.z>46.9:face.material_index=1
+ if face.normal.z>.999 and face.center.z>46.9:face.material_index=texture_index
  for li in face.loop_indices:
   v=panel.data.vertices[panel.data.loops[li].vertex_index].co
   uv.data[li].uv=(v.x/288+.5,v.y/178+.5)

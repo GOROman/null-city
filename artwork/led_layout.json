@@ -1,0 +1,87 @@
+{
+  "led_nominal_diameter_mm": 3,
+  "hole_diameter_mm": 3.2,
+  "provisional": true,
+  "leds": [
+    {
+      "name": "direction_000",
+      "x": -68.0,
+      "y": -9.0
+    },
+    {
+      "name": "direction_045",
+      "x": -75.32233,
+      "y": 8.67767
+    },
+    {
+      "name": "direction_090",
+      "x": -93.0,
+      "y": 16.0
+    },
+    {
+      "name": "direction_135",
+      "x": -110.67767,
+      "y": 8.67767
+    },
+    {
+      "name": "direction_180",
+      "x": -118.0,
+      "y": -9.0
+    },
+    {
+      "name": "direction_225",
+      "x": -110.67767,
+      "y": -26.67767
+    },
+    {
+      "name": "direction_270",
+      "x": -93.0,
+      "y": -34.0
+    },
+    {
+      "name": "direction_315",
+      "x": -75.32233,
+      "y": -26.67767
+    },
+    {
+      "name": "button_1",
+      "x": -24,
+      "y": 49
+    },
+    {
+      "name": "button_2",
+      "x": 10,
+      "y": 59
+    },
+    {
+      "name": "button_3",
+      "x": -30,
+      "y": 10
+    },
+    {
+      "name": "button_4",
+      "x": 44,
+      "y": 52
+    },
+    {
+      "name": "button_5",
+      "x": 5,
+      "y": 15
+    },
+    {
+      "name": "button_6",
+      "x": 41,
+      "y": 11
+    },
+    {
+      "name": "1P",
+      "x": 90,
+      "y": 58
+    },
+    {
+      "name": "START",
+      "x": 120,
+      "y": 25
+    }
+  ]
+}
