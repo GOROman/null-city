@@ -1,0 +1,29 @@
+[
+  {
+    "file": "Seimitsu_LS-55-01_MS_dimensions.pdf",
+    "title": "LS-55-01（MSベース）",
+    "publisher": "セイミツ工業株式会社",
+    "source": "https://seimitsu.co.jp/wp-content/uploads/2023/11/%E5%AF%B8%E6%B3%95%E5%9B%B3%E7%94%A8_LS-55-01.pdf",
+    "retrieved_on": "2026-11-15",
+    "pages": 1,
+    "sha256": "a19901d5b70c7369998dabfb3cf59c0b234fe5b66eb7e3129be1af31bd39c189"
+  },
+  {
+    "file": "Seimitsu_PS-14-GN_KN_dimensions.pdf",
+    "title": "PS-14-GN / PS-14-GN-C / PS-14-KN",
+    "publisher": "セイミツ工業株式会社",
+    "source": "https://seimitsu.co.jp/wp-content/uploads/2023/11/%E5%AF%B8%E6%B3%95%E5%9B%B3%E7%94%A8_PS-14-GN.pdf",
+    "retrieved_on": "2026-11-15",
+    "pages": 1,
+    "sha256": "78b955b6cfbfc2a25f0b3712d397eac3bfa34d007808c43f1a6732cf0e6f5f1e"
+  },
+  {
+    "file": "Seimitsu_PS-14-DN_dimensions.pdf",
+    "title": "PS-14-DN / PS-14-DN-C / PS-14-DN-K",
+    "publisher": "セイミツ工業株式会社",
+    "source": "https://seimitsu.co.jp/wp-content/uploads/2023/11/%E5%AF%B8%E6%B3%95%E5%9B%B3%E7%94%A8_PS-14-DN.pdf",
+    "retrieved_on": "2026-11-15",
+    "pages": 1,
+    "sha256": "ffb38fc3c62d612b309630b55dd682c8749798f032a508b83380d6fc369a2fd7"
+  }
+]

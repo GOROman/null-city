@@ -115,7 +115,16 @@
         "operation_8_directions_confirmed": false,
         "screw_thread_confirmed": false,
         "connected_depth_below_panel_underside_mm": null,
-        "production_mesh_updated": false
+        "production_mesh_updated": false,
+        "height_measurement": {
+          "photo": "IMG_9787.jpg",
+          "display_mm": 32.1,
+          "datum_confirmed": false,
+          "appears_to_include_panel": true,
+          "panel_thickness_nominal_mm": 4,
+          "conditional_depth_below_panel_underside_mm": 28.1,
+          "harness_connected_in_photo": false
+        }
       }
     }
   },

@@ -96,3 +96,7 @@
 - [30φ PS-14-GN／PS-14-KN寸法図](https://seimitsu.co.jp/wp-content/uploads/2023/11/%E5%AF%B8%E6%B3%95%E5%9B%B3%E7%94%A8_PS-14-GN.pdf)
 - [24φ PS-14-DN寸法図](https://seimitsu.co.jp/wp-content/uploads/2023/11/%E5%AF%B8%E6%B3%95%E5%9B%B3%E7%94%A8_PS-14-DN.pdf)
 - [LS-55-01／MS寸法図](https://seimitsu.co.jp/wp-content/uploads/2023/11/%E5%AF%B8%E6%B3%95%E5%9B%B3%E7%94%A8_LS-55-01.pdf)
+
+## 参考寸法図
+
+[レバー・ボタンの公式寸法図PDF](docs/references/README.md)を参照。M01はLS-55-01/MS図、M03・M04はPS-14-GN/KN共通図、M05はPS-14-DN図に対応する。
