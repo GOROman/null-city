@@ -153,10 +153,12 @@ test('RGB animation, spring controls, background color and SSAO tuning',async({p
   await page.keyboard.up('ArrowRight');
   await expect.poll(()=>page.locator('#viewer').evaluate(v=>v.arcade.snapshot().stick.tiltDegrees),{timeout:4000}).toBeLessThan(.2);
   const point=await page.locator('#viewer').evaluate(v=>v.arcade.projectControl('B2'));
-  if(page.viewportSize().width<700){await page.touchscreen.tap(point.x,point.y);}
+  const touch=page.viewportSize().width<700?await page.context().newCDPSession(page):null;
+  if(touch){await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:point.x,y:point.y}]});}
   else{await page.mouse.move(point.x,point.y);await page.mouse.down();}
   await expect.poll(()=>page.locator('#viewer').evaluate(v=>v.arcade.snapshot().buttons[1].depthMm),{timeout:3000}).toBeGreaterThan(.3);
-  if(page.viewportSize().width>=700)await page.mouse.up();
+  if(touch){await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await touch.detach();}
+  else await page.mouse.up();
   await expect.poll(()=>page.locator('#viewer').evaluate(v=>Math.abs(v.arcade.snapshot().buttons[1].depthMm)),{timeout:4000}).toBeLessThan(.05);
   const stick=await page.locator('#viewer').evaluate(v=>v.arcade.projectControl('STICK'));
   await page.mouse.move(stick.x,stick.y);await page.mouse.down();await page.mouse.move(stick.x+38,stick.y-8,{steps:5});
