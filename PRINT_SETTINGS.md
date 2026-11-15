@@ -77,4 +77,4 @@ Bambu Studio CLIで5プレートを一括スライスし終了コード0、各�
 
 ## 天板単独の時短試作版
 
-[03_control_panel_fast.3mf](print/h3c/03_control_panel_fast.3mf)：CLI見積2時間55分55秒・103.54 g。標準単独版4時間04分33秒から約28%短縮。形状は同一で、積層0.28 mm・壁3周・上下面3層・Gyroid5%・天面100 mm/s。Generic PLAの温度・体積流量制限は維持し、サポートなし・外周ブリム5 mm。層が粗く、標準版より剛性・表面品質が下がる可能性がある試作用設定。GUI・実機の準備や補正次第で3時間を超える場合がある。実印刷は未実施。`python3 print/h3c/slice_panel_fast.py`で再生成する。
+[03_control_panel_fast.3mf](print/h3c/03_control_panel_fast.3mf)：CLI見積2時間55分55秒・103.54 g。標準単独版4時間04分33秒から約28%短縮。形状は同一で、積層0.28 mm・壁3周・上下面3層・Gyroid5%・天面100 mm/s。Generic PLAの温度・体積流量制限は維持し、サポートなし・外周ブリム5 mm。層が粗く、標準版より剛性・表面品質が下がる可能性がある試作用設定。GUI・実機の準備や補正次第で3時間を超える場合がある。青色天板の実機印刷完了品と部分組付けを写真で確認済み。監視画面のジョブ名は03_control_panel_fast、表示見積は2時間43分50秒・105.21 gであり、CLI見積と異なる。[実機結果](docs/fit/PHOTO_REVIEW.md)参照。`python3 print/h3c/slice_panel_fast.py`で再生成する。
