@@ -33,6 +33,12 @@ test('PBR model, meter scale, artwork, camera and assembly controls',async({page
   expect(await page.locator('#viewer').evaluate(v=>v.autoRotateDelay)).toBe(0);
   await expect.poll(()=>page.locator('#viewer').evaluate(v=>v.modelIsVisible),{timeout:8000}).toBe(true);
   const initialAngle=await page.locator('#viewer').evaluate(v=>v.turntableRotation);
+  if(process.env.CI)console.log('Rotation start',await page.evaluate(()=>({
+    dpr:devicePixelRatio,visibility:document.visibilityState,
+    modelVisible:document.querySelector('#viewer').modelIsVisible,
+    autoRotate:document.querySelector('#viewer').autoRotate,
+    renderCount:document.querySelector('#composer').userPasses[0].scene.renderCount,
+  })));
   await expect.poll(()=>page.locator('#viewer').evaluate((v,initial)=>Math.abs(v.turntableRotation-initial),initialAngle),{timeout:8000}).toBeGreaterThan(.05);
   await page.locator('#rotate').uncheck({force:true});
   await page.locator('#viewer').scrollIntoViewIfNeeded();
