@@ -1,0 +1,29 @@
+NULL CITY — license scope
+Copyright (c) 2026 GOROman
+
+This repository uses different licenses for different components:
+
+1. MIT: Python scripts and other software outside fonts/null-font/.
+   See LICENSES/MIT.txt.
+2. CC BY 4.0: original hardware/manufacturing data (STL, 3MF, Blender),
+   artwork and decals, design/configuration JSON, original renders, and
+   project documentation, except the font package and third-party material.
+   See LICENSES/CC-BY-4.0.txt.
+3. SIL OFL 1.1: the entire fonts/null-font/ package, including font binaries,
+   glyph sources, font build/validation scripts, specimens and documentation.
+   See fonts/null-font/OFL.txt. No Reserved Font Names are declared.
+
+The font package is the explicit exception to the MIT script license.
+Fonts embedded in Blender/3MF or other documents retain their OFL license;
+using the font does not change the license of the resulting document/artwork.
+Copies of these license texts retain their original notices.
+
+Third-party materials, including manufacturer PDFs in docs/references/,
+manufacturer printer/filament profiles and bundled slicer metadata, retain
+their original licenses and copyrights. The licenses above grant no new
+rights to third-party material. See the reference manifest and source links.
+
+Attribution example for original CC BY 4.0 assets:
+"NULL CITY NC-03 by GOROman — https://github.com/GOROman/null-city —
+CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+When sharing modifications, also describe what you changed.

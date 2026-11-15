@@ -1,7 +1,7 @@
 import bpy, os, json
 from mathutils import Vector
 bpy.ops.object.select_all(action='SELECT'); bpy.ops.object.delete(use_global=False)
-OUT=os.path.dirname(bpy.data.filepath) if bpy.data.filepath else os.getcwd()
+OUT=os.path.dirname(os.path.abspath(__file__))
 def mat(n,c,metal=0,rough=.35):
  m=bpy.data.materials.new(n);m.diffuse_color=(*c,1);m.use_nodes=True;p=m.node_tree.nodes.get('Principled BSDF');p.inputs['Base Color'].default_value=(*c,1);p.inputs['Metallic'].default_value=metal;p.inputs['Roughness'].default_value=rough;return m
 ivory=mat('Pearl white PETG',(.85,.86,.92));navy=mat('Deep navy',(.012,.019,.075));green=mat('Lime green',(.018,.72,.001));clear=mat('Transparent button placeholder',(.65,.8,.95));purple=mat('Purple balltop',(.26,.015,.72),.1,.12);pink=mat('Magenta accent',(.95,.01,.43));black=mat('Black',(.018,.018,.025))
@@ -93,38 +93,39 @@ lightbar=emission('Magenta lighting illustration',(1,.008,.36),4)
 diffuser_material=emission('Backlit translucent PLA illustration',(1,.025,.45),2.5)
 # The real part is milk-white / translucent PLA; emission illustrates the separate LED source.
 front_frame=Matrix.Rotation(radians(90),4,'X')
-recess=[(-102,5),(102,5),(90,22),(-90,22)]
-def recess_at(z):return [(-102,5),(102,5),(102-12*(z-5)/17,z),(-102+12*(z-5)/17,z)]
-front_cut=profile_plate('Front LED pocket',recess_at(17.4),8,None,recess_at(25.4))
-front_cut.matrix_world=Matrix.Translation((0,-90.4,0))@front_frame
-cut(base,front_cut)
-front_lens=profile_plate('PRINT_light_front_diffuser',[(-101.5,5.5),(101.5,5.5),(89.5,20.3),(-89.5,20.3)],1.2,diffuser_material,[(-101.5,5.5),(101.5,5.5),(89.5,21.5),(-89.5,21.5)])
-front_lens.matrix_world=Matrix.Translation((0,-93.8,0))@front_frame
-# Black mask is a separate opaque adhesive sheet, not another solid wall hiding the LEDs.
-front_prism('VISUAL_front_mask',[(-97,9.5),(97,9.5),(87.8,22),(-87.8,22)],-95.15,-95.01,black)
-front_prism('VISUAL_front_LED_strip',[(-90,10.7),(90,10.7),(90,15.7),(-90,15.7)],-92.3,-90.5,lightbar)
-slope=tan(radians(2.55))
-lighting_config={'mode':'magenta constant illumination (provisional)', 'strip_supply_v':5, 'strip_width_max_mm':5,'strip_thickness_max_mm':2,'front_strip_length_max_mm':180,'side_strip_length_max_mm':130,'diffuser_thickness_mm':1.2,'pocket_back_wall_mm':1.4,'attachment':'thin removable adhesive tape at edges; no printed snap tabs','optical_and_thermal_validation':False,'front_wordmark_scale':0.1,'front_wordmark_left_mm':-43,'front_wordmark_baseline_mm':11,'deck_stack_mm':4,'side_window_shape':'tapered ends, sloped 2.55 degrees'}
+with open(os.path.join(OUT,'artwork','lighting_layout.json')) as f:lighting_config=json.load(f)
+front=lighting_config['front'];side_config=lighting_config['side']
+# Two recess depths leave a solid perimeter shoulder behind the lens.
+for name,back,top,start,depth in [
+ ('inner',front['inner_back'],front['inner_seat'],0,front['seat_depth_mm']),
+ ('outer',front['outer_back'],front['outer_front'],front['seat_depth_mm'],front['outer_depth_mm']-front['seat_depth_mm'])]:
+ tool=profile_plate('Front LED pocket '+name,back,depth,None,top)
+ tool.matrix_world=Matrix.Translation(front['frame_origin_mm'])@front_frame@Matrix.Translation((0,0,start));cut(base,tool)
+front_lens=profile_plate('PRINT_light_front_diffuser',front['lens_back'],lighting_config['diffuser_thickness_mm'],diffuser_material,front['lens_front'])
+front_lens.matrix_world=Matrix.Translation(front['lens_origin_mm'])@front_frame
+front_prism('VISUAL_front_mask',front['mask_outline'],-95.15,-95.01,black)
+front_prism('VISUAL_front_LED_strip',front['strip_outline'],*front['strip_y_mm'],lightbar)
+slope=tan(radians(side_config['slope_degrees']))
 for sign,side in [(-1,'left'),(1,'right')]:
  # Local +U points toward the rear on the right, toward the front on the left.
  orient=Matrix(((0,0,sign,0),(sign,0,0,0),(0,1,0,0),(0,0,0,1)))
- pocket=profile_plate('Side LED pocket '+side,[(u,13.5+slope*sign*u+dz) for u,dz in [(-72,-5.25),(72,-5.25),(66.1,.65),(-66.1,.65)]],8,None,[(u,13.5+slope*sign*u+dz) for u,dz in [(-72,-5.25),(72,-5.25),(58.1,8.65),(-58.1,8.65)]])
- pocket.matrix_world=Matrix.Translation((sign*145.4,0,0))@orient;cut(base,pocket)
- lens=profile_plate('PRINT_light_'+side+'_diffuser',[(u,13.5+slope*sign*u+dz) for u,dz in [(-71.5,-5.0),(71.5,-5.0),(62.5,3.75),(-62.5,3.75)]],1.2,diffuser_material,[(u,13.5+slope*sign*u+dz) for u,dz in [(-71.5,-5.0),(71.5,-5.0),(61.3,4.95),(-61.3,4.95)]])
- lens.matrix_world=Matrix.Translation((sign*148.8,0,0))@orient
- source=profile_plate('VISUAL_side_LED_strip_'+side,[(u,11.2+slope*sign*u+dz) for u,dz in [(-65,-2.5),(65,-2.5),(65,2.5),(-65,2.5)]],1.8,lightbar)
- source.matrix_world=Matrix.Translation((sign*145.5,0,0))@orient
+ def side_points(key,center=None):return [(u,(side_config['center_z_mm'] if center is None else center)+slope*sign*u+dz) for u,dz in side_config[key]]
+ for name,back,top,start,depth in [
+  ('inner','inner_back','inner_seat',0,side_config['seat_depth_mm']),
+  ('outer','outer_seat','outer_front',side_config['seat_depth_mm'],side_config['outer_depth_mm']-side_config['seat_depth_mm'])]:
+  pocket=profile_plate('Side LED pocket '+side+' '+name,side_points(back),depth,None,side_points(top))
+  pocket.matrix_world=Matrix.Translation((sign*side_config['pocket_origin_abs_x_mm'],0,0))@orient@Matrix.Translation((0,0,start));cut(base,pocket)
+ lens=profile_plate('PRINT_light_'+side+'_diffuser',side_points('lens_back'),lighting_config['diffuser_thickness_mm'],diffuser_material,side_points('lens_front'))
+ lens.matrix_world=Matrix.Translation((sign*side_config['lens_origin_abs_x_mm'],0,0))@orient
+ source=profile_plate('VISUAL_side_LED_strip_'+side,side_points('strip_outline',side_config['strip_center_z_mm']),side_config['strip_depth_mm'],lightbar)
+ source.matrix_world=Matrix.Translation((sign*side_config['strip_origin_abs_x_mm'],0,0))@orient
  for y in (-64,64):
   tool=cyl('Side LED wire passage',sign*145,y,13.5+slope*y,1.6,12)
   tool.rotation_euler.y=radians(90);cut(base,tool)
 for x in (-90,90):
  tool=cyl('Front LED wire passage',x,-90,13.5,1.6,10)
  tool.rotation_euler.x=radians(90);cut(base,tool)
-with open(os.path.join(OUT,'artwork','lighting_layout.json'),'w') as f:json.dump(lighting_config,f,indent=2);f.write('\n')
 from math import radians
-def label(body,x,z,material):
- data=bpy.data.curves.new(body,'FONT');data.body=body;data.size=8.5;data.shear=.27
- o=bpy.data.objects.new(body,data);bpy.context.collection.objects.link(o);o.location=(x,-95.3,z);o.rotation_euler.x=radians(90);data.materials.append(material)
 # Use the same original outline wordmark as the printed deck, with no font dependency.
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'artwork','logo','wordmark.json')) as f:
  wordmark=json.load(f)
@@ -134,7 +135,9 @@ for i,glyph in enumerate(wordmark['polygons']):
  area=sum(outline[j][0]*outline[(j+1)%len(outline)][1]-outline[(j+1)%len(outline)][0]*outline[j][1] for j in range(len(outline)))
  if area<0:outline.reverse()
  front_prism('VISUAL_NULL_CITY_wordmark_%02d'%i,outline,-95.3,-95.2,wordmark_material)
-label('///',27,10,lightbar)
+for x in front['slash_x_mm']:
+ z=front['slash_bottom_z_mm'];w=front['slash_width_mm'];h=front['slash_height_mm'];lean=front['slash_shear_mm']
+ front_prism('VISUAL_front_slash',[(x,z),(x+w,z),(x+w+lean,z+h),(x+lean,z+h)],-95.3,-95.2,lightbar)
 
 steel=mat('Polished steel',(.64,.68,.78),.94,.19)
 glass=clear;bs=glass.node_tree.nodes.get('Principled BSDF');bs.inputs['Transmission Weight'].default_value=.94;bs.inputs['IOR'].default_value=1.48;bs.inputs['Roughness'].default_value=.12

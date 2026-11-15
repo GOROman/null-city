@@ -15,6 +15,8 @@ for style in ('Regular','Italic'):
    assert all(ord(ch) in cmap for ch in '\u00a0¥…Φφ⌀Øø'),p
    assert font['name'].getDebugName(1)=='NULL FONT'
    assert font['name'].getDebugName(2)==style
+   assert 'SIL Open Font License, Version 1.1' in font['name'].getDebugName(13)
+   assert font['name'].getDebugName(14)=='https://openfontlicense.org'
    assert font['post'].italicAngle==(-12 if style=='Italic' else 0)
    assert 'GPOS' in font
    glyphset=font.getGlyphSet()
@@ -30,3 +32,15 @@ for style in ('Regular','Italic'):
   print(p.name,'PASS')
  assert maps[0]==maps[1]==maps[2],'Desktop and web coverage differs'
 print('PASS: 6 valid fonts, complete printable ASCII, both styles, small caps, tabular digits, no vertical clipping')
+
+from zipfile import ZipFile
+expected={'OFL.txt','README.md','brand-glyphs.json','build.py','glyphs.json',
+          'null-font.css','requirements.txt','specimen.html','specimen.pdf',
+          'specimen.png','validate.py'}
+expected.update(f'NULLFont-{style}.{ext}' for style in ('Regular','Italic') for ext in ('ttf','otf','woff2'))
+with ZipFile(root/'NULL-FONT.zip') as archive:
+ assert len(archive.namelist())==len(expected)
+ assert set(archive.namelist())=={'NULL-FONT/'+name for name in expected}
+ for name in expected:
+  assert archive.read('NULL-FONT/'+name)==(root/name).read_bytes(), 'Stale ZIP entry: '+name
+print('PASS: ZIP matches all 17 distributed files, including OFL and sources')

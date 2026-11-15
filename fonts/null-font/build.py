@@ -162,7 +162,7 @@ for italic in (False,True):
    fb.setupCFF(ps,{'FullName':f'NULL FONT {style}','FamilyName':'NULL FONT','Weight':'Regular','version':VERSION,'ItalicAngle':-12 if italic else 0},table,{})
   fb.setupHorizontalMetrics(metrics)
   fb.setupHorizontalHeader(ascent=850,descent=-200,lineGap=100,caretSlopeRise=1000 if italic else 1,caretSlopeRun=213 if italic else 0)
-  fb.setupNameTable({'familyName':'NULL FONT','styleName':style,'uniqueFontIdentifier':f'GOROman:{ps}:{VERSION}','fullName':f'NULL FONT {style}','psName':ps,'version':'Version '+VERSION,'copyright':'Copyright 2026 GOROman.','manufacturer':'GOROman','designer':'GOROman','description':'Original geometric display lettering derived from the NULL CITY wordmark. Lowercase uses small capitals.'})
+  fb.setupNameTable({'familyName':'NULL FONT','styleName':style,'uniqueFontIdentifier':f'GOROman:{ps}:{VERSION}','fullName':f'NULL FONT {style}','psName':ps,'version':'Version '+VERSION,'copyright':'Copyright 2026 GOROman.','licenseDescription':'This Font Software is licensed under the SIL Open Font License, Version 1.1. See OFL.txt.','licenseInfoURL':'https://openfontlicense.org','manufacturer':'GOROman','designer':'GOROman','description':'Original geometric display lettering derived from the NULL CITY wordmark. Lowercase uses small capitals.'})
   fb.setupOS2(sTypoAscender=850,sTypoDescender=-200,sTypoLineGap=100,usWinAscent=850,usWinDescent=200,sxHeight=560,sCapHeight=700,usWeightClass=400,usWidthClass=5,fsSelection=1 if italic else 64,fsType=0,achVendID='NULL')
   fb.setupPost(italicAngle=-12 if italic else 0);fb.font['head'].macStyle=2 if italic else 0;fb.font['head'].fontRevision=.1
   addOpenTypeFeaturesFromString(fb.font,features)
@@ -172,3 +172,18 @@ for italic in (False,True):
  web=TTFont(OUT/(ps+'.ttf'),recalcTimestamp=False);web.flavor='woff2';web.save(OUT/(ps+'.woff2'));web.close()
  print(ps, len(order),'glyphs / TTF + OTF + WOFF2')
 print('Built 2 styles, 6 font files. Original NULL CITY glyphs retained.')
+
+# Fixed timestamps, ordering and permissions make the distribution reproducible.
+from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
+PACKAGE_FILES = (
+ 'OFL.txt', 'README.md', 'brand-glyphs.json', 'build.py', 'glyphs.json',
+ 'null-font.css', 'requirements.txt', 'specimen.html', 'specimen.pdf',
+ 'specimen.png', 'validate.py',
+ *(f'NULLFont-{style}.{ext}' for style in ('Regular','Italic') for ext in ('ttf','otf','woff2')),
+)
+with ZipFile(OUT/'NULL-FONT.zip','w',compression=ZIP_DEFLATED,compresslevel=9) as archive:
+ for filename in sorted(PACKAGE_FILES):
+  info=ZipInfo('NULL-FONT/'+filename, date_time=(2026,1,1,0,0,0))
+  info.compress_type=ZIP_DEFLATED;info.create_system=3;info.external_attr=0o100644<<16
+  archive.writestr(info,(OUT/filename).read_bytes())
+print('Built deterministic NULL-FONT.zip including OFL and sources.')

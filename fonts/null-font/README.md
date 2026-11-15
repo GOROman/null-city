@@ -58,4 +58,10 @@ python3 -m venv .venv
 
 FontTools 4.68.0で生成。macOS CoreTextでTTF／OTFの読み込みと収録文字を確認し、ChromeでWOFF2の表示を確認した。文字見本は生成したフォントを実際に読み込んだもの。Windows・Adobe製品・印刷業者の設備では未検証。
 
-Copyright 2026 GOROman.
+## ライセンス
+
+Copyright © 2026 GOROman。このディレクトリ一式（TTF・OTF・WOFF2、字形ソース、生成・検証スクリプト、文字見本）は [SIL Open Font License 1.1](OFL.txt)。Reserved Font Nameの指定はない。
+
+商用作品への利用、埋め込み、改変、再配布が可能。フォント単体の販売は禁止。再配布時には著作権表示とOFLを同梱し、改変したフォントにもOFLを維持する。フォントで作ったロゴ・印刷物にOFLを適用する必要はない。
+
+`build.py` は6形式と `NULL-FONT.zip` を再生成する。ZIPにはこの説明・OFL・字形ソース・文字見本も入り、`validate.py` は同梱内容とリポジトリのファイルが一致することを検証する。文字見本の画像・PDF自体は、字形変更時にブラウザーから別途書き出す。
