@@ -31,7 +31,7 @@ cut(base,cube('cavity',(0,0,17),(288,178,24))) # 5 mm floor, 6 mm walls
 rim=cube('PRINT_02_upper_frame',(0,0,34.5),(300,190,17),ivory,3)
 bake(rim)
 cut(rim,cube('frame opening',(0,0,35),(284,174,22)))
-panel=cube('PRINT_03_control_panel',(0,0,45),(294,184,4),navy,2)
+panel=cube('PRINT_03_control_panel',(0,0,45),(294,184,4),navy,1.5)
 bake(panel)
 # 3 active action buttons in exact triangular orientation, plus 3 optional transparent placeholders.
 buttons=[(-2,-29),(12,23),(57,33)]
