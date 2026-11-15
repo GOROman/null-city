@@ -76,8 +76,16 @@ from math import radians
 def label(body,x,z,material):
  data=bpy.data.curves.new(body,'FONT');data.body=body;data.size=8.5;data.shear=.27
  o=bpy.data.objects.new(body,data);bpy.context.collection.objects.link(o);o.location=(x,-92.65,z);o.rotation_euler.x=radians(90);data.materials.append(material)
-label('NULL CITY',-24,10,emission('Cool white lettering',(.65,.82,1),2))
-label('///',18,10,lightbar)
+# Use the same original outline wordmark as the printed deck, with no font dependency.
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'artwork','logo','wordmark.json')) as f:
+ wordmark=json.load(f)
+wordmark_material=emission('Cool white lettering',(.65,.82,1),2)
+for i,glyph in enumerate(wordmark['polygons']):
+ outline=[(-26+x*.064,11+(100-y)*.064) for x,y in glyph['points']]
+ area=sum(outline[j][0]*outline[(j+1)%len(outline)][1]-outline[(j+1)%len(outline)][0]*outline[j][1] for j in range(len(outline)))
+ if area<0:outline.reverse()
+ front_prism('VISUAL_NULL_CITY_wordmark_%02d'%i,outline,-92.7,-92.5,wordmark_material)
+label('///',23,10,lightbar)
 
 steel=mat('Polished steel',(.64,.68,.78),.94,.19)
 glass=clear;bs=glass.node_tree.nodes.get('Principled BSDF');bs.inputs['Transmission Weight'].default_value=.94;bs.inputs['IOR'].default_value=1.48;bs.inputs['Roughness'].default_value=.12
@@ -95,13 +103,13 @@ with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'artwork','con
 buttons=control_layout['buttons']
 lever_x,lever_y=control_layout['lever']
 for i,(x,y) in enumerate(buttons):
- cut(panel,cyl('button bore',x,y,45,15.2,12))
+ cut(panel,cyl('button bore',x,y,45,control_layout['main_button_hole_diameter_mm']/2,12))
  m=green if i<3 else glass
- cap('PRINT_button_cap_%02d'%i,x,y,13,m);bezel('VISUAL_switch_bezel_%02d'%i,x,y,15.4,m)
+ cap('PRINT_button_cap_%02d'%i,x,y,14.1,m);bezel('VISUAL_switch_bezel_%02d'%i,x,y,15.4,m)
 # 1P moves 33 mm toward the rear; START retains its original position.
 menu_buttons=control_layout['menu_buttons']
 for i,(x,y) in enumerate(menu_buttons):
- cut(panel,cyl('menu bore',x,y,45,6.2,12));cap('PRINT_menu_cap_%d'%i,x,y,7.6,green)
+ cut(panel,cyl('menu bore',x,y,45,control_layout['menu_button_hole_diameter_mm']/2,12));cap('PRINT_menu_cap_%d'%i,x,y,11.2,green);bezel('VISUAL_menu_bezel_%d'%i,x,y,12,green)
 # Provisional 3 mm discrete indicator LEDs; actual LED hardware is not specified yet.
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'artwork','led_layout.json')) as f:
  led_layout=json.load(f)
