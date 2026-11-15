@@ -6,7 +6,7 @@ root=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 scene=bpy.context.scene
 cam=scene.camera
 original={o.name:o.matrix_world.copy() for o in scene.objects}
-parts=[o for o in scene.objects if o.type=='MESH' and o.name!='STUDIO_floor']
+parts=[o for o in scene.objects if o.type in ('MESH','CURVE','FONT') and o.name!='STUDIO_floor']
 def aim(point):cam.rotation_euler=(Vector(point)-cam.location).to_track_quat('-Z','Y').to_euler()
 def render(path,w=1400,h=900):
  scene.render.resolution_x=w;scene.render.resolution_y=h;scene.render.resolution_percentage=100
@@ -19,12 +19,18 @@ shutil.copyfile(os.path.join(root,'docs/images/cycles.jpg'),os.path.join(root,'p
 # Exploded assembly: preserve each group's shared transform.
 for o in parts:
  if 'upper_frame' in o.name:o.location.z+=34
+ elif o.name.startswith('PRINT_USB_bridge'):o.location.z+=14
+ elif o.name.startswith('PRINT_TPU'):o.location.z-=12
+ elif o.name=='PRINT_light_front_diffuser' or o.name.startswith(('VISUAL_front_mask','VISUAL_NULL_CITY_wordmark','VISUAL_front_slash')):o.location.y-=20
+ elif o.name=='PRINT_light_left_diffuser':o.location.x-=20
+ elif o.name=='PRINT_light_right_diffuser':o.location.x+=20
  elif 'control_panel' in o.name or o.name.startswith(('VISUAL_LED','VISUAL_switch','VISUAL_shaft','VISUAL_dust','VISUAL_purple','VISUAL_M3','PRINT_button','PRINT_menu')):o.location.z+=72
 cam.location=(90,-570,450);cam.data.ortho_scale=420;aim((0,0,65))
 render('assembly.jpg')
 for o in parts:o.matrix_world=original[o.name]
 # Orthographic views at a shared scale in a single scene.
 scene.render.engine='BLENDER_WORKBENCH'
+scene.view_settings.view_transform='Standard';scene.view_settings.look='None';scene.view_settings.exposure=0
 scene.display.shading.light='STUDIO';scene.display.shading.color_type='MATERIAL';scene.display.shading.show_shadows=False;scene.display.shading.show_cavity=True
 scene.display.shading.background_type='WORLD';scene.world.color=(.11,.12,.15)
 bpy.data.objects['STUDIO_floor'].hide_render=True
@@ -36,16 +42,23 @@ for transform in transforms:
 for o in parts:o.hide_render=True
 cam.location=(0,45,1200);cam.rotation_euler=(0,0,0);cam.data.ortho_scale=630
 labels=[]
-for text,x,y in [('TOP',-250,228),('FRONT',-250,-125),('RIGHT',75,-125)]:
+for text,x,y in [('TOP',-250,218),('FRONT',-250,-125),('RIGHT',75,-125)]:
  d=bpy.data.curves.new(text,'FONT');d.body=text;d.size=10;o=bpy.data.objects.new(text,d);scene.collection.objects.link(o);o.location=(x,y,100);labels.append(o)
 render('docs/images/three-views.jpg',1800,1100)
 for o in copies+labels:bpy.data.objects.remove(o,do_unlink=True)
 # Exploded structural mesh, with real opening boundaries visible.
+scene.display.shading.color_type='SINGLE';scene.display.shading.single_color=(.6,.8,1)
+scene.world.color=(.025,.03,.05)
 for o in parts:
- if o.name in ['PRINT_01_lower_tray','PRINT_02_upper_frame','PRINT_03_control_panel']:
+ if o.name.startswith('PRINT_') and not ('button_cap' in o.name or 'menu_cap' in o.name):
   o.hide_render=False;o.matrix_world=original[o.name]
   if 'upper_frame' in o.name:o.location.z+=34
   if 'control_panel' in o.name:o.location.z+=72
-  mod=o.modifiers.new('Display mesh edges','WIREFRAME');mod.thickness=.4;mod.use_replace=True
+  if o.name.startswith('PRINT_USB_bridge'):o.location.z+=14
+  if o.name=='PRINT_light_front_diffuser':o.location.y-=20
+  if o.name=='PRINT_light_left_diffuser':o.location.x-=20
+  if o.name=='PRINT_light_right_diffuser':o.location.x+=20
+  if o.name.startswith('PRINT_TPU'):o.location.z-=12
+  mod=o.modifiers.new('Display mesh edges','WIREFRAME');mod.thickness=.25;mod.use_replace=True;mod.use_even_offset=False
 cam.location=(120,-540,440);cam.data.ortho_scale=425;aim((0,0,70))
 render('docs/images/wireframe.jpg')

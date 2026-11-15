@@ -2,16 +2,330 @@
   "mode": "magenta constant illumination (provisional)",
   "strip_supply_v": 5,
   "strip_width_max_mm": 5,
-  "strip_thickness_max_mm": 2,
+  "strip_thickness_max_mm": 1.8,
   "front_strip_length_max_mm": 180,
   "side_strip_length_max_mm": 130,
   "diffuser_thickness_mm": 1.2,
   "pocket_back_wall_mm": 1.4,
-  "attachment": "thin removable adhesive tape at edges; no printed snap tabs",
+  "attachment": "perimeter backing shoulder plus thin removable edge adhesive; physical push test pending",
   "optical_and_thermal_validation": false,
   "front_wordmark_scale": 0.1,
   "front_wordmark_left_mm": -43,
   "front_wordmark_baseline_mm": 11,
   "deck_stack_mm": 4,
-  "side_window_shape": "tapered ends, sloped 2.55 degrees"
+  "side_window_shape": "tapered ends, sloped 2.55 degrees",
+  "front": {
+    "frame_origin_mm": [
+      0,
+      -90.4,
+      0
+    ],
+    "seat_depth_mm": 3.4,
+    "outer_depth_mm": 8,
+    "outer_back": [
+      [
+        -102,
+        5
+      ],
+      [
+        102,
+        5
+      ],
+      [
+        90.84705882352941,
+        20.8
+      ],
+      [
+        -90.84705882352941,
+        20.8
+      ]
+    ],
+    "outer_front": [
+      [
+        -102,
+        5
+      ],
+      [
+        102,
+        5
+      ],
+      [
+        87.6,
+        25.4
+      ],
+      [
+        -87.6,
+        25.4
+      ]
+    ],
+    "inner_back": [
+      [
+        -99.6891891891892,
+        6.5
+      ],
+      [
+        99.6891891891892,
+        6.5
+      ],
+      [
+        92.06756756756756,
+        15.9
+      ],
+      [
+        -92.06756756756756,
+        15.9
+      ]
+    ],
+    "inner_seat": [
+      [
+        -99.6891891891892,
+        6.5
+      ],
+      [
+        99.6891891891892,
+        6.5
+      ],
+      [
+        89.3108108108108,
+        19.3
+      ],
+      [
+        -89.3108108108108,
+        19.3
+      ]
+    ],
+    "lens_origin_mm": [
+      0,
+      -93.8,
+      0
+    ],
+    "lens_back": [
+      [
+        -101.5,
+        5.5
+      ],
+      [
+        101.5,
+        5.5
+      ],
+      [
+        89.5,
+        20.3
+      ],
+      [
+        -89.5,
+        20.3
+      ]
+    ],
+    "lens_front": [
+      [
+        -101.5,
+        5.5
+      ],
+      [
+        101.5,
+        5.5
+      ],
+      [
+        89.5,
+        21.5
+      ],
+      [
+        -89.5,
+        21.5
+      ]
+    ],
+    "mask_outline": [
+      [
+        -97,
+        9.5
+      ],
+      [
+        97,
+        9.5
+      ],
+      [
+        87.8,
+        22
+      ],
+      [
+        -87.8,
+        22
+      ]
+    ],
+    "mask_canvas_mm": [
+      203,
+      17
+    ],
+    "mask_origin_x_mm": -101.5,
+    "mask_top_z_mm": 22,
+    "strip_outline": [
+      [
+        -90,
+        10.7
+      ],
+      [
+        90,
+        10.7
+      ],
+      [
+        90,
+        15.7
+      ],
+      [
+        -90,
+        15.7
+      ]
+    ],
+    "strip_y_mm": [
+      -92.3,
+      -90.5
+    ],
+    "slash_x_mm": [
+      27,
+      31,
+      35
+    ],
+    "slash_bottom_z_mm": 10,
+    "slash_height_mm": 8,
+    "slash_width_mm": 2,
+    "slash_shear_mm": 3
+  },
+  "side": {
+    "slope_degrees": 2.55,
+    "center_z_mm": 13.5,
+    "pocket_origin_abs_x_mm": 145.4,
+    "seat_depth_mm": 3.4,
+    "outer_depth_mm": 8,
+    "outer_seat": [
+      [
+        -72,
+        -5.25
+      ],
+      [
+        72,
+        -5.25
+      ],
+      [
+        62.7,
+        4.05
+      ],
+      [
+        -62.7,
+        4.05
+      ]
+    ],
+    "outer_front": [
+      [
+        -72,
+        -5.25
+      ],
+      [
+        72,
+        -5.25
+      ],
+      [
+        58.1,
+        8.65
+      ],
+      [
+        -58.1,
+        8.65
+      ]
+    ],
+    "inner_back": [
+      [
+        -70.5,
+        -5.25
+      ],
+      [
+        70.5,
+        -5.25
+      ],
+      [
+        65.4,
+        -0.15
+      ],
+      [
+        -65.4,
+        -0.15
+      ]
+    ],
+    "inner_seat": [
+      [
+        -69.25,
+        -4
+      ],
+      [
+        69.25,
+        -4
+      ],
+      [
+        62,
+        3.25
+      ],
+      [
+        -62,
+        3.25
+      ]
+    ],
+    "lens_origin_abs_x_mm": 148.8,
+    "lens_back": [
+      [
+        -71.5,
+        -5
+      ],
+      [
+        71.5,
+        -5
+      ],
+      [
+        62.5,
+        3.75
+      ],
+      [
+        -62.5,
+        3.75
+      ]
+    ],
+    "lens_front": [
+      [
+        -71.5,
+        -5
+      ],
+      [
+        71.5,
+        -5
+      ],
+      [
+        61.3,
+        4.95
+      ],
+      [
+        -61.3,
+        4.95
+      ]
+    ],
+    "strip_origin_abs_x_mm": 146.4,
+    "strip_center_z_mm": 11.8,
+    "strip_depth_mm": 1.8,
+    "strip_outline": [
+      [
+        -65,
+        -2.5
+      ],
+      [
+        65,
+        -2.5
+      ],
+      [
+        65,
+        2.5
+      ],
+      [
+        -65,
+        2.5
+      ]
+    ]
+  }
 }

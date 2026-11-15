@@ -84,7 +84,7 @@
 | ID | 部品・仕様 | 数量 | 状態・組立メモ |
 |---|---|---:|---|
 | D03 | [前面照明マスク](artwork/decal/NC03_front_mask.pdf)<br>203×17 mmの印刷用SVG／PDF | 1 式 | データあり・光学未検証。乳白カバー中央に黒マスクと白いNULL CITY文字。下辺・斜辺は光を通す。薄手シートを使用。 |
-| D04 | [前面・側面LEDテープ](https://www.adafruit.com/product/2963)<br>5 V / 裸基板幅5 mm以下・厚さ2 mm以下 / 前180 mm・左右各130 mm以内 | 1 式 | 実部品は未照合。Adafruit Mini Skinny NeoPixel 60 LED/m等の細幅候補。保護カバー付き7.5×4 mmは収まらない。接続部は溝外へ逃がす。表示用LED16個とは別。 |
+| D04 | [前面・側面LEDテープ](https://www.adafruit.com/product/2963)<br>5 V / 裸基板幅5 mm以下・厚さ1.8 mm以下 / 前180 mm・左右各130 mm以内 | 1 式 | 実部品は未照合。Adafruit Mini Skinny NeoPixel 60 LED/m等の細幅候補。保護カバー付き7.5×4 mmは収まらない。接続部は溝外へ逃がす。表示用LED16個とは別。 |
 
 ## 消耗材
 
