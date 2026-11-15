@@ -59,6 +59,9 @@ cut(base,cube('Lower cavity',(0,0,17),(288,178,24)))
 # Rear cable notch opens at the split line so the USB plug need not pass through.
 # 8 mm wide x 6 mm deep below Z=24; rear wall is Y=89..95.
 cut(base,cube('USB cable exit notch',(0,94,22),(8,16,8)))
+import sys
+sys.path.insert(0,os.path.join(os.path.dirname(os.path.abspath(__file__)),'scripts'))
+from usb_relief import add_usb_relief
 rim=shell('PRINT_02_upper_frame',[(24,300,190,8),(38,300,190,8),(43,292,182,6)],ivory)
 cut(rim,cube('Upper opening',(0,0,34),(274,164,28)))
 # C0.5 on both upper and lower outer edges, including all four sides and clipped corners.
@@ -148,6 +151,7 @@ for x in (-135,135):
   cut(screw,cyl('hex socket',x,y,49,1.25,1.8,None,6))
 for x in (-113,113):
  for y in (-66,66):cyl('PRINT_TPU_foot_%d_%d'%(x,y),x,y,-2,11,4,black)
+usb_bridges=add_usb_relief(base,ivory,cube,cyl,boolean,cut,os.path.dirname(os.path.abspath(__file__)))
 # Use planar local coordinates for the exposed deck, preserving physical holes.
 texture=mat('Printed NC-03 graphic',(1,1,1),.03,.38)
 panel.data.materials.append(texture);texture_index=len(panel.data.materials)-1;uv=panel.data.uv_layers.new(name='Deck artwork')

@@ -26,7 +26,7 @@ gap = min(math.hypot(a[1]-b[1], a[2]-b[2])-a[3]-b[3]
           for i, a in enumerate(holes) for b in holes[i+1:])
 assert gap >= 4.19, gap
 parts = [o for o in bpy.data.objects if o.type == 'MESH' and o.name.startswith('PRINT_')]
-assert len(parts) == 15
+assert len(parts) == 17
 for obj in parts:
     bm = bmesh.new()
     bm.from_mesh(obj.data)
@@ -56,4 +56,4 @@ z = 43-m['body_depth_below_panel_underside_mm']-m['wire_depth_allowance_mm']
 lowest = 43+(y-m['clearance_envelope_half_depth_mm'])*math.sin(t)+(z-43)*math.cos(t)
 clearance = lowest-5-m['vertical_tolerance_allowance_mm']
 assert clearance >= m['required_clearance_mm'], clearance
-print(f'PASS: 15 manifold parts; 33 bores; min web {gap:.3f} mm; assumed wired clearance {clearance:.3f} mm')
+print(f'PASS: 17 manifold parts; 33 bores; min web {gap:.3f} mm; assumed wired clearance {clearance:.3f} mm')

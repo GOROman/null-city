@@ -64,4 +64,4 @@ E.SubElement(config,'assemble')
 entries.update({'3D/3dmodel.model':E.tostring(model,encoding='utf-8',xml_declaration=True),'3D/_rels/3dmodel.model.rels':E.tostring(rels,encoding='utf-8',xml_declaration=True),'Metadata/model_settings.config':E.tostring(config,encoding='utf-8',xml_declaration=True),'Metadata/project_settings.config':json.dumps(settings),'[Content_Types].xml':types,'_rels/.rels':rootrels})
 with zipfile.ZipFile(out/'NC03_H3C_5plates_fast.3mf','w',zipfile.ZIP_DEFLATED) as z:
  for k,v in entries.items():z.writestr(k,v)
-print('Created 5 plates, 15 objects')
+print('Created 5 plates, 17 objects (USB bridges on plate 1)')

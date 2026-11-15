@@ -1,5 +1,5 @@
 ﻿id,category,item,specification,quantity,unit,status,notes,source
-P01,印刷部品,下ケース,PRINT_01_lower_tray.stl / PLA,1,個,モデル反映,プレート1。背面USB切り欠き8×6 mm。,STL/PRINT_01_lower_tray.stl
+P01,印刷部品,下ケース,PRINT_01_lower_tray.stl / PLA,1,個,モデル反映,プレート1。背面USB切り欠き8×6 mm。外径4 mm想定のS字ガイドと押さえ用ボス4個を一体化。,STL/PRINT_01_lower_tray.stl
 P02,印刷部品,上フレーム,PRINT_02_upper_frame.stl / PLA,1,個,モデル反映,プレート2。MS板を使わない直接取付のため裏側の逃げ加工なし。,STL/PRINT_02_upper_frame.stl
 P03,印刷部品,天板,PRINT_03_control_panel.stl / PLA,1,個,モデル反映,プレート3。厚さ4 mm、外周上下C0.5。主穴30.4、補助穴24.4、LED穴3.2 mm。,STL/PRINT_03_control_panel.stl
 P04,印刷部品,滑り止め脚,PRINT_TPU_foot_*.stl / TPU,4,個,モデル反映,プレート5。固定機構なし。貼付材はF09。,STL/
@@ -34,3 +34,7 @@ D03,任意の前面装飾,スモーク窓・ライトガイド,前面凹部に�
 D04,任意の前面装飾,マゼンタ光源,前面用LEDと給電回路,1,式,未設計,電流・放熱・固定方式は未設計。表示用LED16個とは別。,
 A01,消耗材,PLAフィラメント,本体・天板・外観キャップ用,600,g,準備量の目安,全15点で約0.5 kgの見積に対して試験片・予備を含む準備量。実際の必要量は再スライス値を参照。,
 A02,消耗材,TPUフィラメント,脚用,10,g,準備量の目安,実造形量約5 gに対して予備を含む。実材料の硬度と給材経路を確認。,
+P07,印刷部品,USBケーブル押さえ,PRINT_USB_bridge_1/2.stl / PLA,2,個,モデル反映・保持力未検証,プレート1に下ケースと同載。26×10×2 mm、M3穴ピッチ18 mm。,STL/
+F10,締結・固定,USB押さえ用インサート,M3 / 長さ3 mm / 下穴φ4.1×深さ4.5 mmに対応,4,個,製品・嵌合要確認,ケース四隅用F01の長さ6 mmとは別物。小型試験片で熱圧入を確認。,artwork/usb_relief.json
+F11,締結・固定,USB押さえねじ,M3×6 mm / 頭径6 mm以下目安,4,本,組立候補,押さえ厚2 mm＋ワッシャー約0.5 mmで掛かり約3.5 mm。底付きと頭周囲の干渉を現物確認。,artwork/usb_relief.json
+F12,締結・固定,USB押さえ用ワッシャー,M3用 / 厚さ約0.5 mm / 外径6 mm目安,4,枚,組立候補,押さえの荷重分散用。F11と合わせてねじ掛かり・底付きを確認。,artwork/usb_relief.json

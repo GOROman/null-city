@@ -1,0 +1,29 @@
+{
+  "nominal_cable_diameter_mm": 4.0,
+  "channel_width_mm": 4.8,
+  "planar_centerline_radius_mm": 24.0,
+  "start_y_mm": 88.5,
+  "rear_center_z_mm": 20.0,
+  "front_center_z_mm": 7.4,
+  "wall_thickness_mm": 2.4,
+  "bridge_stations": [
+    0.26,
+    0.74
+  ],
+  "bridge_size_mm": [
+    26,
+    10,
+    2
+  ],
+  "bridge_screw_pitch_mm": 18,
+  "bridge_clearance_hole_mm": 3.4,
+  "insert_pilot_diameter_mm": 4.1,
+  "insert_pilot_depth_mm": 4.5,
+  "insert_length_mm": 3,
+  "provisional": true,
+  "note": "4 mm is an assumed cable OD, not a universal USB specification. Gentle S guide and two removable retaining bridges. Check actual cable bending limit, insert fit, internal clearance and pull retention before use. No guaranteed strain-relief rating.",
+  "bridge_height_offsets_mm": [
+    3.6,
+    4.2
+  ]
+}
