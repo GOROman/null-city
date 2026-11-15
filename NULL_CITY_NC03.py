@@ -75,7 +75,9 @@ panel=shell('PRINT_03_control_panel',[(43,287,177,corner_inset),(43.5,288,178,5)
 from mathutils import Matrix
 from math import tan, radians
 def profile_plate(name,outline,depth,material,top_outline=None):
- if sum(outline[i][0]*outline[(i+1)%len(outline)][1]-outline[(i+1)%len(outline)][0]*outline[i][1] for i in range(len(outline)))<0:outline=list(reversed(outline))
+ if sum(outline[i][0]*outline[(i+1)%len(outline)][1]-outline[(i+1)%len(outline)][0]*outline[i][1] for i in range(len(outline)))<0:
+  outline=list(reversed(outline))
+  if top_outline:top_outline=list(reversed(top_outline))
  n=len(outline);vertices=[(x,y,0) for x,y in outline]+[(x,y,depth) for x,y in (top_outline or outline)]
  faces=[tuple(reversed(range(n))),tuple(range(n,2*n))]
  for i in range(n):
@@ -107,9 +109,9 @@ front_prism('VISUAL_front_mask',front['mask_outline'],-95.15,-95.01,black)
 front_prism('VISUAL_front_LED_strip',front['strip_outline'],*front['strip_y_mm'],lightbar)
 slope=tan(radians(side_config['slope_degrees']))
 for sign,side in [(-1,'left'),(1,'right')]:
- # Local +U points toward the rear on the right, toward the front on the left.
+ # Profile coordinates describe physical Y; reflect local U on the left for true X mirroring.
  orient=Matrix(((0,0,sign,0),(sign,0,0,0),(0,1,0,0),(0,0,0,1)))
- def side_points(key,center=None):return [(u,(side_config['center_z_mm'] if center is None else center)+slope*sign*u+dz) for u,dz in side_config[key]]
+ def side_points(key,center=None):return [(sign*y,(side_config['center_z_mm'] if center is None else center)+slope*y+dz) for y,dz in side_config[key]]
  for name,back,top,start,depth in [
   ('inner','inner_back','inner_seat',0,side_config['seat_depth_mm']),
   ('outer','outer_seat','outer_front',side_config['seat_depth_mm'],side_config['outer_depth_mm']-side_config['seat_depth_mm'])]:
@@ -119,7 +121,7 @@ for sign,side in [(-1,'left'),(1,'right')]:
  lens.matrix_world=Matrix.Translation((sign*side_config['lens_origin_abs_x_mm'],0,0))@orient
  source=profile_plate('VISUAL_side_LED_strip_'+side,side_points('strip_outline',side_config['strip_center_z_mm']),side_config['strip_depth_mm'],lightbar)
  source.matrix_world=Matrix.Translation((sign*side_config['strip_origin_abs_x_mm'],0,0))@orient
- for y in (-64,64):
+ for y in side_config['wire_y_mm']:
   tool=cyl('Side LED wire passage',sign*145,y,13.5+slope*y,1.6,12)
   tool.rotation_euler.y=radians(90);cut(base,tool)
 for x in (-90,90):
@@ -221,14 +223,16 @@ bpy.context.view_layer.update()
 def aim(obj,point):obj.rotation_euler=(Vector(point)-obj.location).to_track_quat('-Z','Y').to_euler()
 scene=bpy.context.scene
 scene.unit_settings.system='METRIC';scene.unit_settings.scale_length=.001;scene.unit_settings.length_unit='MILLIMETERS'
-bpy.ops.object.camera_add(location=(44,-535,389))
-camera=bpy.context.object;aim(camera,(0,0,31));camera.data.type='ORTHO';camera.data.ortho_scale=349;camera.data.clip_end=2000;scene.camera=camera
+bpy.ops.object.camera_add(location=(130,-760,520))
+camera=bpy.context.object;aim(camera,(0,0,31));camera.data.type='PERSP';camera.data.lens=70;camera.data.sensor_width=36;camera.data.sensor_fit='HORIZONTAL';camera.data.clip_end=2000;scene.camera=camera
 for name,pos,power,size,color in [('Softbox left',(-190,-140,250),1500000,170,(.88,.91,1)),('Front',(130,-200,140),820000,130,(1,.86,.94)),('Violet rim',(100,140,180),1450000,150,(.56,.34,1))]:
  bpy.ops.object.light_add(type='AREA',location=pos);o=bpy.context.object;o.name=name;o.data.energy=power;o.data.shape='DISK';o.data.size=size;o.data.color=color;aim(o,(0,0,25))
 floor=cube('STUDIO_floor',(0,0,-6),(2500,2500,4),mat('Studio graphite',(.022,.023,.036),.25,.32))
 scene.world.use_nodes=True;scene.world.node_tree.nodes['Background'].inputs[0].default_value=(.32,.34,.42,1)
 scene.render.engine='CYCLES';scene.cycles.samples=96;scene.cycles.use_denoising=False
 scene.render.resolution_x=1152;scene.render.resolution_y=730;scene.render.resolution_percentage=100
+from render_camera import fit_perspective
+fit_perspective(scene,(130,-760,520),(0,0,31))
 # Export each component in its local printing orientation, resting at Z=0.
 deps=bpy.context.evaluated_depsgraph_get()
 exportdir=os.path.join(OUT,'STL');os.makedirs(exportdir,exist_ok=True)

@@ -25,7 +25,7 @@ Bambu H3C向けの、交換式天板を備えた**汎用6ボタンのアーケ�
 
 ## 前面・左右側面の発光構造
 
-参考画像の白い面取りケース・前面の台形輪郭・斜めの側面発光帯を、[造形データと照明構成](LIGHTING.md)へ反映。印刷済みの4 mm天板とUSB S字ガイドを維持し、下ケースにLED収容溝と配線貫通穴6個、別体の乳白カバー3枚と押し込みを止める受け段を追加しました。受け段は[小型試験片](print/lighting-fit/README.md)で実物確認待ちです。
+参考画像の白い面取りケース・前面の台形輪郭・斜めの側面発光帯を、[造形データと照明構成](LIGHTING.md)へ反映。印刷済みの4 mm天板とUSB S字ガイドを維持し、下ケースにLED収容溝と配線貫通穴6個、別体の乳白カバー3枚と押し込みを止める受け段を追加しました。側面の発光帯は、上下辺と両端をそれぞれ平行にした平行四辺形です。受け段は[小型試験片](print/lighting-fit/README.md)で実物確認待ちです。
 
 ![前面と右側面の発光イメージ](docs/images/lighting.jpg)
 
@@ -52,17 +52,15 @@ Bambu H3C向けの、交換式天板を備えた**汎用6ボタンのアーケ�
 
 部品表：[BOM.md](BOM.md) ／ [BOM.csv](BOM.csv)。メインφ30を6個、補助の1P／STARTはφ24を2個。
 
-## NULL FONTのエンボス版
-
-前側に「NULL CITY」を幅130 mm・高さ0.6 mmで浮き出させた[任意の天板版](print/embossed/README.md)も用意。書体は[NULL FONT Italic](fonts/null-font/README.md)。板厚4 mm・取付穴は維持し、単色PLAでロゴも同色に印刷する。時短設定のCLI見積は約2時間58分・104 g。既存の平面版は維持している。
-
-![NULL FONTでエンボスを加えた単色天板](docs/images/embossed.jpg)
-
 ## 三面図
 
 上面・正面・右側面を同一縮尺の第三角法で配置。右側面図で、奥に向かって天板が2.55°上がる形状を確認できる。
 
 ![NC-03の上面図・正面図・右側面図](docs/images/three-views.jpg)
+
+側面の発光帯は上下辺・前後の斜辺をそれぞれ平行に統一。
+
+![平行四辺形へ揃えた側面の発光帯](docs/images/right-side.jpg)
 
 ## ワイヤーフレームと分解図
 
@@ -161,7 +159,7 @@ Copyright © 2026 GOROman。適用範囲は [LICENSE](LICENSE) を参照。
 
 ## 画像の再生成
 
-READMEの完成予想図・分解図・三面図・ワイヤーフレーム・USB経路・エンボス版は、現在の `NULL_CITY_NC03.blend` をBlenderで描画したもの。三面図は同一縮尺の平行投影。発光・材質は完成イメージで、点灯試験の写真ではない。
+READMEの完成予想図・分解図・三面図・ワイヤーフレーム・USB経路は、現在の `NULL_CITY_NC03.blend` をBlenderで描画したもの。完成図と分解図は70 mmレンズの透視投影、三面図・ワイヤーフレーム・USB経路詳細は平行投影。発光・材質は完成イメージで、点灯試験の写真ではない。
 
 ```sh
 blender --background --factory-startup --python-exit-code 1 --python NULL_CITY_NC03.py

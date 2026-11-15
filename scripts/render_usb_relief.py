@@ -29,7 +29,7 @@ mat.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value=(.015,
 cable.data.materials.clear();cable.data.materials.append(mat)
 scene=bpy.context.scene;cam=scene.camera;cam.location=(90,-65,180)
 cam.rotation_euler=(Vector((-24,65,11))-cam.location).to_track_quat('-Z','Y').to_euler()
-cam.data.ortho_scale=145
+cam.data.type='ORTHO';cam.data.ortho_scale=145
 scene.render.engine='CYCLES';scene.cycles.samples=32;scene.cycles.use_denoising=True
 scene.view_settings.exposure=-1.5
 scene.render.resolution_x=1400;scene.render.resolution_y=1000;scene.render.resolution_percentage=100

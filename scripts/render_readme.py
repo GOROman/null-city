@@ -1,8 +1,10 @@
 """Render README assets from the current assembly. Run with Blender -b ... -P."""
-import bpy,os
+import bpy,os,sys
 from mathutils import Vector,Matrix
 from math import radians
 root=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
+from render_camera import fit_perspective
 scene=bpy.context.scene
 cam=scene.camera
 original={o.name:o.matrix_world.copy() for o in scene.objects}
@@ -13,6 +15,8 @@ def render(path,w=1400,h=900):
  scene.render.image_settings.file_format='JPEG';scene.render.image_settings.color_mode='RGB';scene.render.filepath=os.path.join(root,path)
  bpy.ops.render.render(write_still=True)
 scene.render.engine='CYCLES';scene.cycles.samples=32;scene.cycles.use_denoising=True
+scene.render.resolution_x=1400;scene.render.resolution_y=900
+fit_perspective(scene,(130,-760,520),(0,0,31),parts)
 render('docs/images/cycles.jpg')
 import shutil
 shutil.copyfile(os.path.join(root,'docs/images/cycles.jpg'),os.path.join(root,'preview.jpg'))
@@ -24,12 +28,13 @@ for o in parts:
  elif o.name=='PRINT_light_front_diffuser' or o.name.startswith(('VISUAL_front_mask','VISUAL_NULL_CITY_wordmark','VISUAL_front_slash')):o.location.y-=20
  elif o.name=='PRINT_light_left_diffuser':o.location.x-=20
  elif o.name=='PRINT_light_right_diffuser':o.location.x+=20
- elif 'control_panel' in o.name or o.name.startswith(('VISUAL_LED','VISUAL_switch','VISUAL_shaft','VISUAL_dust','VISUAL_purple','VISUAL_M3','PRINT_button','PRINT_menu')):o.location.z+=72
-cam.location=(90,-570,450);cam.data.ortho_scale=420;aim((0,0,65))
+ elif 'control_panel' in o.name or o.name.startswith(('VISUAL_LED','VISUAL_switch','VISUAL_menu','VISUAL_shaft','VISUAL_dust','VISUAL_purple','VISUAL_M3','PRINT_button','PRINT_menu')):o.location.z+=72
+fit_perspective(scene,(220,-760,550),(0,0,72),parts,margin=.07)
 render('assembly.jpg')
 for o in parts:o.matrix_world=original[o.name]
 # Orthographic views at a shared scale in a single scene.
 scene.render.engine='BLENDER_WORKBENCH'
+cam.data.type='ORTHO'
 scene.view_settings.view_transform='Standard';scene.view_settings.look='None';scene.view_settings.exposure=0
 scene.display.shading.light='STUDIO';scene.display.shading.color_type='MATERIAL';scene.display.shading.show_shadows=False;scene.display.shading.show_cavity=True
 scene.display.shading.background_type='WORLD';scene.world.color=(.11,.12,.15)
@@ -46,6 +51,11 @@ for text,x,y in [('TOP',-250,218),('FRONT',-250,-125),('RIGHT',75,-125)]:
  d=bpy.data.curves.new(text,'FONT');d.body=text;d.size=10;o=bpy.data.objects.new(text,d);scene.collection.objects.link(o);o.location=(x,y,100);labels.append(o)
 render('docs/images/three-views.jpg',1800,1100)
 for o in copies+labels:bpy.data.objects.remove(o,do_unlink=True)
+# A larger true right-side view makes the parallel light-band edges easy to inspect.
+for o in parts:o.hide_render=False;o.matrix_world=original[o.name]
+cam.location=(1200,0,42);cam.data.ortho_scale=340;aim((0,0,42))
+render('docs/images/right-side.jpg',1400,500)
+for o in parts:o.hide_render=True
 # Exploded structural mesh, with real opening boundaries visible.
 scene.display.shading.color_type='SINGLE';scene.display.shading.single_color=(.6,.8,1)
 scene.world.color=(.025,.03,.05)

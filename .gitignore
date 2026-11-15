@@ -6,5 +6,4 @@
 /print/fit/*.log
 
 __pycache__/
-/print/embossed/*.log
 /print/usb-relief/*.log

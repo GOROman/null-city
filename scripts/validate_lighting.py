@@ -43,7 +43,7 @@ for x in (-90,90):
     assert not base.ray_cast(Vector((x,-100,13.5)),Vector((0,1,0)),distance=20)[0]
 slope=math.tan(math.radians(2.55))
 for sign in (-1,1):
-    for y in (-64,64):
+    for y in layout['side']['wire_y_mm']:
         assert not base.ray_cast(Vector((sign*155,y,13.5+slope*y)),Vector((-sign,0,0)),distance=20)[0]
 for start,direction in [((0,-100,11),(0,1,0)),((155,0,11),(-1,0,0)),((-155,0,11),(1,0,0))]:
     direction=Vector(direction)
@@ -51,3 +51,22 @@ for start,direction in [((0,-100,11),(0,1,0)),((155,0,11),(-1,0,0)),((-155,0,11)
     hit,second,_,_=base.ray_cast(first+direction*.001,direction,distance=10);assert hit
     assert abs((second-first).length-1.4)<.01,(first,second)
 print('PASS: three flat-print 1.2 mm diffusers, seating clearance and inward mechanical stops, six wire passages, 1.4 mm pocket backing walls')
+
+right=bpy.data.objects['PRINT_light_right_diffuser'];left=bpy.data.objects['PRINT_light_left_diffuser']
+def face_points(obj):
+    return [obj.matrix_world@v.co for v in obj.data.vertices if abs(v.co.z-layout['diffuser_thickness_mm'])<1e-5]
+points=face_points(right)
+assert len(points)==4
+# Corresponding points are generated in cyclic order.
+for a,b,c,d in [(0,1,3,2),(0,3,1,2)]:
+    edge=points[b]-points[a];opposite=points[d]-points[c]
+    assert edge.cross(opposite).length<1e-4,'Side lens opposite edges are not parallel'
+for a,b in [(0,1),(3,2)]:
+    edge=points[b]-points[a]
+    assert abs(edge.z/edge.y-math.tan(math.radians(layout['side']['slope_degrees'])))<1e-6
+right_world=[right.matrix_world@v.co for v in right.data.vertices]
+left_world=[left.matrix_world@v.co for v in left.data.vertices]
+for p in right_world:
+    reflected=Vector((-p.x,p.y,p.z))
+    assert min((reflected-q).length for q in left_world)<1e-4,'Left/right diffuser mirror mismatch'
+print('PASS: side lens opposite edges parallel, long edges follow deck slope, left/right mirror symmetry')
