@@ -7,6 +7,7 @@ export class EnvironmentRotationPass extends Pass {
     this.enabled=false;this.needsSwap=false;this._angle=0;this._intensity=1;
   }
   set mainScene(scene){this.scene=scene;this.applyRotation();this.applyIntensity();}
+  set mainCamera(camera){this.camera=camera;}
   get angle(){return this._angle;}
   set angle(degrees){this._angle=degrees;this.applyRotation();}
   applyRotation(){

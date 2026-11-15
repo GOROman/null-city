@@ -1,11 +1,12 @@
 import {test,expect} from '@playwright/test';
 
-async function load(page){
+async function load(page,{freezeRGB=true}={}){
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('./');
   await expect(page.locator('.stage')).toHaveAttribute('data-loaded','true',{timeout:45000});
   await expect(page.locator('#error-panel')).toBeHidden();
   await expect(page.locator('.stage')).toHaveAttribute('data-environment','studio03',{timeout:45000});
+  if(freezeRGB){await page.locator('#rgb-mode').selectOption('solid');await page.locator('#viewer').scrollIntoViewIfNeeded();}
   expect(errors).toEqual([]);
   return errors;
 }
@@ -124,4 +125,46 @@ test('EV changes rendered brightness and LED emission survives without IBL',asyn
   expect(emitting).toBeGreaterThan(off+2);
   await expect.poll(()=>page.locator('#led-bloom').evaluate(e=>e.effects[0].disabled)).toBe(true);
   console.log('Rendered luminance',{normal,minusOneEV:dim,noIBLWithLED:emitting,noIBLWithoutLED:off});
+});
+
+
+test('RGB animation, spring controls, background color and SSAO tuning',async({page})=>{
+  const errors=await load(page,{freezeRGB:false});
+  await expect.poll(()=>page.locator('#viewer').evaluate(v=>Boolean(v.arcade))).toBe(true);
+  const first=await page.locator('#viewer').evaluate(v=>v.arcade.snapshot().rgb[0]);
+  await expect.poll(()=>page.locator('#viewer').evaluate((v,first)=>v.arcade.snapshot().rgb[0].reduce((sum,value,i)=>sum+Math.abs(value-first[i]),0),first),{timeout:10000}).toBeGreaterThan(.08);
+  await page.locator('#rgb-mode').selectOption('solid');
+  await page.getByRole('button',{name:'背景をダークに',exact:true}).click();
+  await expect(page.locator('.stage')).toHaveAttribute('data-background-theme','dark');
+  await expect(page.locator('#background-color')).toHaveValue('#17171c');
+  await page.locator('#ssao-strength').evaluate(e=>{e.value='2.1';e.dispatchEvent(new Event('input',{bubbles:true}));});
+  await page.locator('#ssao-radius').evaluate(e=>{e.value='12';e.dispatchEvent(new Event('input',{bubbles:true}));});
+  await expect(page.locator('#ssao-strength-value')).toHaveText('2.1');await expect(page.locator('#ssao-radius-value')).toHaveText('12%');
+  expect(await page.locator('#ssao').evaluate(e=>e.effects[0].ssaoMaterial.radius)).toBeCloseTo(.12,4);
+  await page.locator('#play-view').click();
+  await expect(page.locator('.stage')).toHaveAttribute('data-play','true');
+  expect(await page.locator('#viewer').evaluate(v=>v.cameraControls)).toBe(false);
+  await page.keyboard.down('KeyU');
+  await expect.poll(()=>page.locator('#viewer').evaluate(v=>v.arcade.snapshot().buttons[0].depthMm)).toBeGreaterThan(1);
+  await page.keyboard.up('KeyU');
+  await expect.poll(()=>page.locator('#viewer').evaluate(v=>Math.abs(v.arcade.snapshot().buttons[0].depthMm)),{timeout:4000}).toBeLessThan(.05);
+  await page.keyboard.down('ArrowRight');
+  await expect.poll(()=>page.locator('#viewer').evaluate(v=>v.arcade.snapshot().stick.tiltDegrees)).toBeGreaterThan(10);
+  await page.keyboard.up('ArrowRight');
+  await expect.poll(()=>page.locator('#viewer').evaluate(v=>v.arcade.snapshot().stick.tiltDegrees),{timeout:4000}).toBeLessThan(.2);
+  const point=await page.locator('#viewer').evaluate(v=>v.arcade.projectControl('B2'));
+  if(page.viewportSize().width<700){await page.touchscreen.tap(point.x,point.y);}
+  else{await page.mouse.move(point.x,point.y);await page.mouse.down();}
+  await expect.poll(()=>page.locator('#viewer').evaluate(v=>v.arcade.snapshot().buttons[1].depthMm),{timeout:3000}).toBeGreaterThan(.3);
+  if(page.viewportSize().width>=700)await page.mouse.up();
+  await expect.poll(()=>page.locator('#viewer').evaluate(v=>Math.abs(v.arcade.snapshot().buttons[1].depthMm)),{timeout:4000}).toBeLessThan(.05);
+  const stick=await page.locator('#viewer').evaluate(v=>v.arcade.projectControl('STICK'));
+  await page.mouse.move(stick.x,stick.y);await page.mouse.down();await page.mouse.move(stick.x+38,stick.y-8,{steps:5});
+  await expect.poll(()=>page.locator('#viewer').evaluate(v=>v.arcade.snapshot().stick.tiltDegrees)).toBeGreaterThan(8);
+  await page.mouse.up();
+  await expect.poll(()=>page.locator('#viewer').evaluate(v=>v.arcade.snapshot().stick.tiltDegrees),{timeout:4000}).toBeLessThan(.2);
+  await page.getByRole('button',{name:'視点と表示設定をリセット'}).click();
+  await expect(page.locator('.stage')).toHaveAttribute('data-play','false');
+  await expect(page.locator('#background-color')).toHaveValue('#e9e9e7');
+  expect(errors).toEqual([]);
 });

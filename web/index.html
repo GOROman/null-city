@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#17171c">
-  <meta name="description" content="NULL CITY NC-03 — オープンソースのアーケードスティックを、PBRの3Dモデルで回して、分解して、確かめる。">
+  <meta name="description" content="NULL CITY NC-03 — オープンソースのアーケードスティックを、PBRの3Dモデルで回して、押して、光らせる。">
   <title>NULL CITY / NC-03 — 3D Preview</title>
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 </head>
@@ -20,12 +20,28 @@
       <div class="intro">
         <p class="eyebrow"><span class="live-dot"></span> INTERACTIVE MODEL</p>
         <h1>NC-03<span>ARCADE STICK</span></h1>
-        <p class="description">回して、分解して、確かめる。<br>NULL CITYの形と構造を、ブラウザーで。</p>
+        <p class="description">回して、押して、光らせる。<br>NULL CITYの形と構造を、ブラウザーで。</p>
         <div class="specs"><div><strong>300<span> × </span>190</strong><small>外形 / mm</small></div><div><strong>6 <span>+</span> 2</strong><small>操作ボタン</small></div></div>
       </div>
       <form id="controls" aria-label="3D表示の設定">
         <fieldset disabled id="model-controls">
-          <legend class="section-title"><span>01</span> ASSEMBLY</legend>
+          <legend class="section-title"><span>01</span> PLAY / ASSEMBLY</legend>
+          <label class="toggle-row"><span>レバー・ボタンを操作</span><input id="play-mode" type="checkbox"><span class="switch" aria-hidden="true"></span></label>
+          <div id="play-controls" hidden>
+            <p class="control-help">レバー：WASD / 矢印<br>ボタン：U I O / J K L · 1 / Enter</p>
+            <div class="direction-pad" role="group" aria-label="レバーの方向入力">
+              <button type="button" data-direction="0,1" aria-label="レバー上">↑</button>
+              <button type="button" data-direction="-1,0" aria-label="レバー左">←</button>
+              <button type="button" data-direction="0,-1" aria-label="レバー下">↓</button>
+              <button type="button" data-direction="1,0" aria-label="レバー右">→</button>
+            </div>
+            <div class="button-pad" role="group" aria-label="ボタン操作">
+              <button type="button" data-arcade-control="B1" aria-label="ボタン1 U">U</button><button type="button" data-arcade-control="B2" aria-label="ボタン2 I">I</button><button type="button" data-arcade-control="B4" aria-label="ボタン4 O">O</button>
+              <button type="button" data-arcade-control="B3" aria-label="ボタン3 J">J</button><button type="button" data-arcade-control="B5" aria-label="ボタン5 K">K</button><button type="button" data-arcade-control="B6" aria-label="ボタン6 L">L</button>
+              <button type="button" data-arcade-control="P1" aria-label="1Pボタン">1P</button><button type="button" data-arcade-control="START" aria-label="STARTボタン">START</button>
+            </div>
+            <output id="input-readout" aria-label="入力状態">入力：—</output>
+          </div>
           <div class="range-heading"><label for="assembly">分解して構造を見る</label><output id="assembly-value" for="assembly">0%</output></div>
           <input id="assembly" name="assembly" type="range" min="0" max="100" value="0" aria-describedby="assembly-help">
           <div class="range-labels" id="assembly-help"><span>組立</span><span>分解</span></div>
@@ -43,6 +59,17 @@
           <input id="environment-angle" type="range" min="0" max="360" step="1" value="90">
           <label class="toggle-row"><span>HDR背景を表示</span><input id="background" type="checkbox"><span class="switch" aria-hidden="true"></span></label>
           <label class="toggle-row"><span>SSAO · 接触部の陰影</span><input id="ssao-enabled" type="checkbox" checked><span class="switch" aria-hidden="true"></span></label>
+          <div class="range-heading"><label for="ssao-strength">SSAOの強さ</label><output id="ssao-strength-value" for="ssao-strength">1.2</output></div>
+          <input id="ssao-strength" type="range" min="0" max="4" step="0.1" value="1.2">
+          <div class="range-heading light-heading"><label for="ssao-radius">SSAOの範囲</label><output id="ssao-radius-value" for="ssao-radius">5%</output></div>
+          <input id="ssao-radius" type="range" min="1" max="20" step="0.5" value="5">
+          <div class="range-labels"><span>狭く</span><span>広く</span></div>
+          <div class="section-title extra-section"><span>03</span> RGB LIGHTING</div>
+          <label class="environment-label" for="rgb-mode">RGBエフェクト</label>
+          <select id="rgb-mode"><option value="rainbow">流れるレインボー</option><option value="pulse">ブリージング</option><option value="reactive">操作に反応</option><option value="solid">単色 / アニメーション停止</option></select>
+          <label class="color-row" for="rgb-color"><span>カラー</span><input id="rgb-color" type="color" value="#ff149e"></label>
+          <div class="range-heading"><label for="rgb-speed">RGBの速度</label><output id="rgb-speed-value" for="rgb-speed">1.0×</output></div>
+          <input id="rgb-speed" type="range" min="0.2" max="2" step="0.1" value="1">
           <label class="toggle-row"><span>LEDを点灯</span><input id="led" type="checkbox" checked><span class="switch" aria-hidden="true"></span></label>
           <div class="range-heading light-heading"><label for="environment-strength">環境光の強さ</label><output id="environment-strength-value" for="environment-strength">1.0×</output></div>
           <input id="environment-strength" type="range" min="0" max="2" step="0.1" value="1">
@@ -51,6 +78,12 @@
           <input id="exposure" type="range" min="-3" max="3" step="0.1" value="0">
           <div class="range-labels"><span>−3 EV</span><span>+3 EV</span></div>
 
+          <div class="section-title extra-section"><span>04</span> BACKGROUND</div>
+          <label class="color-row" for="background-color"><span>背景色</span><input id="background-color" type="color" value="#e9e9e7"></label>
+          <div class="background-swatches" role="group" aria-label="背景色のプリセット">
+            <button type="button" data-background="#e9e9e7" aria-label="背景をライトグレーに" style="--swatch:#e9e9e7"></button><button type="button" data-background="#17171c" aria-label="背景をダークに" style="--swatch:#17171c"></button><button type="button" data-background="#131a35" aria-label="背景をネイビーに" style="--swatch:#131a35"></button><button type="button" data-background="#ffffff" aria-label="背景を白に" style="--swatch:#ffffff"></button>
+          </div>
+          <label class="toggle-row"><span>グリッドを表示</span><input id="grid" type="checkbox" checked><span class="switch" aria-hidden="true"></span></label>
         </fieldset>
       </form>
       <div class="inspector-bottom">
@@ -59,9 +92,10 @@
       </div>
     </aside>
     <section class="stage" aria-label="NC-03の3Dプレビュー">
+      <button type="button" id="play-view" class="play-view" aria-pressed="false">操作する</button>
       <div class="stage-topline"><span><i aria-hidden="true"></i> PBR / HDR IBL</span><span id="load-status" role="status" aria-live="polite">モデルを読み込み中…</span></div>
       <model-viewer id="viewer" src="./model/nc03.glb" poster="./project/poster.jpg"
-        alt="NULL CITY NC-03。白い面取りケース、紺の天板、紫のレバー、緑と透明の6ボタン、前面と側面のマゼンタ照明を備えたアーケードスティック。"
+        alt="NULL CITY NC-03。白い面取りケース、紺の天板、紫のレバー、緑と透明の6ボタン、前面と側面のフルカラーRGB照明を備えたアーケードスティック。"
         camera-controls camera-orbit="25deg 65deg 105%" field-of-view="29deg"
         min-camera-orbit="auto 0.1deg 60%" max-camera-orbit="auto 170deg 250%"
         environment-image="./environments/studio_small_03_1k.hdr" tone-mapping="neutral" exposure="0.8"
@@ -85,7 +119,7 @@
           <button type="button" id="rotate-view" aria-pressed="false" aria-label="自動回転を切り替える" title="自動回転">↻</button>
           <button type="button" id="reset" aria-label="視点と表示設定をリセット" title="リセット">↺</button>
         </div>
-        <p class="interaction-hint"><span>ドラッグで回転</span><span>スクロールでズーム</span><span>右ドラッグで移動</span></p>
+        <p class="interaction-hint" id="interaction-hint"><span>ドラッグで回転</span><span>スクロールでズーム</span><span>右ドラッグで移動</span></p>
       </div>
       <div class="stage-caption"><span>NC-03 / <strong>6-BUTTON LAYOUT</strong></span><a href="./model/nc03.glb" download="NULL-CITY-NC03.glb">GLBをダウンロード <span aria-hidden="true">↓</span></a></div>
     </section>
