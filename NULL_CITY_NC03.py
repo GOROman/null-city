@@ -61,24 +61,71 @@ cut(base,cube('Lower cavity',(0,0,17),(288,178,24)))
 cut(base,cube('USB cable exit notch',(0,94,22),(8,16,8)))
 rim=shell('PRINT_02_upper_frame',[(24,300,190,8),(38,300,190,8),(43,292,182,6)],ivory)
 cut(rim,cube('Upper opening',(0,0,34),(274,164,28)))
-panel=shell('PRINT_03_control_panel',[(43,288,178,5),(46.5,288,178,5),(47,287,177,5)],navy)
+# Same 4 mm clamped stack, split into a structural plate and replaceable artwork skin.
+panel=shell('PRINT_03_mounting_plate',[(43,288,178,5),(46,288,178,5)],black)
+top_panel=shell('PRINT_04_top_panel',[(46,288,178,5),(46.6,288,178,5),(47,287,177,5)],navy)
+def deck_cut(tool):
+ duplicate=tool.copy();duplicate.data=tool.data.copy();bpy.context.collection.objects.link(duplicate)
+ cut(top_panel,duplicate);cut(panel,tool)
 
-# Recess remains within the solid front wall; the light and lettering are display geometry.
-# The pocket ceiling rises 45 degrees toward the front so it prints without support:
-# Z=22 at the front face (Y=-95), Z=18.8 at the pocket back (Y=-91.8). Side planes are unchanged.
-def recess_at(z):return [(-102,5),(102,5),(102-12*(z-5)/17,z),(-102+12*(z-5)/17,z)]
-cut(base,front_prism('front pocket',recess_at(24),-97,-91.8,black,recess_at(18.8)))
-front_prism('VISUAL_smoked_front_window',[(-101.2,5.4),(101.2,5.4),(92,18.6),(-92,18.6)],-92.2,-91.9,black)
+
+# Serviceable lighting pockets: retain 1.4 mm of the original 6 mm wall behind each strip.
+# Profiles are created in their flat print plane; world matrices place them on the housing.
+from mathutils import Matrix
+from math import tan, radians
+def profile_plate(name,outline,depth,material,top_outline=None):
+ if sum(outline[i][0]*outline[(i+1)%len(outline)][1]-outline[(i+1)%len(outline)][0]*outline[i][1] for i in range(len(outline)))<0:outline=list(reversed(outline))
+ n=len(outline);vertices=[(x,y,0) for x,y in outline]+[(x,y,depth) for x,y in (top_outline or outline)]
+ faces=[tuple(reversed(range(n))),tuple(range(n,2*n))]
+ for i in range(n):
+  j=(i+1)%n;faces.append((i,j,n+j,n+i))
+ mesh=bpy.data.meshes.new(name);mesh.from_pydata(vertices,[],faces);mesh.update()
+ obj=bpy.data.objects.new(name,mesh);bpy.context.collection.objects.link(obj)
+ if material:obj.data.materials.append(material)
+ return obj
+
 def emission(name,color,strength):
  m=mat(name,color);bs=m.node_tree.nodes.get('Principled BSDF')
  bs.inputs['Emission Color'].default_value=(*color,1);bs.inputs['Emission Strength'].default_value=strength
  return m
-lightbar=emission('Magenta light guide',(1,.008,.36),5)
-front_prism('VISUAL_light_guide',[(-99,5.8),(99,5.8),(97.8,7.8),(-97.8,7.8)],-93,-92.4,lightbar)
+lightbar=emission('Magenta lighting illustration',(1,.008,.36),4)
+diffuser_material=emission('Backlit translucent PLA illustration',(1,.025,.45),2.5)
+# The real part is milk-white / translucent PLA; emission illustrates the separate LED source.
+front_frame=Matrix.Rotation(radians(90),4,'X')
+recess=[(-102,5),(102,5),(90,22),(-90,22)]
+def recess_at(z):return [(-102,5),(102,5),(102-12*(z-5)/17,z),(-102+12*(z-5)/17,z)]
+front_cut=profile_plate('Front LED pocket',recess_at(17.4),8,None,recess_at(25.4))
+front_cut.matrix_world=Matrix.Translation((0,-90.4,0))@front_frame
+cut(base,front_cut)
+front_lens=profile_plate('PRINT_light_front_diffuser',[(-101.5,5.5),(101.5,5.5),(89.5,20.3),(-89.5,20.3)],1.2,diffuser_material,[(-101.5,5.5),(101.5,5.5),(89.5,21.5),(-89.5,21.5)])
+front_lens.matrix_world=Matrix.Translation((0,-93.8,0))@front_frame
+# Black mask is a separate opaque adhesive sheet, not another solid wall hiding the LEDs.
+front_prism('VISUAL_front_mask',[(-97,9.5),(97,9.5),(87.8,22),(-87.8,22)],-95.15,-95.01,black)
+front_prism('VISUAL_front_LED_strip',[(-90,10.7),(90,10.7),(90,15.7),(-90,15.7)],-92.3,-90.5,lightbar)
+slope=tan(radians(2.55))
+lighting_config={'mode':'magenta constant illumination (provisional)', 'strip_supply_v':5, 'strip_width_max_mm':5,'strip_thickness_max_mm':2,'front_strip_length_max_mm':180,'side_strip_length_max_mm':130,'diffuser_thickness_mm':1.2,'pocket_back_wall_mm':1.4,'attachment':'thin removable adhesive tape at edges; no printed snap tabs','optical_and_thermal_validation':False}
+for sign,side in [(-1,'left'),(1,'right')]:
+ # Local +U points toward the rear on the right, toward the front on the left.
+ orient=Matrix(((0,0,sign,0),(sign,0,0,0),(0,1,0,0),(0,0,0,1)))
+ def side_outline(half_length,half_height):
+  return [(u,13.5+slope*sign*u+dz) for u,dz in [(-half_length,-half_height),(half_length,-half_height),(half_length,half_height),(-half_length,half_height)]]
+ pocket=profile_plate('Side LED pocket '+side,[(u,13.5+slope*sign*u+dz) for u,dz in [(-72,-5.25),(72,-5.25),(72,.65),(-72,.65)]],8,None,[(u,13.5+slope*sign*u+dz) for u,dz in [(-72,-5.25),(72,-5.25),(72,8.65),(-72,8.65)]])
+ pocket.matrix_world=Matrix.Translation((sign*145.4,0,0))@orient;cut(base,pocket)
+ lens=profile_plate('PRINT_light_'+side+'_diffuser',[(u,13.5+slope*sign*u+dz) for u,dz in [(-71.7,-5.0),(71.7,-5.0),(71.7,3.75),(-71.7,3.75)]],1.2,diffuser_material,[(u,13.5+slope*sign*u+dz) for u,dz in [(-71.7,-5.0),(71.7,-5.0),(71.7,4.95),(-71.7,4.95)]])
+ lens.matrix_world=Matrix.Translation((sign*148.8,0,0))@orient
+ source=profile_plate('VISUAL_side_LED_strip_'+side,[(u,11.2+slope*sign*u+dz) for u,dz in [(-65,-2.5),(65,-2.5),(65,2.5),(-65,2.5)]],1.8,lightbar)
+ source.matrix_world=Matrix.Translation((sign*145.5,0,0))@orient
+ for y in (-64,64):
+  tool=cyl('Side LED wire passage',sign*145,y,13.5+slope*y,1.6,12)
+  tool.rotation_euler.y=radians(90);cut(base,tool)
+for x in (-90,90):
+ tool=cyl('Front LED wire passage',x,-90,13.5,1.6,10)
+ tool.rotation_euler.x=radians(90);cut(base,tool)
+with open(os.path.join(OUT,'artwork','lighting_layout.json'),'w') as f:json.dump(lighting_config,f,indent=2);f.write('\n')
 from math import radians
 def label(body,x,z,material):
  data=bpy.data.curves.new(body,'FONT');data.body=body;data.size=8.5;data.shear=.27
- o=bpy.data.objects.new(body,data);bpy.context.collection.objects.link(o);o.location=(x,-92.65,z);o.rotation_euler.x=radians(90);data.materials.append(material)
+ o=bpy.data.objects.new(body,data);bpy.context.collection.objects.link(o);o.location=(x,-95.3,z);o.rotation_euler.x=radians(90);data.materials.append(material)
 # Use the same original outline wordmark as the printed deck, with no font dependency.
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'artwork','logo','wordmark.json')) as f:
  wordmark=json.load(f)
@@ -87,7 +134,7 @@ for i,glyph in enumerate(wordmark['polygons']):
  outline=[(-26+x*.064,11+(100-y)*.064) for x,y in glyph['points']]
  area=sum(outline[j][0]*outline[(j+1)%len(outline)][1]-outline[(j+1)%len(outline)][0]*outline[j][1] for j in range(len(outline)))
  if area<0:outline.reverse()
- front_prism('VISUAL_NULL_CITY_wordmark_%02d'%i,outline,-92.7,-92.5,wordmark_material)
+ front_prism('VISUAL_NULL_CITY_wordmark_%02d'%i,outline,-95.3,-95.2,wordmark_material)
 label('///',23,10,lightbar)
 
 steel=mat('Polished steel',(.64,.68,.78),.94,.19)
@@ -106,32 +153,32 @@ with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'artwork','con
 buttons=control_layout['buttons']
 lever_x,lever_y=control_layout['lever']
 for i,(x,y) in enumerate(buttons):
- cut(panel,cyl('button bore',x,y,45,control_layout['main_button_hole_diameter_mm']/2,12))
+ deck_cut(cyl('button bore',x,y,45,control_layout['main_button_hole_diameter_mm']/2,12))
  m=green if i<3 else glass
  cap('PRINT_button_cap_%02d'%i,x,y,14.1,m);bezel('VISUAL_switch_bezel_%02d'%i,x,y,15.4,m)
 # 1P moves 33 mm toward the rear; START retains its original position.
 menu_buttons=control_layout['menu_buttons']
 for i,(x,y) in enumerate(menu_buttons):
- cut(panel,cyl('menu bore',x,y,45,control_layout['menu_button_hole_diameter_mm']/2,12));cap('PRINT_menu_cap_%d'%i,x,y,11.2,green);bezel('VISUAL_menu_bezel_%d'%i,x,y,12,green)
+ deck_cut(cyl('menu bore',x,y,45,control_layout['menu_button_hole_diameter_mm']/2,12));cap('PRINT_menu_cap_%d'%i,x,y,11.2,green);bezel('VISUAL_menu_bezel_%d'%i,x,y,12,green)
 # Provisional 3 mm discrete indicator LEDs; actual LED hardware is not specified yet.
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'artwork','led_layout.json')) as f:
  led_layout=json.load(f)
 led_material=emission('Indicator LED cyan',(.02,.65,1),2)
 for led in led_layout['leds']:
  x,y=led['x'],led['y']
- cut(panel,cyl('LED bore '+led['name'],x,y,45,led_layout['hole_diameter_mm']/2,12))
+ deck_cut(cyl('LED bore '+led['name'],x,y,45,led_layout['hole_diameter_mm']/2,12))
  cyl('VISUAL_LED_'+led['name'],x,y,47.4,1.5,.8,led_material,32)
 # Seimitsu LS-55-01 with MS mounting plate; pitch and plate orientation come from control_layout.json.
 mount=control_layout['lever_mount']
 for dx in (-mount['pitch_mm'][0]/2,mount['pitch_mm'][0]/2):
  for dy in (-mount['pitch_mm'][1]/2,mount['pitch_mm'][1]/2):
-  cut(panel,cyl('M4 lever mounting clearance',lever_x+dx,lever_y+dy,45,mount['clearance_diameter_mm']/2,12))
+  deck_cut(cyl('M4 lever mounting clearance',lever_x+dx,lever_y+dy,45,mount['clearance_diameter_mm']/2,12))
 # Clear the 1.6 mm plate below 3 mm LED-lead spacers, with 0.5 mm side clearance.
 # Only cuts the frame where the plate reaches past the 274 x 164 mm upper opening.
 plate_x,plate_y=mount['plate_size_mm'][0]+1,mount['plate_size_mm'][1]+1
 if abs(lever_x)+plate_x/2>137 or abs(lever_y)+plate_y/2>82:
  cut(rim,cube('MS plate underside clearance',(lever_x,lever_y,40.5),(plate_x,plate_y,8)))
-cut(panel,cyl('lever opening',lever_x,lever_y,45,12,12))
+deck_cut(cyl('lever opening',lever_x,lever_y,45,12,12))
 cyl('VISUAL_dust_washer',lever_x,lever_y,47.8,18,1.6,black)
 cyl('VISUAL_shaft',lever_x,lever_y,59,4.2,24,steel)
 bpy.ops.mesh.primitive_uv_sphere_add(segments=72,ring_count=40,radius=14.5,location=(lever_x,lever_y,80))
@@ -142,19 +189,19 @@ for x in (-135,135):
    boolean(obj,cyl('corner boss',x,y,z,11,depth),'UNION')
   # 7.5 mm deep from the Z=24 split line: 6 mm insert plus 1.5 mm relief for displaced plastic.
   cut(base,cyl('M3 insert pilot',x,y,20.75,2.05,8.5))
-  cut(rim,cyl('M3 clearance',x,y,33.5,1.7,24));cut(panel,cyl('M3 clearance',x,y,45,1.7,8))
+  cut(rim,cyl('M3 clearance',x,y,33.5,1.7,24));deck_cut(cyl('M3 clearance',x,y,45,1.7,8))
   screw=cyl('VISUAL_M3_button_head',x,y,48,3.25,2,steel)
   cut(screw,cyl('hex socket',x,y,49,1.25,1.8,None,6))
 for x in (-113,113):
  for y in (-66,66):cyl('PRINT_TPU_foot_%d_%d'%(x,y),x,y,-2,11,4,black)
 # Use planar local coordinates for the exposed deck, preserving physical holes.
 texture=mat('Printed NC-03 graphic',(1,1,1),.03,.38)
-panel.data.materials.append(texture);texture_index=len(panel.data.materials)-1;uv=panel.data.uv_layers.new(name='Deck artwork')
+top_panel.data.materials.append(texture);texture_index=len(top_panel.data.materials)-1;uv=top_panel.data.uv_layers.new(name='Deck artwork')
 uv.active_render=True
-for face in panel.data.polygons:
+for face in top_panel.data.polygons:
  if face.normal.z>.999 and face.center.z>46.9:face.material_index=texture_index
  for li in face.loop_indices:
-  v=panel.data.vertices[panel.data.loops[li].vertex_index].co
+  v=top_panel.data.vertices[top_panel.data.loops[li].vertex_index].co
   uv.data[li].uv=(v.x/288+.5,v.y/178+.5)
 img=bpy.data.images.load(os.path.join(os.path.dirname(os.path.abspath(__file__)),'artwork','panel.png'));img.pack()
 tex=texture.node_tree.nodes.new('ShaderNodeTexImage');tex.image=img
@@ -168,7 +215,7 @@ for obj in list(bpy.context.scene.objects):
    if v.co.z>24.001:
     mix=(v.co.z-24)/19
     v.co=v.co.lerp(tilt @ v.co,min(1,mix))
- elif obj==panel or obj.location.z>=43:
+ elif obj==panel or obj==top_panel or obj.location.z>=43:
   obj.matrix_world=tilt @ obj.matrix_world
 bpy.context.view_layer.update()
 def aim(obj,point):obj.rotation_euler=(Vector(point)-obj.location).to_track_quat('-Z','Y').to_euler()

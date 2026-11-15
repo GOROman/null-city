@@ -1,0 +1,12 @@
+{
+  "mode": "magenta constant illumination (provisional)",
+  "strip_supply_v": 5,
+  "strip_width_max_mm": 5,
+  "strip_thickness_max_mm": 2,
+  "front_strip_length_max_mm": 180,
+  "side_strip_length_max_mm": 130,
+  "diffuser_thickness_mm": 1.2,
+  "pocket_back_wall_mm": 1.4,
+  "attachment": "thin removable adhesive tape at edges; no printed snap tabs",
+  "optical_and_thermal_validation": false
+}
