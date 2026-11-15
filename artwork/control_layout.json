@@ -98,7 +98,25 @@
         42.2
       ],
       "pitch_confirmed": false,
-      "screw_thread_confirmed": false
+      "screw_thread_confirmed": false,
+      "coupon_fit_observation": {
+        "files": [
+          "IMG_9783.jpg",
+          "IMG_9784.jpg"
+        ],
+        "coupon": "print/fit/FIT_ONLY_direct_40x40_GUI.3mf",
+        "pitch_mm": [
+          40,
+          40
+        ],
+        "panel_thickness_mm": 4,
+        "observation": "All four screws appear installed in the printed coupon. Direct mounting is visually demonstrated; no separate MS plate is visible.",
+        "four_screws_installed_in_photo": true,
+        "operation_8_directions_confirmed": false,
+        "screw_thread_confirmed": false,
+        "connected_depth_below_panel_underside_mm": null,
+        "production_mesh_updated": false
+      }
     }
   },
   "main_button_nominal_diameter_mm": 30,
