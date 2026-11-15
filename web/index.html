@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17171c">
+  <meta name="description" content="NULL CITY NC-03 — オープンソースのアーケードスティックを、PBRの3Dモデルで回して、分解して、確かめる。">
+  <title>NULL CITY / NC-03 — 3D Preview</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+</head>
+<body>
+  <a class="skip-link" href="#viewer">3Dモデルへ移動</a>
+  <header class="masthead">
+    <a class="wordmark" href="./" aria-label="NULL CITY ホーム">NULL CITY <span>///</span></a>
+    <span class="masthead-caption">OPEN HARDWARE · ARCADE STICK</span>
+    <a class="repo-link" href="https://github.com/GOROman/null-city" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+  </header>
+  <main class="workspace">
+    <aside class="inspector" aria-label="モデルの説明と表示設定">
+      <div class="intro">
+        <p class="eyebrow"><span class="live-dot"></span> INTERACTIVE MODEL</p>
+        <h1>NC-03<span>ARCADE STICK</span></h1>
+        <p class="description">回して、分解して、確かめる。<br>NULL CITYの形と構造を、ブラウザーで。</p>
+        <div class="specs"><div><strong>300<span> × </span>190</strong><small>外形 / mm</small></div><div><strong>6 <span>+</span> 2</strong><small>操作ボタン</small></div></div>
+      </div>
+      <form id="controls" aria-label="3D表示の設定">
+        <fieldset disabled id="model-controls">
+          <legend class="section-title"><span>01</span> ASSEMBLY</legend>
+          <div class="range-heading"><label for="assembly">分解して構造を見る</label><output id="assembly-value" for="assembly">0%</output></div>
+          <input id="assembly" name="assembly" type="range" min="0" max="100" value="0" aria-describedby="assembly-help">
+          <div class="range-labels" id="assembly-help"><span>組立</span><span>分解</span></div>
+          <label class="toggle-row"><span>ケースを透かす</span><input id="transparent" type="checkbox"><span class="switch" aria-hidden="true"></span></label>
+          <div class="section-title"><span>02</span> LIGHT &amp; MATERIAL</div>
+          <label class="toggle-row"><span>LEDを点灯</span><input id="led" type="checkbox" checked><span class="switch" aria-hidden="true"></span></label>
+          <div class="range-heading light-heading"><label for="exposure">環境光の明るさ</label><output id="exposure-value" for="exposure">1.0</output></div>
+          <input id="exposure" type="range" min="0.4" max="1.6" step="0.1" value="1">
+          <div class="range-labels"><span>暗め</span><span>明るめ</span></div>
+          <label class="toggle-row rotate-toggle"><span>自動で回転</span><input id="rotate" type="checkbox"><span class="switch" aria-hidden="true"></span></label>
+        </fieldset>
+      </form>
+      <div class="inspector-bottom">
+        <p class="notice"><span class="notice-mark">i</span>発光・材質は完成イメージです。<br>配線込みの仮組み・光学・温度は確認待ち。</p>
+        <a class="source-link" href="https://github.com/GOROman/null-city#readme" target="_blank" rel="noopener noreferrer">設計データ・印刷設定 <span aria-hidden="true">↗</span></a>
+      </div>
+    </aside>
+    <section class="stage" aria-label="NC-03の3Dプレビュー">
+      <div class="stage-topline"><span><i aria-hidden="true"></i> PBR / REALTIME</span><span id="load-status" role="status" aria-live="polite">モデルを読み込み中…</span></div>
+      <model-viewer id="viewer" src="./model/nc03.glb" poster="./project/poster.jpg"
+        alt="NULL CITY NC-03。白い面取りケース、紺の天板、紫のレバー、緑と透明の6ボタン、前面と側面のマゼンタ照明を備えたアーケードスティック。"
+        camera-controls camera-orbit="25deg 65deg 105%" field-of-view="29deg"
+        min-camera-orbit="auto 0.1deg 60%" max-camera-orbit="auto 170deg 250%"
+        environment-image="neutral" tone-mapping="neutral" exposure="1"
+        shadow-intensity="0.8" shadow-softness="0.9" animation-name="Assembly"
+        interaction-prompt="none" touch-action="pan-y" loading="eager" reveal="auto">
+        <div slot="progress-bar" class="load-progress"><progress id="progress" max="1" value="0" aria-label="3Dモデルの読み込み"></progress></div>
+      </model-viewer>
+      <div class="error-panel" id="error-panel" hidden><strong>3Dモデルを読み込めませんでした</strong><p>接続とWebGLの対応をご確認ください。下のリンクからモデルもダウンロードできます。</p><button id="retry" type="button">再読み込み</button></div>
+      <div class="stage-bottom">
+        <div class="view-bar" role="group" aria-label="視点を切り替える">
+          <button type="button" data-view="hero" aria-pressed="true">俯瞰</button>
+          <button type="button" data-view="front" aria-pressed="false">正面</button>
+          <button type="button" data-view="right" aria-pressed="false">右側面</button>
+          <button type="button" data-view="top" aria-pressed="false">上面</button>
+          <button type="button" id="reset" aria-label="視点と表示設定をリセット" title="リセット">↺</button>
+        </div>
+        <p class="interaction-hint"><span>ドラッグで回転</span><span>スクロールでズーム</span><span>右ドラッグで移動</span></p>
+      </div>
+      <div class="stage-caption"><span>NC-03 / <strong>6-BUTTON LAYOUT</strong></span><a href="./model/nc03.glb" download="NULL-CITY-NC03.glb">GLBをダウンロード <span aria-hidden="true">↓</span></a></div>
+    </section>
+  </main>
+  <footer class="footer"><span>DESIGNED BY <a href="https://github.com/GOROman">GOROman</a></span><span>MODEL <a href="./project/CC-BY-4.0.txt">CC BY 4.0</a> <b>/</b> FONT <a href="./project/OFL.txt">SIL OFL 1.1</a> <b>/</b> <a href="./project/THIRD_PARTY_LICENSES.txt">THIRD PARTY</a></span><span id="revision">NULL CITY · OPEN SOURCE</span></footer>
+  <noscript><p class="noscript">3D表示にはJavaScriptが必要です。<a href="./project/poster.jpg">完成予想図を見る</a> ／ <a href="./model/nc03.glb">モデルをダウンロード</a></p></noscript>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

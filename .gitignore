@@ -7,3 +7,10 @@
 
 __pycache__/
 /print/usb-relief/*.log
+
+# Web preview dependencies, build outputs and copied project assets
+/web/node_modules/
+/web/dist/
+/web/test-results/
+/web/playwright-report/
+/web/public/project/

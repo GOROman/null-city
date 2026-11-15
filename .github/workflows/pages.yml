@@ -1,0 +1,83 @@
+name: PBR preview / GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - '.github/workflows/pages.yml'
+      - 'NULL_CITY_NC03.*'
+      - 'artwork/**'
+      - 'scripts/export_web_model.py'
+      - 'scripts/usb_relief.py'
+      - 'fonts/null-font/**'
+      - 'docs/images/lighting.jpg'
+      - 'LICENSE*'
+      - 'LICENSES/**'
+  pull_request:
+    paths:
+      - 'web/**'
+      - '.github/workflows/pages.yml'
+      - 'NULL_CITY_NC03.*'
+      - 'artwork/**'
+      - 'scripts/export_web_model.py'
+      - 'scripts/usb_relief.py'
+      - 'fonts/null-font/**'
+      - 'docs/images/lighting.jpg'
+      - 'LICENSE*'
+      - 'LICENSES/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Validate model, build and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Install pinned dependencies
+        run: npm ci
+      - name: Validate source hashes and PBR model; build viewer
+        run: npm run build
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+      - name: Test desktop and mobile under the Pages project path
+        run: npm test
+      - name: Upload GitHub Pages site
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: web/dist
+
+  deploy:
+    name: Publish preview
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
