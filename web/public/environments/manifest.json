@@ -1,0 +1,24 @@
+[
+  {
+    "id": "studio03",
+    "label": "Studio 03 · ソフトボックス",
+    "file": "studio_small_03_1k.hdr",
+    "author": "Greg Zaal",
+    "source": "https://polyhaven.com/a/studio_small_03",
+    "download": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/studio_small_03_1k.hdr",
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "sha256": "30933d55e45f0795daf49f3cbefbe0e5ebcb821ee04fb0a2818c02ffc3938817"
+  },
+  {
+    "id": "studio02",
+    "label": "Studio 02 · コントラスト",
+    "file": "studio_small_02_1k.hdr",
+    "author": "Greg Zaal",
+    "source": "https://polyhaven.com/a/studio_small_02",
+    "download": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/studio_small_02_1k.hdr",
+    "license": "CC0-1.0",
+    "license_url": "https://polyhaven.com/license",
+    "sha256": "1ec7cfe51434ccd68b559c7bb0e6752678e9bcaefe2fc88ab9e1d9345b60ea14"
+  }
+]

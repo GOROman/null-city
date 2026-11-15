@@ -3,6 +3,8 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import validator from 'gltf-validator';
+import {HDRLoader} from 'three/addons/loaders/HDRLoader.js';
+import {FloatType} from 'three';
 const web=fileURLToPath(new URL('../',import.meta.url));
 const root=path.resolve(web,'..');
 const manifest=JSON.parse(await readFile(path.join(web,'public/model/manifest.json'),'utf8'));
@@ -42,3 +44,20 @@ for(const [location,metadata] of Object.entries(lock.packages)){
   }
 }
 await writeFile(path.join(web,'public/project/THIRD_PARTY_LICENSES.txt'),notices);
+
+const environments=JSON.parse(await readFile(path.join(web,'public/environments/manifest.json'),'utf8'));
+let environmentNotices='HDR image-based lighting assets\n\n';
+for(const asset of environments){
+  const bytes=await readFile(path.join(web,'public/environments',asset.file));
+  if(hash(bytes)!==asset.sha256)throw new Error(`HDR integrity check failed: ${asset.file}`);
+  const image=new HDRLoader().setDataType(FloatType).parse(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength));
+  let peak=0;
+  for(let i=0;i<image.data.length;i++){
+    if(!Number.isFinite(image.data[i]))throw new Error(`Non-finite HDR value: ${asset.file}`);
+    if(i%4!==3)peak=Math.max(peak,image.data[i]);
+  }
+  if(image.width!==1024||image.height!==512||peak<=1)throw new Error(`Not a 1K high-dynamic-range environment: ${asset.file}`);
+  console.log(`HDR verified: ${asset.file}, ${image.width}x${image.height}, peak radiance ${peak.toFixed(2)}`);
+  environmentNotices+=`${asset.file}\n${asset.author} / Poly Haven\n${asset.source}\n${asset.license} — ${asset.license_url}\nDownloaded from ${asset.download}\nSHA-256 ${asset.sha256}\n\n`;
+}
+await writeFile(path.join(web,'public/project/HDRI_CREDITS.txt'),environmentNotices);
