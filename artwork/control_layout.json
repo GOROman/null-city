@@ -61,26 +61,20 @@
   "lever_mount": {
     "manufacturer": "Seimitsu",
     "model": "LS-55-01",
-    "base": "MS",
-    "base_confirmed": false,
+    "base": "none",
+    "base_confirmed": true,
     "manual_source": "https://drive.google.com/file/d/1D0X1x019IUx4OJuBd43U7_CETa2sEljN/view",
     "manual_page": 21,
     "drawing_source": "https://seimitsu.co.jp/wp-content/uploads/2023/11/%E5%AF%B8%E6%B3%95%E5%9B%B3%E7%94%A8_LS-55-01.pdf",
     "pitch_mm": [
       40,
-      85
+      40
     ],
-    "plate_size_mm": [
-      50,
-      95,
-      1.6
-    ],
-    "screw": "M4",
+    "screw": "Original housing screws; thread unmeasured",
     "clearance_diameter_mm": 4.5,
-    "body_depth_below_plate_top_mm": 37.1,
-    "note": "Official LS-55-01/MS drawing: 33.4 mm is above plate, 37.1 mm below plate top. Current production mesh still uses MS mounting holes, but user photos IMG_9768/9769/9771/9772 show apparent direct housing mounting without MS plate. Test candidate 40 x 40 mm coupon first; screw thread, mounting datum and connected envelope remain unverified. Do not print full deck/case until resolved.",
-    "spacer_height_mm": 3,
-    "plate_orientation": "Long axis along Y (rotated 90 degrees from the previous 85 x 40 layout) so the plate clears the bottom-left button and the frame wall.",
+    "note": "User confirmed 32.1 mm includes nominal 4 mm coupon, so direct-mounted body projects 28.1 mm below panel. Four original screws and 8-direction operation confirmed with coupon. No MS plate or 3 mm spacers. Connector, wiring, LED hardware and full-case fit remain unverified. The 37.1 mm below-MS-plate datum is retained only as a historical manufacturer reference.",
+    "spacer_height_mm": 0,
+    "plate_orientation": "No separate plate; match the successfully tested housing orientation. Verify pin mapping during wiring.",
     "photo_observation": {
       "files": [
         "IMG_9768.jpg",
@@ -97,7 +91,7 @@
         39.9,
         42.2
       ],
-      "pitch_confirmed": false,
+      "pitch_confirmed": true,
       "screw_thread_confirmed": false,
       "coupon_fit_observation": {
         "files": [
@@ -112,21 +106,34 @@
         "panel_thickness_mm": 4,
         "observation": "All four screws appear installed in the printed coupon. Direct mounting is visually demonstrated; no separate MS plate is visible.",
         "four_screws_installed_in_photo": true,
-        "operation_8_directions_confirmed": false,
+        "operation_8_directions_confirmed": true,
         "screw_thread_confirmed": false,
         "connected_depth_below_panel_underside_mm": null,
-        "production_mesh_updated": false,
+        "production_mesh_updated": true,
         "height_measurement": {
           "photo": "IMG_9787.jpg",
           "display_mm": 32.1,
-          "datum_confirmed": false,
-          "appears_to_include_panel": true,
+          "datum_confirmed": true,
           "panel_thickness_nominal_mm": 4,
-          "conditional_depth_below_panel_underside_mm": 28.1,
-          "harness_connected_in_photo": false
+          "harness_connected_in_photo": false,
+          "includes_panel": true,
+          "body_depth_below_panel_underside_mm": 28.1
         }
       }
-    }
+    },
+    "mounting_mode": "direct_housing",
+    "body_depth_below_panel_underside_mm": 28.1,
+    "body_depth_measurement_confirmed": true,
+    "clearance_envelope_half_depth_mm": 47.5,
+    "wire_depth_allowance_mm": 5,
+    "vertical_tolerance_allowance_mm": 1,
+    "required_clearance_mm": 2,
+    "reference_ms_plate_size_mm": [
+      50,
+      95,
+      1.6
+    ],
+    "reference_ms_body_depth_below_plate_top_mm": 37.1
   },
   "main_button_nominal_diameter_mm": 30,
   "main_button_hole_diameter_mm": 30.4,
