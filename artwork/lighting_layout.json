@@ -1,0 +1,17 @@
+{
+  "mode": "magenta constant illumination (provisional)",
+  "strip_supply_v": 5,
+  "strip_width_max_mm": 5,
+  "strip_thickness_max_mm": 2,
+  "front_strip_length_max_mm": 180,
+  "side_strip_length_max_mm": 130,
+  "diffuser_thickness_mm": 1.2,
+  "pocket_back_wall_mm": 1.4,
+  "attachment": "thin removable adhesive tape at edges; no printed snap tabs",
+  "optical_and_thermal_validation": false,
+  "front_wordmark_scale": 0.1,
+  "front_wordmark_left_mm": -43,
+  "front_wordmark_baseline_mm": 11,
+  "deck_stack_mm": 4,
+  "side_window_shape": "tapered ends, sloped 2.55 degrees"
+}
