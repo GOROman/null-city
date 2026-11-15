@@ -53,19 +53,20 @@
     "manual_page": 21,
     "drawing_source": "https://seimitsu.co.jp/wp-content/uploads/2023/11/%E5%AF%B8%E6%B3%95%E5%9B%B3%E7%94%A8_LS-55-01.pdf",
     "pitch_mm": [
-      85,
-      40
+      40,
+      85
     ],
     "plate_size_mm": [
-      95,
       50,
+      95,
       1.6
     ],
     "screw": "M4",
     "clearance_diameter_mm": 4.5,
     "body_depth_below_plate_top_mm": 33.4,
-    "note": "Manual identifies LS-55-01 but does not specify base. MS base drawing used. Install with 3 mm M4 spacers for LED leads; bend/rout leads within this gap. Physical base, hardware and bottom clearance require fit test.",
-    "spacer_height_mm": 3
+    "note": "Manual identifies LS-55-01 but does not specify base. MS base drawing used, plate rotated 90 degrees: confirm the lever works in this orientation and remap the four direction switches when wiring. Install with 3 mm M4 spacers for LED leads; bend/rout leads within this gap. Physical base, hardware and bottom clearance require fit test.",
+    "spacer_height_mm": 3,
+    "plate_orientation": "Long axis along Y (rotated 90 degrees from the previous 85 x 40 layout) so the plate clears the bottom-left button and the frame wall."
   },
   "main_button_nominal_diameter_mm": 30,
   "main_button_hole_diameter_mm": 30.4,
