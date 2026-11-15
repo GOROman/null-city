@@ -110,6 +110,14 @@ for led in led_layout['leds']:
  x,y=led['x'],led['y']
  cut(panel,cyl('LED bore '+led['name'],x,y,45,led_layout['hole_diameter_mm']/2,12))
  cyl('VISUAL_LED_'+led['name'],x,y,47.4,1.5,.8,led_material,32)
+# Seimitsu LS-55-01 with MS mounting plate, 85 x 40 mm centers.
+mount=control_layout['lever_mount']
+for dx in (-mount['pitch_mm'][0]/2,mount['pitch_mm'][0]/2):
+ for dy in (-mount['pitch_mm'][1]/2,mount['pitch_mm'][1]/2):
+  cut(panel,cyl('M4 lever mounting clearance',lever_x+dx,lever_y+dy,45,mount['clearance_diameter_mm']/2,12))
+# Clear the 95 x 50 x 1.6 mm plate below 3 mm LED-lead spacers, with 0.5 mm side clearance.
+# Extends the upper opening locally without cutting the exterior wall.
+cut(rim,cube('MS plate underside clearance',(lever_x,lever_y,40.5),(96,51,8)))
 cut(panel,cyl('lever opening',lever_x,lever_y,45,12,12))
 cyl('VISUAL_dust_washer',lever_x,lever_y,47.8,18,1.6,black)
 cyl('VISUAL_shaft',lever_x,lever_y,59,4.2,24,steel)

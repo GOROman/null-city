@@ -43,5 +43,28 @@
       12
     ]
   ],
-  "reference": "Top-left action button retained at (-24,28). Blast City uses the higher lever position and bottom middle button shifted 0.5 mm right."
+  "reference": "Top-left action button retained at (-24,28). Blast City uses the higher lever position and bottom middle button shifted 0.5 mm right.",
+  "lever_mount": {
+    "manufacturer": "Seimitsu",
+    "model": "LS-55-01",
+    "base": "MS",
+    "base_confirmed": false,
+    "manual_source": "https://drive.google.com/file/d/1D0X1x019IUx4OJuBd43U7_CETa2sEljN/view",
+    "manual_page": 21,
+    "drawing_source": "https://seimitsu.co.jp/wp-content/uploads/2023/11/%E5%AF%B8%E6%B3%95%E5%9B%B3%E7%94%A8_LS-55-01.pdf",
+    "pitch_mm": [
+      85,
+      40
+    ],
+    "plate_size_mm": [
+      95,
+      50,
+      1.6
+    ],
+    "screw": "M4",
+    "clearance_diameter_mm": 4.5,
+    "body_depth_below_plate_top_mm": 33.4,
+    "note": "Manual identifies LS-55-01 but does not specify base. MS base drawing used. Install with 3 mm M4 spacers for LED leads; bend/rout leads within this gap. Physical base, hardware and bottom clearance require fit test.",
+    "spacer_height_mm": 3
+  }
 }

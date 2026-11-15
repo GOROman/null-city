@@ -7,6 +7,9 @@ leds=json.loads((root/'artwork/led_layout.json').read_text())
 art=(root/'artwork/panel.svg').read_text()
 out=root/'artwork/decal';out.mkdir(exist_ok=True)
 holes=[(*p,15.2) for p in controls['buttons']]+[(*p,6.2) for p in controls['menu_buttons']]+[(*controls['lever'],12)]
+mount=controls.get('lever_mount')
+if mount:
+ holes += [(controls['lever'][0]+dx,controls['lever'][1]+dy,mount['clearance_diameter_mm']/2) for dx in (-mount['pitch_mm'][0]/2,mount['pitch_mm'][0]/2) for dy in (-mount['pitch_mm'][1]/2,mount['pitch_mm'][1]/2)]
 holes += [(x,y,1.7) for x in (-135,135) for y in (-80,80)]
 def circle(x,y,r):return f'<circle cx="{(x+144)*5}" cy="{(89-y)*5}" r="{r*5}"/>'
 for guide in (False,True):
