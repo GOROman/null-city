@@ -32,6 +32,10 @@ Bambu H3C向けの、交換式天板を備えたアーケードスティック�
 | LED穴 | レバー周囲8方向＋メインボタン6個＋1P／START各1個の計16穴。3 mm丸型LED想定のφ3.2 mm仮寸法。レバー周囲は半径25 mm |
 | 四隅の取付 | M3クリアランス φ3.4 mm。下ケースの熱圧入インサート下穴は φ4.1 × 7.5 mm（6 mmインサート＋樹脂の逃げ1.5 mm）。実部品に合わせて試験片で調整 |
 
+## NULL FONT
+
+NULL CITYの角形ロゴを英数字へ展開した専用書体。[文字見本・使い方](fonts/null-font/README.md) ／ [フォント一式](fonts/null-font/NULL-FONT.zip)。Regularと12° ItalicのTTF・OTF・WOFF2を収録。
+
 ## Bambu Studio の設定
 
 Bambu Studio 02.09.01.70のH3C公式プロファイルを使用。機種は **Bambu Lab H3C / 0.4 mm / Standard**、プレートは **Textured PEI Plate**。実際のノズル・装着プレート・材料銘柄が異なる場合は一致させて再スライスする。
