@@ -2,3 +2,5 @@
 # Bambu Studio local diagnostics
 /result.json
 /print/h3c/*.log
+
+/print/fit/*.log

@@ -77,10 +77,29 @@
     ],
     "screw": "M4",
     "clearance_diameter_mm": 4.5,
-    "body_depth_below_plate_top_mm": 33.4,
-    "note": "Manual identifies LS-55-01 but does not specify base. MS base drawing used, plate rotated 90 degrees: confirm the lever works in this orientation and remap the four direction switches when wiring. Install with 3 mm M4 spacers for LED leads; bend/rout leads within this gap. Physical base, hardware and bottom clearance require fit test.",
+    "body_depth_below_plate_top_mm": 37.1,
+    "note": "Official LS-55-01/MS drawing: 33.4 mm is above plate, 37.1 mm below plate top. Current production mesh still uses MS mounting holes, but user photos IMG_9768/9769/9771/9772 show apparent direct housing mounting without MS plate. Test candidate 40 x 40 mm coupon first; screw thread, mounting datum and connected envelope remain unverified. Do not print full deck/case until resolved.",
     "spacer_height_mm": 3,
-    "plate_orientation": "Long axis along Y (rotated 90 degrees from the previous 85 x 40 layout) so the plate clears the bottom-left button and the frame wall."
+    "plate_orientation": "Long axis along Y (rotated 90 degrees from the previous 85 x 40 layout) so the plate clears the bottom-left button and the frame wall.",
+    "photo_observation": {
+      "files": [
+        "IMG_9768.jpg",
+        "IMG_9769.jpg",
+        "IMG_9771.jpg",
+        "IMG_9772.jpg"
+      ],
+      "mounting": "appears direct housing to original panel; no separate MS plate visible",
+      "candidate_pitch_mm": [
+        40,
+        40
+      ],
+      "caliper_readings_mm": [
+        39.9,
+        42.2
+      ],
+      "pitch_confirmed": false,
+      "screw_thread_confirmed": false
+    }
   },
   "main_button_nominal_diameter_mm": 30,
   "main_button_hole_diameter_mm": 30.4,
