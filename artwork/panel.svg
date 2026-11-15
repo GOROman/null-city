@@ -15,7 +15,7 @@
 <g font-family="DejaVu Sans" font-weight="bold" fill="#fff"><text x="115" y="88" font-size="67" font-style="italic">NULL<tspan fill="#ff00b1"> ///</tspan></text>
 <text x="725" y="758" font-size="95" font-style="italic" fill="#ff08b2" filter="url(#glow)">NULL CITY</text><text x="725" y="758" font-size="95" font-style="italic">NULL CITY</text>
 <text x="1180" y="92" font-size="28">1 PLAY</text>
-<g text-anchor="middle" font-size="32"><text x="1170" y="290">1P</text><text x="1320" y="290">START</text></g>
-</g><path d="M1135 302h70m79 0h75" stroke="white" stroke-width="4"/><text x="841" y="846" font-family="DejaVu Sans" font-size="25" letter-spacing="3" fill="white">ARCADE STICK　/　MODEL NC-03</text>
+<g text-anchor="middle" font-size="32"><text x="1170" y="125">1P</text><text x="1320" y="290">START</text></g>
+</g><path d="M1135 137h70 M1284 302h75" stroke="white" stroke-width="4"/><text x="841" y="846" font-family="DejaVu Sans" font-size="25" letter-spacing="3" fill="white">ARCADE STICK　/　MODEL NC-03</text>
 <path d="M1330 480l-55 61 55 44z M1342 498h18v69h-18z" fill="#e62c69" stroke="#c7d2fa" stroke-width="5"/>
 </svg>

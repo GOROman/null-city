@@ -55,6 +55,9 @@ def polish(obj):
 
 base=shell('PRINT_01_lower_tray',[(0,290,180,7),(3,298,188,8),(5,300,190,8),(24,300,190,8)],ivory)
 cut(base,cube('Lower cavity',(0,0,17),(288,178,24)))
+# Rear cable notch opens at the split line so the USB plug need not pass through.
+# 8 mm wide x 6 mm deep below Z=24; rear wall is Y=89..95.
+cut(base,cube('USB cable exit notch',(0,94,22),(8,16,8)))
 rim=shell('PRINT_02_upper_frame',[(24,300,190,8),(38,300,190,8),(43,292,182,6)],ivory)
 cut(rim,cube('Upper opening',(0,0,34),(274,164,28)))
 panel=shell('PRINT_03_control_panel',[(43,288,178,5),(46.5,288,178,5),(47,287,177,5)],navy)
@@ -92,8 +95,10 @@ for i,(x,y) in enumerate(buttons):
  cut(panel,cyl('button bore',x,y,45,15.2,12))
  m=green if i<3 else glass
  cap('PRINT_button_cap_%02d'%i,x,y,13,m);bezel('VISUAL_switch_bezel_%02d'%i,x,y,15.4,m)
-for i,x in enumerate([90,120]):
- cut(panel,cyl('menu bore',x,12,45,6.2,12));cap('PRINT_menu_cap_%d'%i,x,12,7.6,green)
+# 1P moves 33 mm toward the rear; START retains its original position.
+menu_buttons=[(90,45),(120,12)]
+for i,(x,y) in enumerate(menu_buttons):
+ cut(panel,cyl('menu bore',x,y,45,6.2,12));cap('PRINT_menu_cap_%d'%i,x,y,7.6,green)
 cut(panel,cyl('lever opening',-93,-9,45,12,12))
 cyl('VISUAL_dust_washer',-93,-9,47.8,18,1.6,black)
 cyl('VISUAL_shaft',-93,-9,59,4.2,24,steel)
