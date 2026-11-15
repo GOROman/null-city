@@ -39,7 +39,7 @@ npx playwright install chromium
 npm test
 ```
 
-macOSでインストール済みChromeを使う場合は `PW_USE_CHROME=1 npm test`。Playwrightは本番ビルドを `/null-city/` 配下で開き、PC・スマートフォンでGLB読み込み、寸法・材質、視点、分解、発光、透過、明るさ、回転、リセット、横はみ出し、読み込み失敗時の表示を確認する。GLBはKhronos glTF Validatorでも検証する。
+macOSでインストール済みChromeを使う場合は `PW_USE_CHROME=1 npm test`。Playwrightは本番ビルドを `/null-city/` 配下で開き、PC・スマートフォンでGLB読み込み、寸法・材質、視点、分解、発光、透過、露出（EVと実際の描画輝度）、回転、リセット、横はみ出し、読み込み失敗時の表示を確認する。GLBはKhronos glTF Validatorでも検証する。
 
 `.github/workflows/pages.yml` がmainへの関連変更と手動実行で、依存インストール→GLB整合性・ビルド→ブラウザー検証→Pages公開を行う。PRでは同じ検証を行い、公開しない。PagesのSourceは **GitHub Actions**。公開ジョブだけに `pages: write` と `id-token: write` を付与する。
 
@@ -47,12 +47,22 @@ macOSでインストール済みChromeを使う場合は `PW_USE_CHROME=1 npm te
 
 ## HDR IBL / SSAO
 
-Poly Havenの **Studio Small 03 / Studio Small 02**（Greg Zaal、CC0）を1K Radiance HDRとして `public/environments/` に同梱する。環境選択でIBLを切り替え、環境の回転でモデルを動かさず反射・照明とHDR背景を回す。既定はStudio 03、環境角90°、露出0.8、背景非表示。元画像・取得元・ライセンス・SHA-256は同ディレクトリの `manifest.json` と公開先の `project/HDRI_CREDITS.txt` に記録する。
+Poly Havenの **Studio Small 03 / Studio Small 02**（Greg Zaal、CC0）を1K Radiance HDRとして `public/environments/` に同梱する。環境選択でIBLを切り替え、環境の回転でモデルを動かさず反射・照明とHDR背景を回す。既定はStudio 03、環境角90°、露出0 EV（内部倍率0.8）、背景非表示。元画像・取得元・ライセンス・SHA-256は同ディレクトリの `manifest.json` と公開先の `project/HDRI_CREDITS.txt` に記録する。
 
 ビルドではハッシュとHDRデコードを検証。両画像とも1024 × 512、RGB値が有限かつ1.0を超える実際のHDRであることを確認する。色調変換前のピーク輝度はStudio 03が3565.93、Studio 02が694.71。トーンマップ済みJPEGを照明へ流用していない。
 
-`@google/model-viewer-effects` の高精度バッファでSSAO→SMAA→Khronos Neutralの順に処理する。SSAOはON／OFF可能。MSAAは無効にして深度効果との不整合を避ける。環境回転は公開されているcustom-pass API経由でThree.jsのSceneへ適用し、モデルの回転角とは独立させる。
+`@google/model-viewer-effects` の高精度バッファでSSAO→LED限定Selective Bloom→SMAA→Khronos Neutralの順に処理する。SSAOはON／OFF可能。MSAAは無効にして深度効果との不整合を避ける。環境回転は公開されているcustom-pass API経由でThree.jsのSceneへ適用し、モデルの回転角とは独立させる。
 
 自動回転は待ち時間0 ms・20°/秒。スマートフォンでスイッチがモデル表示領域より下にある場合は、ON時にネイティブのフォーカス移動完了後、モデルが見える位置へ即座に戻す。モデル上の回転ボタンからもON／OFFできる。テストではONという属性だけでなく、実際の角度増加とOFF後の停止を確認する。
 
 CIのGPUはSwiftShaderによるソフトウェア描画のため、モバイル検証はタッチ・画面サイズを維持しつつDPRを1に設定する。ローカルのiPhoneエミュレーションはDPR 3のまま検証し、公開ページの解像度は変更しない。回転テストは両方で実際の角度増加・停止を必須とする。
+
+## 露出とLEDの自己発光
+
+環境光の強さは0〜2倍で、IBLとHDR背景にのみ作用し、LEDの自己発光へは掛けない。露出は−3〜＋3 EV（0.1 EV刻み）。0 EVが既定の明るさで、描画倍率は `0.8 × 2^EV`。＋1 EVで2倍、−1 EVで半分になり、リセットで0 EVへ戻る。カメラの露出として、反射光・自己発光の両方へ同じように作用する。
+
+LEDはPBRのEmissiveで自己発光する。乳白カバー／マゼンタ光源は強度5、表示LEDは4、前面文字は3。HDR環境の照明強度をゼロにしても発光が残る。実際の照度を校正した値ではなく完成イメージ用の相対強度。
+
+Selective BloomはEmissive材質を持つメッシュだけを対象にし、白いケースやボタンのHDR反射へは適用しない。LEDのOFFでEmissiveをゼロにし、Bloomも停止する。露出スライダーとは独立した発光ON／OFFとなる。
+
+回帰テストでは最終描画の不透明ピクセルの輝度を読み、−1 EVで暗くなること、IBL強度ゼロでもLEDのONがOFFより明るいことをPC・モバイルで検証する。

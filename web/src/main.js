@@ -9,6 +9,7 @@ const stage=document.querySelector('.stage');
 const status=document.querySelector('#load-status');
 const assembly=document.querySelector('#assembly');
 const exposure=document.querySelector('#exposure');
+const environmentStrength=document.querySelector('#environment-strength');
 const led=document.querySelector('#led');
 const transparent=document.querySelector('#transparent');
 const rotate=document.querySelector('#rotate');
@@ -18,6 +19,7 @@ const environmentAngle=document.querySelector('#environment-angle');
 const background=document.querySelector('#background');
 const ssaoEnabled=document.querySelector('#ssao-enabled');
 const ssao=document.querySelector('#ssao');
+const ledBloom=document.querySelector('#led-bloom');
 const composer=document.querySelector('#composer');
 const environmentPass=new EnvironmentRotationPass();
 composer.addPass(environmentPass);
@@ -48,7 +50,17 @@ function setAssembly(){
 }
 function setLights(){
   for(const {material,factor} of emissive)material.setEmissiveFactor(led.checked?factor:[0,0,0]);
+  ledBloom.blendMode=led.checked&&ledBloom.selection.length?'DEFAULT':'SKIP';
 }
+function selectLEDMeshes(){
+  const names=new Set(emissive.map(({material})=>material.name));
+  ledBloom.selection=[...composer.selection.values()].filter(mesh=>{
+    const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];
+    return materials.some(material=>names.has(material?.name));
+  });
+  setLights();
+}
+composer.addEventListener('updated-selection',selectLEDMeshes);
 function setTransparency(){
   for(const {material,color,alpha,doubleSided} of caseMaterials){
     material.setAlphaMode(transparent.checked?'BLEND':alpha);
@@ -56,7 +68,16 @@ function setTransparency(){
     material.pbrMetallicRoughness.setBaseColorFactor([...color.slice(0,3),transparent.checked?.18:color[3]]);
   }
 }
-function setExposure(){viewer.exposure=Number(exposure.value);document.querySelector('#exposure-value').value=Number(exposure.value).toFixed(1);}
+function setEnvironmentStrength(){
+  environmentPass.intensity=Number(environmentStrength.value);
+  document.querySelector('#environment-strength-value').value=`${Number(environmentStrength.value).toFixed(1)}×`;
+  composer.queueRender();
+}
+function setExposure(){
+  const ev=Number(exposure.value);
+  viewer.exposure=.8*2**ev;
+  document.querySelector('#exposure-value').value=`${ev>=0?'+':''}${ev.toFixed(1)} EV`;
+}
 function setRotation(){
   // Start immediately and at a visible speed; on mobile the switch can be below the viewport.
   viewer.autoRotateDelay=0;viewer.rotationPerSecond='20deg';viewer.autoRotate=rotate.checked;
@@ -95,9 +116,9 @@ viewer.addEventListener('environment-change',()=>{
   });
 });
 function reset(){
-  assembly.value='0';exposure.value='0.8';led.checked=true;transparent.checked=false;rotate.checked=false;
+  assembly.value='0';exposure.value='0';environmentStrength.value='1';led.checked=true;transparent.checked=false;rotate.checked=false;
   environment.value='studio03';environmentAngle.value='90';background.checked=false;ssaoEnabled.checked=true;
-  setAssembly();setExposure();setLights();setTransparency();setRotation();setView('hero');
+  setAssembly();setEnvironmentStrength();setExposure();setLights();setTransparency();setRotation();setView('hero');
   viewer.resetTurntableRotation(0);setEnvironment();setSSAO();
 }
 
@@ -107,6 +128,9 @@ viewer.addEventListener('load',()=>{
   document.querySelector('#error-panel').hidden=true;
   restTarget=viewer.getCameraTarget();restRadius=viewer.getCameraOrbit().radius;
   emissive=viewer.model.materials.filter(material=>material.emissiveFactor.some(value=>value>0)).map(material=>({material,factor:[...material.emissiveFactor]}));
+  const ledStrengths={'Backlit translucent PLA illustration':5,'Magenta lighting illustration':5,'Indicator LED cyan':4,'Cool white lettering':3};
+  for(const {material} of emissive){if(ledStrengths[material.name])material.setEmissiveStrength(ledStrengths[material.name]);}
+  selectLEDMeshes();
   caseMaterials=viewer.model.materials.filter(material=>material.name==='Pearl white PETG').map(material=>({material,color:[...material.pbrMetallicRoughness.baseColorFactor],alpha:material.getAlphaMode(),doubleSided:material.getDoubleSided()}));
   viewer.animationName='Assembly';viewer.pause();viewer.currentTime=0;reset();
 });
@@ -115,6 +139,7 @@ viewer.addEventListener('error',()=>{
 });
 assembly.addEventListener('input',setAssembly);
 exposure.addEventListener('input',setExposure);
+environmentStrength.addEventListener('input',setEnvironmentStrength);
 led.addEventListener('change',setLights);
 transparent.addEventListener('change',setTransparency);
 rotate.addEventListener('change',setRotation);

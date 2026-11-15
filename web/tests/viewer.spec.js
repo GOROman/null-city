@@ -26,8 +26,9 @@ test('PBR model, meter scale, artwork, camera and assembly controls',async({page
   expect(await page.locator('#viewer').evaluate(v=>v.model.materials.every(m=>m.emissiveFactor.every(x=>x===0)))).toBe(true);
   await page.locator('#transparent').check({force:true});
   expect(await page.locator('#viewer').evaluate(v=>v.model.materials.find(m=>m.name==='Pearl white PETG').pbrMetallicRoughness.baseColorFactor[3])).toBeCloseTo(.18,2);
-  await page.locator('#exposure').evaluate(e=>{e.value='1.4';e.dispatchEvent(new Event('input',{bubbles:true}));});
-  await expect(page.locator('#exposure-value')).toHaveText('1.4');
+  await page.locator('#exposure').evaluate(e=>{e.value='1';e.dispatchEvent(new Event('input',{bubbles:true}));});
+  await expect(page.locator('#exposure-value')).toHaveText('+1.0 EV');
+  expect(await page.locator('#viewer').evaluate(v=>v.exposure)).toBeCloseTo(1.6,4);
   await page.locator('#rotate').check({force:true});
   expect(await page.locator('#viewer').evaluate(v=>v.autoRotate)).toBe(true);
   expect(await page.locator('#viewer').evaluate(v=>v.autoRotateDelay)).toBe(0);
@@ -81,4 +82,46 @@ test('failed model request shows an actionable error instead of an endless loade
   await expect(page.locator('#error-panel')).toBeVisible({timeout:30000});
   await expect(page.getByRole('button',{name:'再読み込み',exact:true})).toBeVisible();
   await expect(page.getByRole('link',{name:/GLBをダウンロード/})).toBeVisible();
+});
+
+async function changeAndRender(page,change){
+  await page.locator('#viewer').scrollIntoViewIfNeeded();
+  const count=await page.locator('#composer').evaluate(c=>c.userPasses[0].scene.renderCount);
+  await change();
+  await expect.poll(()=>page.locator('#composer').evaluate(c=>c.userPasses[0].scene.renderCount),{timeout:20000}).toBeGreaterThan(count);
+}
+async function luminance(page){
+  return page.locator('#viewer').evaluate(async v=>{
+    const bitmap=await createImageBitmap(await v.toBlob({mimeType:'image/png'}));
+    const canvas=document.createElement('canvas');canvas.width=bitmap.width;canvas.height=bitmap.height;
+    const context=canvas.getContext('2d');context.drawImage(bitmap,0,0);bitmap.close();
+    const {data}=context.getImageData(0,0,canvas.width,canvas.height);
+    let total=0,count=0;
+    for(let i=0;i<data.length;i+=4){if(data[i+3]>128){total+=.2126*data[i]+.7152*data[i+1]+.0722*data[i+2];count++;}}
+    return total/Math.max(1,count);
+  });
+}
+
+test('EV changes rendered brightness and LED emission survives without IBL',async({page})=>{
+  await load(page);
+  await expect.poll(()=>page.locator('#led-bloom').evaluate(e=>e.effects[0].selection.size),{timeout:10000}).toBeGreaterThan(3);
+  await page.locator('#viewer').scrollIntoViewIfNeeded();
+  await changeAndRender(page,()=>page.locator('#composer').evaluate(c=>c.queueRender()));
+  const normal=await luminance(page);
+  await changeAndRender(page,()=>page.locator('#exposure').evaluate(e=>{e.value='-1';e.dispatchEvent(new Event('input',{bubbles:true}));}));
+  await expect(page.locator('#exposure-value')).toHaveText('-1.0 EV');
+  expect(await page.locator('#viewer').evaluate(v=>v.exposure)).toBeCloseTo(.4,4);
+  const dim=await luminance(page);
+  expect(normal).toBeGreaterThan(10);expect(dim).toBeLessThan(normal*.95);
+  await changeAndRender(page,()=>page.evaluate(()=>{
+    const slider=document.querySelector('#exposure');slider.value='0';slider.dispatchEvent(new Event('input',{bubbles:true}));
+    const strength=document.querySelector('#environment-strength');strength.value='0';strength.dispatchEvent(new Event('input',{bubbles:true}));
+  }));
+  await expect(page.locator('#environment-strength-value')).toHaveText('0.0×');
+  const emitting=await luminance(page);
+  await changeAndRender(page,()=>page.locator('#led').evaluate(e=>{e.checked=false;e.dispatchEvent(new Event('change',{bubbles:true}));}));
+  const off=await luminance(page);
+  expect(emitting).toBeGreaterThan(off+2);
+  await expect.poll(()=>page.locator('#led-bloom').evaluate(e=>e.effects[0].disabled)).toBe(true);
+  console.log('Rendered luminance',{normal,minusOneEV:dim,noIBLWithLED:emitting,noIBLWithoutLED:off});
 });
