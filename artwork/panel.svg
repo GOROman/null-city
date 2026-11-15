@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="288mm" height="178mm" viewBox="0 0 1440 890">
+<defs>
+<linearGradient id="base" x2=".84" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#080b21"/><stop offset=".44" stop-color="#141632"/><stop offset=".75" stop-color="#10143a"/><stop offset="1" stop-color="#30194e"/></linearGradient>
+<linearGradient id="streak" x2="1" y2=".1"><stop stop-color="#ff10b4"/><stop offset=".32" stop-color="#4e1aaa"/><stop offset=".67" stop-color="#064f95"/><stop offset=".85" stop-color="#09afff"/><stop offset="1" stop-color="#7126ab"/></linearGradient>
+<pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2" fill="#8d42bb"/></pattern>
+<filter id="glow" x="-.2" y="-.5" width="1.4" height="2"><feGaussianBlur stdDeviation="9"/></filter>
+</defs>
+<rect width="1440" height="890" fill="url(#base)"/>
+<path d="M0 590L790 40 987 0 0 725Z M0 748L1440 392 1440 437 426 761Z M65 890L408 626 593 554 215 890Z" fill="url(#streak)"/>
+<path d="M0 272L682 66 0 655Z" fill="url(#dots)" opacity=".45"/>
+<path d="M0 770L520 627 862 583 350 760Z M198 891L417 719 498 705 267 891Z M288 891L461 751 494 743 321 891Z M475 890L654 740 692 733 541 890Z" fill="#bf138e"/>
+<path d="M0 811L573 648 1356 574 1430 649 1430 805 213 830Z" fill="#100d25" opacity=".91"/>
+<path d="M405 820L718 795 1420 790 1349 800Z M942 20L1112 8H1380L1266 23Z" fill="url(#streak)"/>
+<path d="M16 39L39 15H1400L1424 40V850L1400 875H38L16 851Z" fill="none" stroke="#9150b4" stroke-width="2"/>
+<g font-family="DejaVu Sans" font-weight="bold" fill="#fff"><text x="115" y="88" font-size="67" font-style="italic">NULL<tspan fill="#ff00b1"> ///</tspan></text>
+<text x="725" y="758" font-size="95" font-style="italic" fill="#ff08b2" filter="url(#glow)">NULL CITY</text><text x="725" y="758" font-size="95" font-style="italic">NULL CITY</text>
+<text x="1180" y="92" font-size="28">1 PLAY</text>
+<g text-anchor="middle" font-size="32"><text x="1170" y="290">1P</text><text x="1320" y="290">START</text></g>
+</g><path d="M1135 302h70m79 0h75" stroke="white" stroke-width="4"/><text x="841" y="846" font-family="DejaVu Sans" font-size="25" letter-spacing="3" fill="white">ARCADE STICK　/　MODEL NC-03</text>
+<path d="M1330 480l-55 61 55 44z M1342 498h18v69h-18z" fill="#e62c69" stroke="#c7d2fa" stroke-width="5"/>
+</svg>
