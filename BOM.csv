@@ -1,7 +1,7 @@
 ﻿id,category,item,specification,quantity,unit,status,notes,source
 P01,印刷部品,下ケース,PRINT_01_lower_tray.stl / PLA,1,個,モデル反映,プレート1。背面USB切り欠き8×6 mm。,STL/PRINT_01_lower_tray.stl
 P02,印刷部品,上フレーム,PRINT_02_upper_frame.stl / PLA,1,個,モデル反映,プレート2。MS板を使わない直接取付のため裏側の逃げ加工なし。,STL/PRINT_02_upper_frame.stl
-P03,印刷部品,天板,PRINT_03_control_panel.stl / PLA,1,個,モデル反映,プレート3。厚さ4 mm。主穴30.4、補助穴24.4、LED穴3.2 mm。,STL/PRINT_03_control_panel.stl
+P03,印刷部品,天板,PRINT_03_control_panel.stl / PLA,1,個,モデル反映,プレート3。厚さ4 mm、外周上下C0.5。主穴30.4、補助穴24.4、LED穴3.2 mm。,STL/PRINT_03_control_panel.stl
 P04,印刷部品,滑り止め脚,PRINT_TPU_foot_*.stl / TPU,4,個,モデル反映,プレート5。固定機構なし。貼付材はF09。,STL/
 P05,外観確認用,メインボタンキャップ,PRINT_button_cap_00〜05.stl / PLA,6,個,任意,プレート4。外観モック専用。市販スイッチや購入ボタンの代用部品ではない。,STL/
 P06,外観確認用,補助ボタンキャップ,PRINT_menu_cap_0〜1.stl / PLA,2,個,任意,プレート4。外観モック専用。市販ボタン装着時は印刷不要。,STL/

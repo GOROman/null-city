@@ -33,6 +33,15 @@ for obj in parts:
     assert all(e.is_manifold for e in bm.edges), obj.name
     assert bm.calc_volume() > 0, obj.name
     if obj.name == 'PRINT_03_control_panel':
+        # Both outer faces are inset 0.5 mm; maximum outline starts 0.5 mm above/below them.
+        for plane in (43, 47):
+            face_vertices = [v.co for v in bm.verts if abs(v.co.z-plane) < 1e-4]
+            assert face_vertices
+            assert abs(max(abs(v.x) for v in face_vertices)-143.5) < 1e-3
+            assert abs(max(abs(v.y) for v in face_vertices)-88.5) < 1e-3
+        outer = [v.co for v in bm.verts if abs(abs(v.co.x)-144) < 1e-4 or abs(abs(v.co.y)-89) < 1e-4]
+        assert abs(min(v.z for v in outer)-43.5) < 1e-3
+        assert abs(max(v.z for v in outer)-46.5) < 1e-3
         assert len(bm.verts)-len(bm.edges)+len(bm.faces) == -64  # 33 through holes
         tree = BVHTree.FromBMesh(bm)
         for name, hx, hy, _ in holes:

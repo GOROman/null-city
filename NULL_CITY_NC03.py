@@ -61,7 +61,11 @@ cut(base,cube('Lower cavity',(0,0,17),(288,178,24)))
 cut(base,cube('USB cable exit notch',(0,94,22),(8,16,8)))
 rim=shell('PRINT_02_upper_frame',[(24,300,190,8),(38,300,190,8),(43,292,182,6)],ivory)
 cut(rim,cube('Upper opening',(0,0,34),(274,164,28)))
-panel=shell('PRINT_03_control_panel',[(43,288,178,5),(46.5,288,178,5),(47,287,177,5)],navy)
+# C0.5 on both upper and lower outer edges, including all four sides and clipped corners.
+# The corner offset preserves the same 45-degree bevel width on the diagonal edges.
+panel_chamfer=.5
+corner_inset=5-(2-2**.5)*panel_chamfer
+panel=shell('PRINT_03_control_panel',[(43,287,177,corner_inset),(43.5,288,178,5),(46.5,288,178,5),(47,287,177,corner_inset)],navy)
 
 # Recess remains within the solid front wall; the light and lettering are display geometry.
 # The pocket ceiling rises 45 degrees toward the front so it prints without support:

@@ -14,7 +14,7 @@
 |---|---|---:|---|
 | P01 | [下ケース](STL/PRINT_01_lower_tray.stl)<br>PRINT_01_lower_tray.stl / PLA | 1 個 | モデル反映。プレート1。背面USB切り欠き8×6 mm。 |
 | P02 | [上フレーム](STL/PRINT_02_upper_frame.stl)<br>PRINT_02_upper_frame.stl / PLA | 1 個 | モデル反映。プレート2。MS板を使わない直接取付のため裏側の逃げ加工なし。 |
-| P03 | [天板](STL/PRINT_03_control_panel.stl)<br>PRINT_03_control_panel.stl / PLA | 1 個 | モデル反映。プレート3。厚さ4 mm。主穴30.4、補助穴24.4、LED穴3.2 mm。 |
+| P03 | [天板](STL/PRINT_03_control_panel.stl)<br>PRINT_03_control_panel.stl / PLA | 1 個 | モデル反映。プレート3。厚さ4 mm、外周上下C0.5。主穴30.4、補助穴24.4、LED穴3.2 mm。 |
 | P04 | [滑り止め脚](STL/)<br>PRINT_TPU_foot_*.stl / TPU | 4 個 | モデル反映。プレート5。固定機構なし。貼付材はF09。 |
 
 ## 外観確認用
