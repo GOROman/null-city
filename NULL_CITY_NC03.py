@@ -1,4 +1,4 @@
-import bpy, math, os
+import bpy, os
 from mathutils import Vector
 bpy.ops.object.select_all(action='SELECT'); bpy.ops.object.delete(use_global=False)
 OUT=os.path.dirname(bpy.data.filepath) if bpy.data.filepath else os.getcwd()
@@ -14,16 +14,25 @@ def cyl(n,x,y,z,r,depth,ma=None,verts=64):
  bpy.ops.mesh.primitive_cylinder_add(vertices=verts,radius=r,depth=depth,location=(x,y,z));o=bpy.context.object;o.name=n
  if ma:o.data.materials.append(ma)
  return o
-def cut(obj,tool):
- bpy.context.view_layer.objects.active=obj;mod=obj.modifiers.new('Machined clearance','BOOLEAN');mod.operation='DIFFERENCE';mod.object=tool
+def boolean(obj,tool,operation):
+ bpy.context.view_layer.objects.active=obj;mod=obj.modifiers.new('Machined clearance','BOOLEAN');mod.operation=operation;mod.object=tool
  bpy.ops.object.modifier_apply(modifier=mod.name);bpy.data.objects.remove(tool,do_unlink=True)
-# 300x190 footprint; z=0..48; panel rises only 4 mm from back to front
+def cut(obj,tool):
+ boolean(obj,tool,'DIFFERENCE')
+def bake(obj):
+ bpy.context.view_layer.objects.active=obj
+ for modifier in list(obj.modifiers):
+  bpy.ops.object.modifier_apply(modifier=modifier.name)
+# Flat 300 x 190 mm sandwich: tray 0..26, frame 26..43, panel 43..47.
 # Split body: bottom tray + upper rim + removable 4 mm top plate.
 base=cube('PRINT_01_lower_tray',(0,0,13),(300,190,26),ivory,4)
-cut(base,cube('cavity',(0,0,17),(288,178,24))) # 6 mm bottom, 6 mm walls
-rim=cube('PRINT_02_upper_frame',(0,0,35),(300,190,18),ivory,3)
+bake(base)
+cut(base,cube('cavity',(0,0,17),(288,178,24))) # 5 mm floor, 6 mm walls
+rim=cube('PRINT_02_upper_frame',(0,0,34.5),(300,190,17),ivory,3)
+bake(rim)
 cut(rim,cube('frame opening',(0,0,35),(284,174,22)))
 panel=cube('PRINT_03_control_panel',(0,0,45),(294,184,4),navy,2)
+bake(panel)
 # 3 active action buttons in exact triangular orientation, plus 3 optional transparent placeholders.
 buttons=[(-2,-29),(12,23),(57,33)]
 blanks=[(45,-27),(98,-26),(103,27)]
@@ -39,11 +48,15 @@ bpy.ops.mesh.primitive_uv_sphere_add(segments=48,ring_count=24,radius=17,locatio
 # 1P and START: small separate buttons
 for i,(x,y) in enumerate([(108,57),(108,-58)]):
  cut(panel,cyl('menu hole',x,y,45,6.2,10));cyl('PRINT_06_'+('1P' if i==0 else 'START')+'_cap',x,y,49,5.7,5,green)
-# M3 through holes in top and rim, coordinates kept away from panel edges
-for x in [-139,139]:
- for y in [-84,84]:
-  cut(panel,cyl('M3 clearance',x,y,45,1.7,12))
-  cut(rim,cyl('M3 frame clearance',x,y,35,1.7,25))
+# One M3 x 25 screw clamps the panel and rim into each tray insert.
+# Post radius 9 overlaps the adjacent walls in both shells.
+for x in (-139,139):
+ for y in (-84,84):
+  boolean(base,cyl('tray post',x,y,14.5,9,23),'UNION')
+  cut(base,cyl('insert pilot',x,y,23.5,2.05,7))
+  boolean(rim,cyl('frame post',x,y,34.5,9,17),'UNION')
+  cut(rim,cyl('frame clearance',x,y,34.5,1.7,19))
+  cut(panel,cyl('panel clearance',x,y,45,1.7,6))
 # LED strips / decals are visual separate pieces; do not require support
 cube('VISUAL_front_magenta_light',(0,-95,19),(210,1.5,4),pink,.6)
 cube('VISUAL_front_nameplate',(0,-95.8,24),(150,1,10),black,1)
@@ -54,7 +67,7 @@ for i,x in enumerate([-113,113]):
 world=bpy.context.scene.world;world.color=(.14,.14,.14)
 bpy.ops.object.camera_add(location=(420,-530,350));camera=bpy.context.object;direction=Vector((0,0,30))-camera.location;camera.rotation_euler=direction.to_track_quat('-Z','Y').to_euler();camera.data.clip_end=2000;camera.data.type='ORTHO';camera.data.ortho_scale=410;bpy.context.scene.camera=camera
 bpy.ops.object.light_add(type='AREA',location=(0,-200,450));bpy.context.object.data.energy=850;bpy.context.object.data.shape='DISK';bpy.context.object.data.size=450
-scene=bpy.context.scene;scene.render.engine='CYCLES';scene.cycles.samples=32;scene.render.resolution_x=1400;scene.render.resolution_y=950;scene.render.resolution_percentage=100
+scene=bpy.context.scene;scene.unit_settings.system='METRIC';scene.unit_settings.scale_length=.001;scene.unit_settings.length_unit='MILLIMETERS';scene.render.engine='CYCLES';scene.cycles.samples=32;scene.render.resolution_x=1400;scene.render.resolution_y=950;scene.render.resolution_percentage=100
 # export independent printable mesh components (not visual reference geometry)
 exportdir=os.path.join(OUT,'STL');os.makedirs(exportdir,exist_ok=True)
 for o in list(bpy.data.objects):
