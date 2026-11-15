@@ -42,6 +42,12 @@ Bambu H3C向けの、交換式天板を備えた**汎用6ボタンのアーケ�
 
 部品表：[BOM.md](BOM.md) ／ [BOM.csv](BOM.csv)。メインφ30を6個、補助の1P／STARTはφ24を2個。
 
+## NULL FONTのエンボス版
+
+前側に「NULL CITY」を幅130 mm・高さ0.6 mmで浮き出させた[任意の天板版](print/embossed/README.md)も用意。書体は[NULL FONT Italic](fonts/null-font/README.md)。板厚4 mm・取付穴は維持し、単色PLAでロゴも同色に印刷する。時短設定のCLI見積は約2時間58分・104 g。既存の平面版は維持している。
+
+![NULL FONTでエンボスを加えた単色天板](docs/images/embossed.jpg)
+
 ## 三面図
 
 上面・正面・右側面を同一縮尺の第三角法で配置。右側面図で、奥に向かって天板が2.55°上がる形状を確認できる。

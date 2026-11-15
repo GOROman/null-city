@@ -6,3 +6,4 @@
 /print/fit/*.log
 
 __pycache__/
+/print/embossed/*.log
