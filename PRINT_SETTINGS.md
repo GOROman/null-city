@@ -65,4 +65,8 @@ LS-55-01/MS固定穴版：公式ゲーセンバッグ説明書21ページでLS-5
 
 同じ版で、下ケース前面凹部の天井を水平（奥行3.2 mm・長さ180 mmの片持ち）から手前上がり45°に変更し、サポートなしで造形できる形にした。前面の開口寸法は変更なし。熱圧入インサート下穴は深さ6 mmから7.5 mmへ変更（6 mmインサート＋樹脂の逃げ1.5 mm）。四隅のねじは首下の積層厚が前19.4 mm・後26.6 mm、穴底までが前26.9 mm・後34.1 mm。
 
-再スライス手順：`python3 print/h3c/slice_plates.py` で個別5ジョブ、`python3 print/h3c/combine_plates.py` で5プレート版を作り、`BambuStudio --slice 0 --export-3mf print/h3c/NC03_H3C_5plates_fast_sliced.3mf print/h3c/NC03_H3C_5plates_fast.3mf` でスライス済み版を出力する。
+再スライス手順：`python3 print/h3c/slice_plates.py` で個別5ジョブ、`python3 print/h3c/combine_plates.py` で5プレート版を作り、以下のように**保存先を絶対パス**で指定する。CLIは内部で作業ディレクトリを変更するため、相対出力パスでは保存に失敗する。
+
+```sh
+/Applications/BambuStudio.app/Contents/MacOS/BambuStudio --slice 0 --export-3mf "$PWD/print/h3c/NC03_H3C_5plates_fast_sliced.3mf" "$PWD/print/h3c/NC03_H3C_5plates_fast.3mf"
+```
