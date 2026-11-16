@@ -1,0 +1,15 @@
+{
+  "matching_print_master": "NC03_all_decals_A4_versioned.pdf",
+  "contours": 37,
+  "inner_holes": 33,
+  "outer_perimeters": 4,
+  "artwork_objects": 0,
+  "paper_mm": [
+    297,
+    210
+  ],
+  "paper_thickness_mm": 0.27,
+  "automatic_registration_marks": false,
+  "physical_alignment_verified": false,
+  "pressure_verified": false
+}
