@@ -73,3 +73,14 @@ python3 scripts/export_panel_decal.py
 - 用紙セット、紙との位置合わせ、刃圧テスト、実際の印刷・切断は未実施。GUIは設定画面までで、「製作」は押していません。
 
 カット専用SVGの再生成：`python3 scripts/export_panel_suite_cut.py`。`.lac` はGUIで保存した設定を使用します。
+
+### 絵柄＋カット線を重ねたSuite確認用プロジェクト
+
+[NC03_panel_A4_artwork_and_cut_REVIEW.lac](NC03_panel_A4_artwork_and_cut_REVIEW.lac) に、天板の絵柄とカット情報の両方を読み込み済み。[Suite画面](../../docs/images/panel-suite-artwork-cut.png)。両者は286 × 176 mm、同じ座標変換で重なります。
+
+- `ARTWORK_REFERENCE_disable_before_cutting`：絵柄の確認用。PNGを使わず、文字・模様もパス。SuiteがPDF/SVGのグラデーションやクリップを再現しないため、グラデーションを160段の色帯パスにして互換表示しています。細い装飾線等は省略しているため、**印刷の正本は `NC03_panel_decal_A4.pdf`**。Suite表示の色段階や一部装飾の差を印刷原稿へ反映しないでください。
+- `CUT_33_holes_and_outer_perimeter`：原寸カット情報。確認用では線として表示し、絵柄の上に重ねています。切断実行には検証済みの閉輪郭を保持した `NC03_panel_A4_basic_cut.lac` を使用。
+
+**このREVIEWプロジェクトは表示・重なり確認用です。そのまま「準備する」「製作」を実行しないでください。** 絵柄の表示にはSuiteのプリント後カット属性を使っているため、全オブジェクトを加工へ送ると絵柄の個々のパスも対象になり得ます。実際のカットは絵柄を含まないbasic_cutプロジェクトで行い、用紙との位置合わせ・試し切りを済ませます。Suite内で一体化した自動Print Then Cutジョブの設定完了を意味しません。印刷・切断は開始していません。
+
+Suite用のベクター確認絵柄は `NC03_panel_Suite_vector_art.svg`。`python3 scripts/export_panel_suite_art.py` で再生成（`fonttools`、`skia-pathops`が必要）。
