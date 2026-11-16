@@ -84,3 +84,17 @@ python3 scripts/export_panel_decal.py
 **このREVIEWプロジェクトは表示・重なり確認用です。そのまま「準備する」「製作」を実行しないでください。** 絵柄の表示にはSuiteのプリント後カット属性を使っているため、全オブジェクトを加工へ送ると絵柄の個々のパスも対象になり得ます。実際のカットは絵柄を含まないbasic_cutプロジェクトで行い、用紙との位置合わせ・試し切りを済ませます。Suite内で一体化した自動Print Then Cutジョブの設定完了を意味しません。印刷・切断は開始していません。
 
 Suite用のベクター確認絵柄は `NC03_panel_Suite_vector_art.svg`。`python3 scripts/export_panel_suite_art.py` で再生成（`fonttools`、`skia-pathops`が必要）。
+
+## 天板と前面ロゴをA4光沢ゴールド一枚に印刷
+
+[NC03_deck_and_front_A4.pdf](NC03_deck_and_front_A4.pdf) はA4横一ページに天板と前面ロゴ帯を原寸で配置した印刷用PDF。文字はアウトライン、埋め込み画像なし。[配置見本](../../docs/images/deck-and-front-a4.png)
+
+- 天板：286 × 176 mm、用紙左5.5 mm・上21 mm。
+- 前面ロゴ帯：194 × 12.5 mm、用紙左51.5 mm・上5 mm。
+- 両者の間隔3.5 mm。縮小していないので操作穴の中心・径は原寸。
+- Canon XK130：A4横、後トレイ、写真用紙 光沢ゴールド（GL-101 / `com.canon-mtgr`）、高品質、カラー、片面、倍率100%、フチなしOFF、用紙に合わせるOFF。
+- 本体にも後トレイの「A4／光沢ゴールド」を登録。L判等の登録が残っているとサイズ不一致になります。
+
+[カット線入りPDF](NC03_deck_and_front_A4_cut_guide.pdf) は手切り・寸法確認用。[同じA4座標のカットSVG](NC03_deck_and_front_A4_cut.svg) も用意。組合せ版は天板単独版からY方向の配置を変えているため、既存の天板単独Suiteプロジェクトをそのまま位置合わせせずに使わないでください。組合せSVGのSuite読み込みと実機カットは未検証、自動位置合わせマークは含みません。
+
+再生成：`python3 scripts/export_combined_decal_a4.py`（Google Chromeが必要）。
