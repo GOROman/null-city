@@ -60,3 +60,16 @@ python3 scripts/export_panel_decal.py
 ```
 
 参考：[Canon XK130対応用紙](https://ij.manual.canon/ij/webmanual/Manual/All/XK130%20series/JP/UG/ug-280.html)、[A4印刷可能範囲](https://ij.manual.canon/ij/webmanual/Manual/All/XK130%20series/JP/UG/ug-196.html)、[Mac給紙設定](https://ij.manual.canon/ij/webmanual/PrinterDriver/M/XK130%20series/CO/JP/PPG/dg-c_pc_basic.html)。
+
+### 設定済みBambu Suiteプロジェクト
+
+[NC03_panel_A4_basic_cut.lac](NC03_panel_A4_basic_cut.lac) はBambu Suite 01.06.00.00で読み込み・設定・保存したネイティブプロジェクトです。[画面](../../docs/images/panel-suite-setup.png)
+
+- 機種：Bambu Lab H3C。加工：基本カット。弱粘着カットマット。
+- 読み込んだ原稿：[NC03_panel_Suite_basic_cut.svg](NC03_panel_Suite_basic_cut.svg)。286.0 × 176.0 mm・100%をGUI確認。33穴＋外周の34閉輪郭を一つのパスにまとめています。
+- ベクター印刷絵柄のSVGはSuiteでクリップや色の解釈が崩れ、288 mmとして扱われたため、プロジェクトから取り除いています。**印刷は上記のパス化PDF、Suiteはカットのみ**です。ロゴや背景を切断しません。
+- 仮の材料設定：250g厚口紙ホワイトの参考値、320 gf・50 mm/s・1パス。写真光沢紙の銘柄・厚さは未確認のため、実測・余白での試し切り後に調整してください。光沢紙専用の検証済み設定ではありません。
+- 自動配置で加工範囲内に収め、範囲外の警告を解消しました。これは**印刷紙との位置合わせ済みという意味ではありません**。A4印刷の原稿位置（左5.5 mm、上17 mm）に対し、実際にマットへ置いた紙の位置・向きに合わせて切断パスを移動してください。配置後に自動配置を実行すると印刷との位置がずれるため使用しないでください。
+- 用紙セット、紙との位置合わせ、刃圧テスト、実際の印刷・切断は未実施。GUIは設定画面までで、「製作」は押していません。
+
+カット専用SVGの再生成：`python3 scripts/export_panel_suite_cut.py`。`.lac` はGUIで保存した設定を使用します。
