@@ -140,6 +140,7 @@ Bambu Studio 02.09.01.70のH3C公式プロファイルを使用。機種は **Ba
 - `NULL_CITY_NC03.blend` は印刷用部品・外観部品・撮影セットを収めた組立モデル。天板画像は内蔵。
 - `NULL_CITY_NC03.py` はBlender 5.3.0で動作確認した生成スクリプト。STLは各部品を印刷向きに戻して底をZ=0に揃える。
 - `STL/` に上下ケース、天板、外観用キャップ8点、脚4点の計20ファイルを収録。
+- 前面ロゴ帯をA4写真光沢紙から作る場合は、[Bambu Suite用原稿・カット線と手順](artwork/decal/README.md)を使用。切り出し194 × 12.5 mm、Print Then Cut用の透過PNGと外周SVG、手切り用A4 PDFを用意。
 - `artwork/decal/NC03_decal_print.pdf` は288 × 178 mm実寸デカール。印刷は倍率100%・実際のサイズを選び、用紙に合わせて縮小しない。A4には収まらないためA3以上を使用する。`NC03_decal_cut_guide.pdf` は外周・操作穴・M3穴のカットガイド入り（LED16穴も反映）。レバー固定穴4個も反映。
 - `artwork/logo/null-city.svg` は専用の角形・右斜体ベクターロゴ。既製フォント不要。`wordmark.json` を前面ロゴにも共用する。天板の表記は「1P」に統一し、「1 PLAY」は削除。
 - `artwork/panel.svg` は編集可能な天板の印刷原稿。`panel.png` はBlenderが読む画像。UV印刷・デカール用の図柄として扱う。
