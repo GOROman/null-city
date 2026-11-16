@@ -36,3 +36,27 @@ python3 scripts/export_front_suite.py
 PDFとPNG生成にはGoogle Chromeを使用。
 
 参考：[Bambu Suite Sticker Tool](https://wiki.bambulab.com/en/software/bambu-suite/manual/sticker-tool)、[Bambu Lab Cutting Module公式クイックスタート](https://csm.bblcdn.com/hub/cc1fd0d0f2ec4af18949093d3b163fa1.pdf)。機器への取付・校正は使用機種の現行手順に従ってください。
+
+## 天板パネル：A4横一枚・完全ベクターPDF
+
+- **`NC03_panel_decal_A4.pdf`**：印刷用。画像の埋め込みなし、文字はNULL FONTのパス。A4横一枚。
+- **`NC03_panel_decal_A4_cut_guide.pdf`**：同寸法のカット線入り。穴を手切りする場合や位置確認用。
+- **`NC03_panel_A4_print.svg`**：編集用ベクター原稿、286 × 176 mm。
+- **`NC03_panel_A4_cut.svg`**：Suite用の外周＋内部33穴の切断線。同じ286 × 176 mmキャンバス。
+- **`NC03_panel_A4_inner_cut.svg`**：内部33穴だけの切断線。外周の重複切断を避ける場合に使用。SVGの内部原点は (1,1) mmで、全体版と同じ座標を維持。
+
+天板本体は288 × 178 mm。デカールだけ全周1 mm内側へオフセットし、**286 × 176 mm**にしています。全体を縮小していないため、操作穴・取付穴・四角LED窓の中心はモデルと一致。斜めの角も1 mmのオフセットです。ボタン穴6個30.4 mm、補助2個24.4 mm、レバー24 mm、レバー取付4個4.5 mm、外周ネジ4個3.4 mm、LED窓16個4 mmを反映。
+
+ネットワークで検出したCanon PIXUS XK130はA3非対応。A4の通常印刷可能範囲は203.2 × 287 mmなので、286 × 176 mmの原稿を**A4横・倍率100%・フチなしOFF・自動縮小OFF**で印刷します。PDF上の配置は左5.5 mm、上17 mm。用紙種類は実際の写真光沢紙に合わせ、写真用紙は後トレイから給紙。最初に普通紙で穴の位置と幅286 mmを確認し、光沢紙で本印刷してください。
+
+このPDFは直接印刷用で、SuiteのPrint Then Cut用マークは含みません。**A4一枚にこの寸法で収めたままSuiteのマーク領域も確保できるとは確認していません。** Suiteの自動位置合わせを使う場合は、原寸の絵柄とSVGカット線を同じ位置に揃え、Suite上でマークを含む用紙への収まりを確認する必要があります。原寸で収まらないときは縮小せず、手動位置合わせで試し切り、または分割・大判印刷を選びます。カットSVGは作成済み、Suite上の配置・実機切断は未検証です。
+
+凹ロゴのある多色天板に貼るとロゴの凹みを覆います。全面デカールの仕上がりにはフラット天板が適しています。紙は照明窓を透かさないため、16個の四角窓は切り抜いてください。
+
+再生成にはPythonの`fonttools`とGoogle Chromeが必要：
+
+```sh
+python3 scripts/export_panel_decal.py
+```
+
+参考：[Canon XK130対応用紙](https://ij.manual.canon/ij/webmanual/Manual/All/XK130%20series/JP/UG/ug-280.html)、[A4印刷可能範囲](https://ij.manual.canon/ij/webmanual/Manual/All/XK130%20series/JP/UG/ug-196.html)、[Mac給紙設定](https://ij.manual.canon/ij/webmanual/PrinterDriver/M/XK130%20series/CO/JP/PPG/dg-c_pc_basic.html)。
