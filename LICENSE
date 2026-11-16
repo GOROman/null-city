@@ -12,6 +12,10 @@ This repository uses different licenses for different components:
 3. SIL OFL 1.1: the entire fonts/null-font/ package, including font binaries,
    glyph sources, font build/validation scripts, specimens and documentation.
    See fonts/null-font/OFL.txt. No Reserved Font Names are declared.
+4. CC BY-SA 4.0: KiCad PCB/schematic data and derived design exports in
+   hardware/nc03-controller/, which embed the Seeed XIAO land pattern.
+   See hardware/nc03-controller/vendor/README.md and its retained license.
+   Scripts and firmware remain MIT. Original enclosure/artwork stay CC BY 4.0.
 
 The font package is the explicit exception to the MIT script license.
 Fonts embedded in Blender/3MF or other documents retain their OFL license;

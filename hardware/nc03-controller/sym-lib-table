@@ -1,0 +1,2 @@
+(sym_lib_table (version 7)
+(lib (name "NC03")(type "KiCad")(uri "${KIPRJMOD}/lib/NC03.kicad_sym")(options "")(descr "NC03 project symbols")))

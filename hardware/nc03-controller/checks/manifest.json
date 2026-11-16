@@ -1,0 +1,41 @@
+{
+  "tool": "KiCad 10.0.8",
+  "status": "A0 electrical layout only; firmware/console/mechanics not validated",
+  "checks": {
+    "erc_errors": 0,
+    "erc_warnings": 0,
+    "drc_violations": 0,
+    "unconnected_pads": 0,
+    "schematic_parity_errors": 0,
+    "electrical_invariants": "pass"
+  },
+  "files": {
+    "01_controller.kicad_sch": "53cd86beab0604484f1cb6bf94690ea103425701e21b800253c40bf89132af53",
+    "02_inputs.kicad_sch": "dca53a5535cb4fac918d75a83265fab53db60581d3010feeb9bdcd32a7c77d0d",
+    "03_leds.kicad_sch": "bbe80bcfc1a01038efd68a034eca01c4612ca0e1cefb71fc7f3e04d6912320b0",
+    "04_power_rgb.kicad_sch": "db78e2e07f06c27879a1fdea228dea0540a4455b00414ab476f08f37e215e5ea",
+    "BOM.csv": "be11ac0a3969f5246bf7aa935a178350377ce8eb52820daf08a054725fffccf5",
+    "NC03_Controller.kicad_pcb": "73c5a5e369ff72dfc6ffd38d3c4571904073b7d6a38955b86cc2ee236cda278c",
+    "NC03_Controller.kicad_pro": "c7726ca0f19ef64add84bc96ca0be5f422ffac602219c5a4878027d49e18719e",
+    "NC03_Controller.kicad_sch": "892233e10c66b3a636c071d77cba9c94a0153c55fb0a68e042055a770e7de322",
+    "design.json": "26db823287613685be7b44bffcb3cd309ea5a9136f153887a8706a908e213fb4",
+    "docs/assembly.svg": "826232eaa80de5357d4d1dc4a5ca465ee310258e2044c82d63997cfb81232c7d",
+    "docs/board-bottom.svg": "7dd23a36490ff8a16f57e369ed4e9e65f7ffb3bfd1105c67315553c5225826c0",
+    "docs/board-isometric.png": "791be8bc4aaa43564757eea45f76a4741ae3b92dda5a8ad644e8fc2dd9f58f3b",
+    "docs/board-top.svg": "fc20e4d671977ddb3397e9ec5f4636de30f2b1bfc03947a892df8c24e855a7e6",
+    "docs/schematic.pdf": "bc7f8b11d1fd9c0218fb00254d0f30450a4673e2a8c8972277287f06b5f2b73f",
+    "lib/NC03.kicad_sym": "9f2a18614ac1ee8dc45d23ece181abce00be85ec8335fad2c7e178777314870c",
+    "lib/NC03.pretty/Capacitor_SMD_C_0805_2012Metric.kicad_mod": "96788bb8023bdcf59059ac0a54ddcc55af425cb007ab458876a687ac77641b8f",
+    "lib/NC03.pretty/Connector_JST_JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical.kicad_mod": "c1e543e82b2514dd5afb50c79089e7a2669d56bef6b3e80823ab034f5b5e22f1",
+    "lib/NC03.pretty/Connector_JST_JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical.kicad_mod": "10bedba1638b78455af32e557adba092163a69140ae52a6c1ca570e25130d163",
+    "lib/NC03.pretty/Connector_JST_JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical.kicad_mod": "988f846d290692b313ede19dac89625087f2084f9aa42c04f6ef144dad581f93",
+    "lib/NC03.pretty/Connector_JST_JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical.kicad_mod": "82568664f0869c5a95b2aa8b47d02bd99604895a97afc1bbba1c3a166a261a05",
+    "lib/NC03.pretty/Connector_JST_JST_XH_B9B-XH-A_1x09_P2.50mm_Vertical.kicad_mod": "f3a37ee83e4621206fe3fba6e1c5b91fbd3ca3dd1e3713566898bdac1816aecf",
+    "lib/NC03.pretty/Fuse_Fuse_1206_3216Metric.kicad_mod": "69e5baebdc688fe912dd0a25307f450541a48a7396733b016d44960be7b4ef89",
+    "lib/NC03.pretty/Package_SO_TSSOP-28_4.4x9.7mm_P0.65mm.kicad_mod": "857f7dfcee4afad599f0fcd9d6ccb260bfae50d8d8e24b3d234455443c3edb45",
+    "lib/NC03.pretty/Package_TO_SOT_SMD_SOT-23-5.kicad_mod": "522004d5332fb6bca9852308002caa9e39ef071dd095ebdbdb9a1bdec649a7c6",
+    "lib/NC03.pretty/Package_TO_SOT_SMD_SOT-23-6.kicad_mod": "707f7a63510588f0a17b66254cc9a2d9cb85aa65626fa829cfddf76fa497509a",
+    "lib/NC03.pretty/Resistor_SMD_R_0805_2012Metric.kicad_mod": "ae8413816ef153f47c90e2c0074fe59b2daf0951bd3ba00cc32c49f63ad17b9d",
+    "lib/NC03.pretty/XIAO_nRF52840_Plus.kicad_mod": "30695ecb898feb814b7172146b3dd1117485dc34d3ec0cd0bfaf353b82d98856"
+  }
+}

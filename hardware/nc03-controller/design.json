@@ -1,0 +1,4310 @@
+{
+  "revision": "A0-PROTOTYPE",
+  "root_uuid": "cff828c8-0de6-513e-97ec-660e5dd07f2e",
+  "parts": [
+    {
+      "ref": "U1",
+      "value": "XIAO nRF52840 Plus",
+      "footprint": "NC03:XIAO_nRF52840_Plus",
+      "pins": {
+        "1": "IN_UP",
+        "2": "IN_DOWN",
+        "3": "IN_LEFT",
+        "4": "IN_RIGHT",
+        "5": "I2C_SDA",
+        "6": "I2C_SCL",
+        "7": "IN_B1",
+        "8": "IN_B2",
+        "9": "IN_B3",
+        "10": "IN_B4",
+        "11": "IN_B5",
+        "12": "+3V3",
+        "13": "GND",
+        "14": "VBUS",
+        "15": "IN_B6",
+        "16": "RGB_DATA_3V3",
+        "17": "LED_ENABLE",
+        "18": "MODE_PC_N",
+        "19": "MODE_SWITCH_N",
+        "20": null,
+        "21": "IN_1P",
+        "22": "IN_START",
+        "23": "LINK_USB_N",
+        "24": "SWDIO",
+        "25": "SWDCLK",
+        "26": "RESET_N",
+        "27": "GND",
+        "28": "BAT_SW",
+        "29": "GND"
+      },
+      "xy": [
+        61,
+        91
+      ],
+      "sch": [
+        54,
+        61
+      ],
+      "description": "",
+      "uuid": "b32e977f-877f-5321-b298-fde235e2908e",
+      "types": {
+        "1": "bidirectional",
+        "2": "bidirectional",
+        "3": "bidirectional",
+        "4": "bidirectional",
+        "5": "bidirectional",
+        "6": "bidirectional",
+        "7": "bidirectional",
+        "8": "bidirectional",
+        "9": "bidirectional",
+        "10": "bidirectional",
+        "11": "bidirectional",
+        "12": "power_out",
+        "13": "power_in",
+        "14": "power_out",
+        "15": "bidirectional",
+        "16": "bidirectional",
+        "17": "bidirectional",
+        "18": "bidirectional",
+        "19": "bidirectional",
+        "20": "passive",
+        "21": "bidirectional",
+        "22": "bidirectional",
+        "23": "bidirectional",
+        "24": "bidirectional",
+        "25": "bidirectional",
+        "26": "bidirectional",
+        "27": "power_in",
+        "28": "power_in",
+        "29": "power_in"
+      },
+      "names": {
+        "1": "D0",
+        "2": "D1",
+        "3": "D2",
+        "4": "D3",
+        "5": "D4",
+        "6": "D5",
+        "7": "D6",
+        "8": "D7",
+        "9": "D8",
+        "10": "D9",
+        "11": "D10",
+        "12": "3V3_OUT",
+        "13": "GND",
+        "14": "VBUS",
+        "15": "D11",
+        "16": "D12",
+        "17": "D13",
+        "18": "D14",
+        "19": "D15",
+        "20": "D16_BAT_ADC",
+        "21": "D17",
+        "22": "D18",
+        "23": "D19",
+        "24": "SWDIO",
+        "25": "SWDCLK",
+        "26": "RESET",
+        "27": "GND",
+        "28": "VBAT",
+        "29": "GND"
+      },
+      "datasheet": "https://wiki.seeedstudio.com/XIAO_BLE/",
+      "source_footprint": "NC03:XIAO_nRF52840_Plus",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -17.78,
+          0
+        ],
+        "2": [
+          -12.7,
+          -15.240000000000002,
+          0
+        ],
+        "3": [
+          -12.7,
+          -12.700000000000001,
+          0
+        ],
+        "4": [
+          -12.7,
+          -10.16,
+          0
+        ],
+        "5": [
+          -12.7,
+          -7.620000000000001,
+          0
+        ],
+        "6": [
+          -12.7,
+          -5.080000000000002,
+          0
+        ],
+        "7": [
+          -12.7,
+          -2.540000000000001,
+          0
+        ],
+        "8": [
+          -12.7,
+          -0.0,
+          0
+        ],
+        "9": [
+          -12.7,
+          2.539999999999999,
+          0
+        ],
+        "10": [
+          -12.7,
+          5.079999999999998,
+          0
+        ],
+        "11": [
+          -12.7,
+          7.619999999999997,
+          0
+        ],
+        "12": [
+          -12.7,
+          10.16,
+          0
+        ],
+        "13": [
+          -12.7,
+          12.7,
+          0
+        ],
+        "14": [
+          -12.7,
+          15.240000000000002,
+          0
+        ],
+        "15": [
+          -12.7,
+          17.78,
+          0
+        ],
+        "16": [
+          12.7,
+          -17.78,
+          180
+        ],
+        "17": [
+          12.7,
+          -15.240000000000002,
+          180
+        ],
+        "18": [
+          12.7,
+          -12.700000000000001,
+          180
+        ],
+        "19": [
+          12.7,
+          -10.16,
+          180
+        ],
+        "20": [
+          12.7,
+          -7.620000000000001,
+          180
+        ],
+        "21": [
+          12.7,
+          -5.080000000000002,
+          180
+        ],
+        "22": [
+          12.7,
+          -2.540000000000001,
+          180
+        ],
+        "23": [
+          12.7,
+          -0.0,
+          180
+        ],
+        "24": [
+          12.7,
+          2.539999999999999,
+          180
+        ],
+        "25": [
+          12.7,
+          5.079999999999998,
+          180
+        ],
+        "26": [
+          12.7,
+          7.619999999999997,
+          180
+        ],
+        "27": [
+          12.7,
+          10.16,
+          180
+        ],
+        "28": [
+          12.7,
+          12.7,
+          180
+        ],
+        "29": [
+          12.7,
+          15.240000000000002,
+          180
+        ]
+      },
+      "schematic_sheet": "01_controller",
+      "schematic_xy": [
+        77.47,
+        91.44
+      ]
+    },
+    {
+      "ref": "J1",
+      "value": "LEVER: G U D L R",
+      "footprint": "NC03:Connector_JST_JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical",
+      "pins": {
+        "1": "GND",
+        "2": "SW_UP",
+        "3": "SW_DOWN",
+        "4": "SW_LEFT",
+        "5": "SW_RIGHT"
+      },
+      "xy": [
+        73,
+        58
+      ],
+      "sch": [
+        105,
+        30
+      ],
+      "description": "",
+      "uuid": "fe7a8644-acdf-5484-b581-df1c75f92ade",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          -12.7,
+          -0.0,
+          0
+        ],
+        "3": [
+          -12.7,
+          2.54,
+          0
+        ],
+        "4": [
+          12.7,
+          -2.54,
+          180
+        ],
+        "5": [
+          12.7,
+          -0.0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        44.45,
+        30.48
+      ]
+    },
+    {
+      "ref": "J2",
+      "value": "B1: G SIG",
+      "footprint": "NC03:Connector_JST_JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pins": {
+        "1": "GND",
+        "2": "SW_B1"
+      },
+      "xy": [
+        91,
+        58
+      ],
+      "sch": [
+        170,
+        30
+      ],
+      "description": "",
+      "uuid": "930766fb-cb53-5f66-aa15-05dfe2201ced",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          12.7,
+          -2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        115.57000000000001,
+        30.48
+      ]
+    },
+    {
+      "ref": "J3",
+      "value": "B2: G SIG",
+      "footprint": "NC03:Connector_JST_JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pins": {
+        "1": "GND",
+        "2": "SW_B2"
+      },
+      "xy": [
+        108,
+        58
+      ],
+      "sch": [
+        207,
+        30
+      ],
+      "description": "",
+      "uuid": "b011397d-3b96-5825-b714-25b7229ac396",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          12.7,
+          -2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        185.42000000000002,
+        30.48
+      ]
+    },
+    {
+      "ref": "J4",
+      "value": "B3: G SIG",
+      "footprint": "NC03:Connector_JST_JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pins": {
+        "1": "GND",
+        "2": "SW_B3"
+      },
+      "xy": [
+        125,
+        58
+      ],
+      "sch": [
+        244,
+        30
+      ],
+      "description": "",
+      "uuid": "72f95c8d-d659-5523-ad3f-afdb00949109",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          12.7,
+          -2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        255.27,
+        30.48
+      ]
+    },
+    {
+      "ref": "J5",
+      "value": "B4: G SIG",
+      "footprint": "NC03:Connector_JST_JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pins": {
+        "1": "GND",
+        "2": "SW_B4"
+      },
+      "xy": [
+        142,
+        58
+      ],
+      "sch": [
+        281,
+        30
+      ],
+      "description": "",
+      "uuid": "e5d6b9c1-d3b1-555a-8ee3-97bf69172e3d",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          12.7,
+          -2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        325.12,
+        30.48
+      ]
+    },
+    {
+      "ref": "J6",
+      "value": "B5: G SIG",
+      "footprint": "NC03:Connector_JST_JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pins": {
+        "1": "GND",
+        "2": "SW_B5"
+      },
+      "xy": [
+        91,
+        75
+      ],
+      "sch": [
+        170,
+        70
+      ],
+      "description": "",
+      "uuid": "d2243a7d-7bcd-56be-b6dc-7df0d0ce26fe",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          12.7,
+          -2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        44.45,
+        59.69
+      ]
+    },
+    {
+      "ref": "J7",
+      "value": "B6: G SIG",
+      "footprint": "NC03:Connector_JST_JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pins": {
+        "1": "GND",
+        "2": "SW_B6"
+      },
+      "xy": [
+        108,
+        75
+      ],
+      "sch": [
+        207,
+        70
+      ],
+      "description": "",
+      "uuid": "43703371-b428-5d3e-9ab5-d5a39363b429",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          12.7,
+          -2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        115.57000000000001,
+        59.69
+      ]
+    },
+    {
+      "ref": "J8",
+      "value": "1P: G SIG",
+      "footprint": "NC03:Connector_JST_JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pins": {
+        "1": "GND",
+        "2": "SW_1P"
+      },
+      "xy": [
+        125,
+        75
+      ],
+      "sch": [
+        244,
+        70
+      ],
+      "description": "",
+      "uuid": "748cc974-9423-590a-95b0-bdd6b0cdce2a",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          12.7,
+          -2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        185.42000000000002,
+        59.69
+      ]
+    },
+    {
+      "ref": "J9",
+      "value": "START: G SIG",
+      "footprint": "NC03:Connector_JST_JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pins": {
+        "1": "GND",
+        "2": "SW_START"
+      },
+      "xy": [
+        142,
+        75
+      ],
+      "sch": [
+        281,
+        70
+      ],
+      "description": "",
+      "uuid": "e61a2386-c696-517b-babc-7094f942f4d5",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          12.7,
+          -2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        255.27,
+        59.69
+      ]
+    },
+    {
+      "ref": "R1",
+      "value": "330",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "SW_UP",
+        "2": "IN_UP"
+      },
+      "xy": [
+        78,
+        87
+      ],
+      "sch": [
+        105,
+        115
+      ],
+      "description": "",
+      "uuid": "96de6587-acfe-5ebd-b120-9a3dfa6c07d8",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        39.37,
+        105.41
+      ]
+    },
+    {
+      "ref": "R21",
+      "value": "10k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "IN_UP"
+      },
+      "xy": [
+        81,
+        89.5
+      ],
+      "sch": [
+        105,
+        124
+      ],
+      "description": "",
+      "uuid": "4c9fe06e-9f0a-5cf8-8c50-69b3eb7fef04",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        54.61,
+        92.71000000000001
+      ]
+    },
+    {
+      "ref": "C1",
+      "value": "1nF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "IN_UP",
+        "2": "GND"
+      },
+      "xy": [
+        84,
+        87
+      ],
+      "sch": [
+        105,
+        133
+      ],
+      "description": "",
+      "uuid": "37981365-9a11-5805-8058-4f7809d4467c",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        54.61,
+        118.11
+      ]
+    },
+    {
+      "ref": "R2",
+      "value": "330",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "SW_DOWN",
+        "2": "IN_DOWN"
+      },
+      "xy": [
+        88,
+        87
+      ],
+      "sch": [
+        143,
+        115
+      ],
+      "description": "",
+      "uuid": "b49c79ef-c0a7-565c-b4c8-052725af10a4",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        129.54,
+        105.41
+      ]
+    },
+    {
+      "ref": "R22",
+      "value": "10k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "IN_DOWN"
+      },
+      "xy": [
+        91,
+        89.5
+      ],
+      "sch": [
+        143,
+        124
+      ],
+      "description": "",
+      "uuid": "72ea12ca-76c5-5cdc-a0ef-6b401047d6e5",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        144.78,
+        92.71000000000001
+      ]
+    },
+    {
+      "ref": "C2",
+      "value": "1nF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "IN_DOWN",
+        "2": "GND"
+      },
+      "xy": [
+        94,
+        87
+      ],
+      "sch": [
+        143,
+        133
+      ],
+      "description": "",
+      "uuid": "93c21363-3f37-5a8a-b1cd-44a8b7c51734",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        144.78,
+        118.11
+      ]
+    },
+    {
+      "ref": "R3",
+      "value": "330",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "SW_LEFT",
+        "2": "IN_LEFT"
+      },
+      "xy": [
+        98,
+        87
+      ],
+      "sch": [
+        181,
+        115
+      ],
+      "description": "",
+      "uuid": "f8fdeca9-c00b-594e-a813-c810a809796a",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        219.71,
+        105.41
+      ]
+    },
+    {
+      "ref": "R23",
+      "value": "10k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "IN_LEFT"
+      },
+      "xy": [
+        101,
+        89.5
+      ],
+      "sch": [
+        181,
+        124
+      ],
+      "description": "",
+      "uuid": "3db70258-1784-52b2-b9bb-edb09db3d14d",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        234.95000000000002,
+        92.71000000000001
+      ]
+    },
+    {
+      "ref": "C3",
+      "value": "1nF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "IN_LEFT",
+        "2": "GND"
+      },
+      "xy": [
+        104,
+        87
+      ],
+      "sch": [
+        181,
+        133
+      ],
+      "description": "",
+      "uuid": "6f48b773-8574-5b31-97ad-d21d16f8149f",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        234.95000000000002,
+        118.11
+      ]
+    },
+    {
+      "ref": "R4",
+      "value": "330",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "SW_RIGHT",
+        "2": "IN_RIGHT"
+      },
+      "xy": [
+        108,
+        87
+      ],
+      "sch": [
+        219,
+        115
+      ],
+      "description": "",
+      "uuid": "5ca37998-6d9f-5ba6-a7d4-3b9fc71be5b8",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        309.88,
+        105.41
+      ]
+    },
+    {
+      "ref": "R24",
+      "value": "10k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "IN_RIGHT"
+      },
+      "xy": [
+        111,
+        89.5
+      ],
+      "sch": [
+        219,
+        124
+      ],
+      "description": "",
+      "uuid": "01b62e69-efc7-5ad6-af4e-85a9be5a0a72",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        325.12,
+        92.71000000000001
+      ]
+    },
+    {
+      "ref": "C4",
+      "value": "1nF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "IN_RIGHT",
+        "2": "GND"
+      },
+      "xy": [
+        114,
+        87
+      ],
+      "sch": [
+        219,
+        133
+      ],
+      "description": "",
+      "uuid": "3ea08fad-ff5f-52c5-ba32-194e017fb576",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        325.12,
+        118.11
+      ]
+    },
+    {
+      "ref": "R5",
+      "value": "330",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "SW_B1",
+        "2": "IN_B1"
+      },
+      "xy": [
+        78,
+        95
+      ],
+      "sch": [
+        105,
+        147
+      ],
+      "description": "",
+      "uuid": "d6954a2c-482b-5cf8-ad00-fd34ba848f83",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        39.37,
+        167.64000000000001
+      ]
+    },
+    {
+      "ref": "R25",
+      "value": "10k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "IN_B1"
+      },
+      "xy": [
+        81,
+        97.5
+      ],
+      "sch": [
+        105,
+        156
+      ],
+      "description": "",
+      "uuid": "810f96e6-2113-5be2-82ea-3c03b2e9e4ea",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        54.61,
+        154.94
+      ]
+    },
+    {
+      "ref": "C5",
+      "value": "1nF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "IN_B1",
+        "2": "GND"
+      },
+      "xy": [
+        84,
+        95
+      ],
+      "sch": [
+        105,
+        165
+      ],
+      "description": "",
+      "uuid": "609d76d4-dde8-5348-b4e0-1ae3fbfa190b",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        54.61,
+        180.34
+      ]
+    },
+    {
+      "ref": "R6",
+      "value": "330",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "SW_B2",
+        "2": "IN_B2"
+      },
+      "xy": [
+        88,
+        95
+      ],
+      "sch": [
+        143,
+        147
+      ],
+      "description": "",
+      "uuid": "f356cbf7-0465-510c-bf14-0f986c91b978",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        129.54,
+        167.64000000000001
+      ]
+    },
+    {
+      "ref": "R26",
+      "value": "10k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "IN_B2"
+      },
+      "xy": [
+        91,
+        97.5
+      ],
+      "sch": [
+        143,
+        156
+      ],
+      "description": "",
+      "uuid": "b48c4b7d-d6ec-5ce1-a147-ac3ab9b37fd8",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        144.78,
+        154.94
+      ]
+    },
+    {
+      "ref": "C6",
+      "value": "1nF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "IN_B2",
+        "2": "GND"
+      },
+      "xy": [
+        94,
+        95
+      ],
+      "sch": [
+        143,
+        165
+      ],
+      "description": "",
+      "uuid": "7b1eb2af-9fdb-5e85-83e9-581410415896",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        144.78,
+        180.34
+      ]
+    },
+    {
+      "ref": "R7",
+      "value": "330",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "SW_B3",
+        "2": "IN_B3"
+      },
+      "xy": [
+        98,
+        95
+      ],
+      "sch": [
+        181,
+        147
+      ],
+      "description": "",
+      "uuid": "aa8dbb42-cb56-54f4-8c79-119816d70bc7",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        219.71,
+        167.64000000000001
+      ]
+    },
+    {
+      "ref": "R27",
+      "value": "10k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "IN_B3"
+      },
+      "xy": [
+        101,
+        97.5
+      ],
+      "sch": [
+        181,
+        156
+      ],
+      "description": "",
+      "uuid": "68ac7f11-08df-5b22-a788-6de3f3c5b8c7",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        234.95000000000002,
+        154.94
+      ]
+    },
+    {
+      "ref": "C7",
+      "value": "1nF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "IN_B3",
+        "2": "GND"
+      },
+      "xy": [
+        104,
+        95
+      ],
+      "sch": [
+        181,
+        165
+      ],
+      "description": "",
+      "uuid": "e1392102-063c-5d31-989f-5c0934483e66",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        234.95000000000002,
+        180.34
+      ]
+    },
+    {
+      "ref": "R8",
+      "value": "330",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "SW_B4",
+        "2": "IN_B4"
+      },
+      "xy": [
+        108,
+        95
+      ],
+      "sch": [
+        219,
+        147
+      ],
+      "description": "",
+      "uuid": "3019d377-0ab1-5ad5-b7a6-2a382b92ee10",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        309.88,
+        167.64000000000001
+      ]
+    },
+    {
+      "ref": "R28",
+      "value": "10k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "IN_B4"
+      },
+      "xy": [
+        111,
+        97.5
+      ],
+      "sch": [
+        219,
+        156
+      ],
+      "description": "",
+      "uuid": "84f8ec85-fe98-5347-87dd-553387ae2eba",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        325.12,
+        154.94
+      ]
+    },
+    {
+      "ref": "C8",
+      "value": "1nF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "IN_B4",
+        "2": "GND"
+      },
+      "xy": [
+        114,
+        95
+      ],
+      "sch": [
+        219,
+        165
+      ],
+      "description": "",
+      "uuid": "0d7f121a-6430-576d-b0e5-4c436c70981d",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        325.12,
+        180.34
+      ]
+    },
+    {
+      "ref": "R9",
+      "value": "330",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "SW_B5",
+        "2": "IN_B5"
+      },
+      "xy": [
+        78,
+        103
+      ],
+      "sch": [
+        105,
+        179
+      ],
+      "description": "",
+      "uuid": "8081f8ec-4479-5861-90aa-edad2cef1358",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        39.37,
+        231.14000000000001
+      ]
+    },
+    {
+      "ref": "R29",
+      "value": "10k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "IN_B5"
+      },
+      "xy": [
+        81,
+        105.5
+      ],
+      "sch": [
+        105,
+        188
+      ],
+      "description": "",
+      "uuid": "a11c1bf0-21a0-5bf4-a301-48824a66f1ee",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        54.61,
+        218.44
+      ]
+    },
+    {
+      "ref": "C9",
+      "value": "1nF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "IN_B5",
+        "2": "GND"
+      },
+      "xy": [
+        84,
+        103
+      ],
+      "sch": [
+        105,
+        197
+      ],
+      "description": "",
+      "uuid": "440fa240-957c-5e54-842c-0e8f3259a3a7",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        54.61,
+        243.84
+      ]
+    },
+    {
+      "ref": "R10",
+      "value": "330",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "SW_B6",
+        "2": "IN_B6"
+      },
+      "xy": [
+        88,
+        103
+      ],
+      "sch": [
+        143,
+        179
+      ],
+      "description": "",
+      "uuid": "92d24341-74a7-5deb-80b0-faad2f566a2e",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        129.54,
+        231.14000000000001
+      ]
+    },
+    {
+      "ref": "R30",
+      "value": "10k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "IN_B6"
+      },
+      "xy": [
+        91,
+        105.5
+      ],
+      "sch": [
+        143,
+        188
+      ],
+      "description": "",
+      "uuid": "92da6caf-3e7b-56c1-86c5-97fb38dfe055",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        144.78,
+        218.44
+      ]
+    },
+    {
+      "ref": "C10",
+      "value": "1nF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "IN_B6",
+        "2": "GND"
+      },
+      "xy": [
+        94,
+        103
+      ],
+      "sch": [
+        143,
+        197
+      ],
+      "description": "",
+      "uuid": "81394354-b10c-57b3-9287-813440419612",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        144.78,
+        243.84
+      ]
+    },
+    {
+      "ref": "R11",
+      "value": "330",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "SW_1P",
+        "2": "IN_1P"
+      },
+      "xy": [
+        98,
+        103
+      ],
+      "sch": [
+        181,
+        179
+      ],
+      "description": "",
+      "uuid": "8181b661-69cc-5997-a440-e4607ccc2bc5",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        219.71,
+        231.14000000000001
+      ]
+    },
+    {
+      "ref": "R31",
+      "value": "10k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "IN_1P"
+      },
+      "xy": [
+        101,
+        105.5
+      ],
+      "sch": [
+        181,
+        188
+      ],
+      "description": "",
+      "uuid": "6e12011a-2e0f-5e56-83ba-63f16af55edf",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        234.95000000000002,
+        218.44
+      ]
+    },
+    {
+      "ref": "C11",
+      "value": "1nF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "IN_1P",
+        "2": "GND"
+      },
+      "xy": [
+        104,
+        103
+      ],
+      "sch": [
+        181,
+        197
+      ],
+      "description": "",
+      "uuid": "26fb43e0-d1fa-5577-a67a-479b7f911709",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        234.95000000000002,
+        243.84
+      ]
+    },
+    {
+      "ref": "R12",
+      "value": "330",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "SW_START",
+        "2": "IN_START"
+      },
+      "xy": [
+        108,
+        103
+      ],
+      "sch": [
+        219,
+        179
+      ],
+      "description": "",
+      "uuid": "c69f27ee-2088-5fdb-a707-a9fdd2aee683",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        309.88,
+        231.14000000000001
+      ]
+    },
+    {
+      "ref": "R32",
+      "value": "10k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "IN_START"
+      },
+      "xy": [
+        111,
+        105.5
+      ],
+      "sch": [
+        219,
+        188
+      ],
+      "description": "",
+      "uuid": "01e89d56-a927-5f59-9f99-03a43ae94ccc",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        325.12,
+        218.44
+      ]
+    },
+    {
+      "ref": "C12",
+      "value": "1nF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "IN_START",
+        "2": "GND"
+      },
+      "xy": [
+        114,
+        103
+      ],
+      "sch": [
+        219,
+        197
+      ],
+      "description": "",
+      "uuid": "7506f4a4-be19-5081-8c9e-7d3bdec12e36",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "02_inputs",
+      "schematic_xy": [
+        325.12,
+        243.84
+      ]
+    },
+    {
+      "ref": "U2",
+      "value": "PCA9685PW",
+      "footprint": "NC03:Package_SO_TSSOP-28_4.4x9.7mm_P0.65mm",
+      "pins": {
+        "1": "GND",
+        "2": "GND",
+        "3": "GND",
+        "4": "GND",
+        "5": "GND",
+        "14": "GND",
+        "24": "GND",
+        "25": "GND",
+        "6": "LED_DRV_0",
+        "7": "LED_DRV_1",
+        "8": "LED_DRV_2",
+        "9": "LED_DRV_3",
+        "10": "LED_DRV_4",
+        "11": "LED_DRV_5",
+        "12": "LED_DRV_6",
+        "13": "LED_DRV_7",
+        "15": "LED_DRV_8",
+        "16": "LED_DRV_9",
+        "17": "LED_DRV_10",
+        "18": "LED_DRV_11",
+        "19": "LED_DRV_12",
+        "20": "LED_DRV_13",
+        "21": "LED_DRV_14",
+        "22": "LED_DRV_15",
+        "23": "GND",
+        "26": "I2C_SCL",
+        "27": "I2C_SDA",
+        "28": "+3V3"
+      },
+      "xy": [
+        130,
+        108
+      ],
+      "sch": [
+        300,
+        120
+      ],
+      "description": "",
+      "uuid": "985e9572-f14f-55c8-ae20-1c55f1629393",
+      "types": {
+        "1": "input",
+        "2": "input",
+        "3": "input",
+        "4": "input",
+        "5": "input",
+        "14": "power_in",
+        "24": "input",
+        "25": "input",
+        "6": "open_collector",
+        "7": "open_collector",
+        "8": "open_collector",
+        "9": "open_collector",
+        "10": "open_collector",
+        "11": "open_collector",
+        "12": "open_collector",
+        "13": "open_collector",
+        "15": "open_collector",
+        "16": "open_collector",
+        "17": "open_collector",
+        "18": "open_collector",
+        "19": "open_collector",
+        "20": "open_collector",
+        "21": "open_collector",
+        "22": "open_collector",
+        "23": "input",
+        "26": "input",
+        "27": "bidirectional",
+        "28": "power_in"
+      },
+      "names": {
+        "1": "A0",
+        "2": "A1",
+        "3": "A2",
+        "4": "A3",
+        "5": "A4",
+        "14": "VSS",
+        "24": "A5",
+        "25": "EXTCLK",
+        "6": "LED_DRV_0",
+        "7": "LED_DRV_1",
+        "8": "LED_DRV_2",
+        "9": "LED_DRV_3",
+        "10": "LED_DRV_4",
+        "11": "LED_DRV_5",
+        "12": "LED_DRV_6",
+        "13": "LED_DRV_7",
+        "15": "LED_DRV_8",
+        "16": "LED_DRV_9",
+        "17": "LED_DRV_10",
+        "18": "LED_DRV_11",
+        "19": "LED_DRV_12",
+        "20": "LED_DRV_13",
+        "21": "LED_DRV_14",
+        "22": "LED_DRV_15",
+        "23": "OE_N",
+        "26": "SCL",
+        "27": "SDA",
+        "28": "VDD"
+      },
+      "datasheet": "https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf",
+      "source_footprint": "Package_SO:TSSOP-28_4.4x9.7mm_P0.65mm",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -16.51,
+          0
+        ],
+        "2": [
+          -12.7,
+          -13.970000000000002,
+          0
+        ],
+        "3": [
+          -12.7,
+          -11.430000000000001,
+          0
+        ],
+        "4": [
+          -12.7,
+          -8.89,
+          0
+        ],
+        "5": [
+          -12.7,
+          -6.350000000000001,
+          0
+        ],
+        "14": [
+          -12.7,
+          -3.8100000000000023,
+          0
+        ],
+        "24": [
+          -12.7,
+          -1.2700000000000014,
+          0
+        ],
+        "25": [
+          -12.7,
+          1.2699999999999996,
+          0
+        ],
+        "6": [
+          -12.7,
+          3.8099999999999987,
+          0
+        ],
+        "7": [
+          -12.7,
+          6.349999999999998,
+          0
+        ],
+        "8": [
+          -12.7,
+          8.889999999999997,
+          0
+        ],
+        "9": [
+          -12.7,
+          11.43,
+          0
+        ],
+        "10": [
+          -12.7,
+          13.969999999999999,
+          0
+        ],
+        "11": [
+          -12.7,
+          16.51,
+          0
+        ],
+        "12": [
+          12.7,
+          -16.51,
+          180
+        ],
+        "13": [
+          12.7,
+          -13.970000000000002,
+          180
+        ],
+        "15": [
+          12.7,
+          -11.430000000000001,
+          180
+        ],
+        "16": [
+          12.7,
+          -8.89,
+          180
+        ],
+        "17": [
+          12.7,
+          -6.350000000000001,
+          180
+        ],
+        "18": [
+          12.7,
+          -3.8100000000000023,
+          180
+        ],
+        "19": [
+          12.7,
+          -1.2700000000000014,
+          180
+        ],
+        "20": [
+          12.7,
+          1.2699999999999996,
+          180
+        ],
+        "21": [
+          12.7,
+          3.8099999999999987,
+          180
+        ],
+        "22": [
+          12.7,
+          6.349999999999998,
+          180
+        ],
+        "23": [
+          12.7,
+          8.889999999999997,
+          180
+        ],
+        "26": [
+          12.7,
+          11.43,
+          180
+        ],
+        "27": [
+          12.7,
+          13.969999999999999,
+          180
+        ],
+        "28": [
+          12.7,
+          16.51,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        77.47,
+        91.44
+      ]
+    },
+    {
+      "ref": "R41",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_0",
+        "2": "LED_DRV_0"
+      },
+      "xy": [
+        118,
+        98.0
+      ],
+      "sch": [
+        255,
+        90
+      ],
+      "description": "",
+      "uuid": "69fc79c9-e4b5-5504-8f7c-77a9592be65c",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        485.14,
+        39.37
+      ]
+    },
+    {
+      "ref": "R42",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_1",
+        "2": "LED_DRV_1"
+      },
+      "xy": [
+        118,
+        101.5
+      ],
+      "sch": [
+        255,
+        103
+      ],
+      "description": "",
+      "uuid": "bb5bb0be-6cb6-5045-83c1-ebf710267ee9",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        160.02,
+        77.47
+      ]
+    },
+    {
+      "ref": "R43",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_2",
+        "2": "LED_DRV_2"
+      },
+      "xy": [
+        118,
+        105.0
+      ],
+      "sch": [
+        255,
+        116
+      ],
+      "description": "",
+      "uuid": "621fd1dd-1541-5512-84ca-83f2a849a5e7",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        224.79,
+        77.47
+      ]
+    },
+    {
+      "ref": "R44",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_3",
+        "2": "LED_DRV_3"
+      },
+      "xy": [
+        118,
+        108.5
+      ],
+      "sch": [
+        255,
+        129
+      ],
+      "description": "",
+      "uuid": "9244044b-f0b8-555a-a761-8b09865b9f19",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        289.56,
+        77.47
+      ]
+    },
+    {
+      "ref": "R45",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_4",
+        "2": "LED_DRV_4"
+      },
+      "xy": [
+        118,
+        112.0
+      ],
+      "sch": [
+        255,
+        142
+      ],
+      "description": "",
+      "uuid": "01bbcfc3-bb6a-5b45-aa26-91a84f015460",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        355.6,
+        77.47
+      ]
+    },
+    {
+      "ref": "R46",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_5",
+        "2": "LED_DRV_5"
+      },
+      "xy": [
+        118,
+        115.5
+      ],
+      "sch": [
+        255,
+        155
+      ],
+      "description": "",
+      "uuid": "dc2ad099-0e2f-5369-8f02-1a1d191a1db9",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        420.37,
+        77.47
+      ]
+    },
+    {
+      "ref": "R47",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_6",
+        "2": "LED_DRV_6"
+      },
+      "xy": [
+        118,
+        119.0
+      ],
+      "sch": [
+        255,
+        168
+      ],
+      "description": "",
+      "uuid": "5c3a1ef9-e6bc-5a1d-a828-99d7b8c5ec4f",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        485.14,
+        77.47
+      ]
+    },
+    {
+      "ref": "R48",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_7",
+        "2": "LED_DRV_7"
+      },
+      "xy": [
+        118,
+        122.5
+      ],
+      "sch": [
+        255,
+        181
+      ],
+      "description": "",
+      "uuid": "f39a65d0-7165-56c3-9fc5-7cadb82bd979",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        160.02,
+        115.57000000000001
+      ]
+    },
+    {
+      "ref": "R49",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_8",
+        "2": "LED_DRV_8"
+      },
+      "xy": [
+        143,
+        98.0
+      ],
+      "sch": [
+        350,
+        90
+      ],
+      "description": "",
+      "uuid": "17d35daa-6e4f-5e55-9e0a-6925fdea6c23",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        224.79,
+        115.57000000000001
+      ]
+    },
+    {
+      "ref": "R50",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_9",
+        "2": "LED_DRV_9"
+      },
+      "xy": [
+        143,
+        101.5
+      ],
+      "sch": [
+        350,
+        103
+      ],
+      "description": "",
+      "uuid": "658aac98-38b2-530b-a1b1-27adb825bd56",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        289.56,
+        115.57000000000001
+      ]
+    },
+    {
+      "ref": "R51",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_10",
+        "2": "LED_DRV_10"
+      },
+      "xy": [
+        143,
+        105.0
+      ],
+      "sch": [
+        350,
+        116
+      ],
+      "description": "",
+      "uuid": "b3613478-e063-5007-9c77-e6b4141d5a03",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        355.6,
+        115.57000000000001
+      ]
+    },
+    {
+      "ref": "R52",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_11",
+        "2": "LED_DRV_11"
+      },
+      "xy": [
+        143,
+        108.5
+      ],
+      "sch": [
+        350,
+        129
+      ],
+      "description": "",
+      "uuid": "ca63c093-cea5-5dc2-b233-a64ade54ed64",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        420.37,
+        115.57000000000001
+      ]
+    },
+    {
+      "ref": "R53",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_12",
+        "2": "LED_DRV_12"
+      },
+      "xy": [
+        143,
+        112.0
+      ],
+      "sch": [
+        350,
+        142
+      ],
+      "description": "",
+      "uuid": "8b5f9870-1934-54aa-8817-24ed332f6d67",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        485.14,
+        115.57000000000001
+      ]
+    },
+    {
+      "ref": "R54",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_13",
+        "2": "LED_DRV_13"
+      },
+      "xy": [
+        143,
+        115.5
+      ],
+      "sch": [
+        350,
+        155
+      ],
+      "description": "",
+      "uuid": "e1d8b8cc-d54b-5a7b-abad-81fbf743b7dc",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        160.02,
+        153.67000000000002
+      ]
+    },
+    {
+      "ref": "R55",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_14",
+        "2": "LED_DRV_14"
+      },
+      "xy": [
+        143,
+        119.0
+      ],
+      "sch": [
+        350,
+        168
+      ],
+      "description": "",
+      "uuid": "794627ea-faa1-5f23-bff5-29c657bd36cd",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        224.79,
+        153.67000000000002
+      ]
+    },
+    {
+      "ref": "R56",
+      "value": "1k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_K_15",
+        "2": "LED_DRV_15"
+      },
+      "xy": [
+        143,
+        122.5
+      ],
+      "sch": [
+        350,
+        181
+      ],
+      "description": "",
+      "uuid": "7daa25b6-7e9f-51a6-a35d-f0bfcb29d46e",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        289.56,
+        153.67000000000002
+      ]
+    },
+    {
+      "ref": "J12",
+      "value": "DIR LEDs: +5 K0..K7",
+      "footprint": "NC03:Connector_JST_JST_XH_B9B-XH-A_1x09_P2.50mm_Vertical",
+      "pins": {
+        "1": "+5V_LED",
+        "2": "LED_K_0",
+        "3": "LED_K_1",
+        "4": "LED_K_2",
+        "5": "LED_K_3",
+        "6": "LED_K_4",
+        "7": "LED_K_5",
+        "8": "LED_K_6",
+        "9": "LED_K_7"
+      },
+      "xy": [
+        79,
+        128
+      ],
+      "sch": [
+        255,
+        55
+      ],
+      "description": "",
+      "uuid": "b9418ad8-75d7-51f6-a05b-50e7129f7278",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B9B-XH-A_1x09_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -5.08,
+          0
+        ],
+        "2": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "3": [
+          -12.7,
+          -0.0,
+          0
+        ],
+        "4": [
+          -12.7,
+          2.54,
+          0
+        ],
+        "5": [
+          -12.7,
+          5.08,
+          0
+        ],
+        "6": [
+          12.7,
+          -5.08,
+          180
+        ],
+        "7": [
+          12.7,
+          -2.54,
+          180
+        ],
+        "8": [
+          12.7,
+          -0.0,
+          180
+        ],
+        "9": [
+          12.7,
+          2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        160.02,
+        39.37
+      ]
+    },
+    {
+      "ref": "J13",
+      "value": "BTN LEDs: +5 K8..K15",
+      "footprint": "NC03:Connector_JST_JST_XH_B9B-XH-A_1x09_P2.50mm_Vertical",
+      "pins": {
+        "1": "+5V_LED",
+        "2": "LED_K_8",
+        "3": "LED_K_9",
+        "4": "LED_K_10",
+        "5": "LED_K_11",
+        "6": "LED_K_12",
+        "7": "LED_K_13",
+        "8": "LED_K_14",
+        "9": "LED_K_15"
+      },
+      "xy": [
+        115,
+        128
+      ],
+      "sch": [
+        350,
+        55
+      ],
+      "description": "",
+      "uuid": "3046b0cc-48a5-5998-b5c1-28f9ea8baf88",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B9B-XH-A_1x09_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -5.08,
+          0
+        ],
+        "2": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "3": [
+          -12.7,
+          -0.0,
+          0
+        ],
+        "4": [
+          -12.7,
+          2.54,
+          0
+        ],
+        "5": [
+          -12.7,
+          5.08,
+          0
+        ],
+        "6": [
+          12.7,
+          -5.08,
+          180
+        ],
+        "7": [
+          12.7,
+          -2.54,
+          180
+        ],
+        "8": [
+          12.7,
+          -0.0,
+          180
+        ],
+        "9": [
+          12.7,
+          2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        224.79,
+        39.37
+      ]
+    },
+    {
+      "ref": "F1",
+      "value": "350mA PTC",
+      "footprint": "NC03:Fuse_Fuse_1206_3216Metric",
+      "pins": {
+        "1": "VBUS",
+        "2": "VBUS_FUSED"
+      },
+      "xy": [
+        116,
+        81
+      ],
+      "sch": [
+        54,
+        205
+      ],
+      "description": "",
+      "uuid": "4ad20bd5-9d73-5e89-856e-dbe00bad7e40",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Fuse:Fuse_1206_3216Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "04_power_rgb",
+      "schematic_xy": [
+        48.26,
+        39.37
+      ]
+    },
+    {
+      "ref": "U3",
+      "value": "TPS22918DBVR",
+      "footprint": "NC03:Package_TO_SOT_SMD_SOT-23-6",
+      "pins": {
+        "1": "VBUS_FUSED",
+        "2": "GND",
+        "3": "LED_ENABLE",
+        "4": "LED_CT",
+        "5": "+5V_LED",
+        "6": "+5V_LED"
+      },
+      "xy": [
+        128,
+        85
+      ],
+      "sch": [
+        106,
+        208
+      ],
+      "description": "",
+      "uuid": "041c4804-1cd8-55c3-96f4-c622ecffc90b",
+      "types": {
+        "1": "power_in",
+        "2": "power_in",
+        "3": "input",
+        "4": "passive",
+        "5": "passive",
+        "6": "power_out"
+      },
+      "names": {
+        "1": "VIN",
+        "2": "GND",
+        "3": "ON",
+        "4": "CT",
+        "5": "QOD",
+        "6": "VOUT"
+      },
+      "datasheet": "https://www.ti.com/lit/ds/symlink/tps22918.pdf",
+      "source_footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          -12.7,
+          -0.0,
+          0
+        ],
+        "3": [
+          -12.7,
+          2.54,
+          0
+        ],
+        "4": [
+          12.7,
+          -2.54,
+          180
+        ],
+        "5": [
+          12.7,
+          -0.0,
+          180
+        ],
+        "6": [
+          12.7,
+          2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "04_power_rgb",
+      "schematic_xy": [
+        113.03,
+        39.37
+      ]
+    },
+    {
+      "ref": "R60",
+      "value": "100k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "LED_ENABLE",
+        "2": "GND"
+      },
+      "xy": [
+        120,
+        86
+      ],
+      "sch": [
+        150,
+        195
+      ],
+      "description": "",
+      "uuid": "ba494249-4548-56a4-9e19-30feed03a850",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "04_power_rgb",
+      "schematic_xy": [
+        242.57,
+        39.37
+      ]
+    },
+    {
+      "ref": "C20",
+      "value": "10nF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "LED_CT",
+        "2": "GND"
+      },
+      "xy": [
+        128,
+        89
+      ],
+      "sch": [
+        150,
+        207
+      ],
+      "description": "",
+      "uuid": "52fba5b7-fd87-597d-8a9e-d4d80f15bb87",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "04_power_rgb",
+      "schematic_xy": [
+        502.92,
+        39.37
+      ]
+    },
+    {
+      "ref": "C21",
+      "value": "1uF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "VBUS_FUSED",
+        "2": "GND"
+      },
+      "xy": [
+        124,
+        81
+      ],
+      "sch": [
+        150,
+        219
+      ],
+      "description": "",
+      "uuid": "03f291ac-e37a-56ad-980c-3fc67a534eaf",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "04_power_rgb",
+      "schematic_xy": [
+        48.26,
+        77.47
+      ]
+    },
+    {
+      "ref": "C22",
+      "value": "47uF 10V",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "+5V_LED",
+        "2": "GND"
+      },
+      "xy": [
+        136,
+        85
+      ],
+      "sch": [
+        150,
+        231
+      ],
+      "description": "",
+      "uuid": "5333e646-e731-5519-bf14-4a005740f026",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "04_power_rgb",
+      "schematic_xy": [
+        113.03,
+        77.47
+      ]
+    },
+    {
+      "ref": "U4",
+      "value": "SN74LV1T125DBVR",
+      "footprint": "NC03:Package_TO_SOT_SMD_SOT-23-5",
+      "pins": {
+        "1": "GND",
+        "2": "RGB_DATA_3V3",
+        "3": "GND",
+        "4": "RGB_DATA_5V",
+        "5": "+5V_LED"
+      },
+      "xy": [
+        145,
+        86
+      ],
+      "sch": [
+        208,
+        208
+      ],
+      "description": "",
+      "uuid": "66a49296-fe6e-5c63-802a-c16b19a86e8a",
+      "types": {
+        "1": "input",
+        "2": "input",
+        "3": "power_in",
+        "4": "tri_state",
+        "5": "power_in"
+      },
+      "names": {
+        "1": "OE_N",
+        "2": "A",
+        "3": "GND",
+        "4": "Y",
+        "5": "VCC"
+      },
+      "datasheet": "https://www.ti.com/lit/ds/symlink/sn74lv1t125.pdf",
+      "source_footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          -12.7,
+          -0.0,
+          0
+        ],
+        "3": [
+          -12.7,
+          2.54,
+          0
+        ],
+        "4": [
+          12.7,
+          -2.54,
+          180
+        ],
+        "5": [
+          12.7,
+          -0.0,
+          180
+        ]
+      },
+      "schematic_sheet": "04_power_rgb",
+      "schematic_xy": [
+        177.8,
+        39.37
+      ]
+    },
+    {
+      "ref": "R61",
+      "value": "330",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "RGB_DATA_5V",
+        "2": "RGB_DIN"
+      },
+      "xy": [
+        149,
+        89
+      ],
+      "sch": [
+        246,
+        201
+      ],
+      "description": "",
+      "uuid": "0c258eaf-e90b-5df4-a617-12110ace05ae",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "04_power_rgb",
+      "schematic_xy": [
+        308.61,
+        39.37
+      ]
+    },
+    {
+      "ref": "R62",
+      "value": "100k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "RGB_DATA_3V3",
+        "2": "GND"
+      },
+      "xy": [
+        141,
+        90
+      ],
+      "sch": [
+        246,
+        213
+      ],
+      "description": "",
+      "uuid": "ea88ff9b-4e97-55a7-8d89-3234a3b9a8e9",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "04_power_rgb",
+      "schematic_xy": [
+        373.38,
+        39.37
+      ]
+    },
+    {
+      "ref": "J14",
+      "value": "RGB: +5 DIN GND",
+      "footprint": "NC03:Connector_JST_JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical",
+      "pins": {
+        "1": "+5V_LED",
+        "2": "RGB_DIN",
+        "3": "GND"
+      },
+      "xy": [
+        150,
+        95
+      ],
+      "sch": [
+        246,
+        231
+      ],
+      "description": "",
+      "uuid": "6065d2d4-ac53-52c7-85ff-325ca7dd535a",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          -12.7,
+          -0.0,
+          0
+        ],
+        "3": [
+          12.7,
+          -2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "04_power_rgb",
+      "schematic_xy": [
+        438.15000000000003,
+        39.37
+      ]
+    },
+    {
+      "ref": "C23",
+      "value": "100nF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "+5V_LED",
+        "2": "GND"
+      },
+      "xy": [
+        148,
+        82
+      ],
+      "sch": [
+        208,
+        239
+      ],
+      "description": "",
+      "uuid": "d447c009-56b1-5ec0-90a1-10d791072b7a",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "04_power_rgb",
+      "schematic_xy": [
+        177.8,
+        77.47
+      ]
+    },
+    {
+      "ref": "C24",
+      "value": "100nF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        136.5,
+        113
+      ],
+      "sch": [
+        300,
+        185
+      ],
+      "description": "",
+      "uuid": "606d58b8-1ab0-5b46-9bd6-f0c156bd203d",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        289.56,
+        39.37
+      ]
+    },
+    {
+      "ref": "C25",
+      "value": "1uF",
+      "footprint": "NC03:Capacitor_SMD_C_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "xy": [
+        71,
+        103
+      ],
+      "sch": [
+        54,
+        135
+      ],
+      "description": "",
+      "uuid": "e8472055-b15b-5154-9868-30bc8f623525",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "01_controller",
+      "schematic_xy": [
+        355.6,
+        77.47
+      ]
+    },
+    {
+      "ref": "R63",
+      "value": "4.7k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "I2C_SDA"
+      },
+      "xy": [
+        109,
+        111
+      ],
+      "sch": [
+        300,
+        201
+      ],
+      "description": "",
+      "uuid": "6aa292c7-1e2d-52d7-9e0d-a0ba9fde2c95",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        355.6,
+        39.37
+      ]
+    },
+    {
+      "ref": "R64",
+      "value": "4.7k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "I2C_SCL"
+      },
+      "xy": [
+        109,
+        115
+      ],
+      "sch": [
+        300,
+        214
+      ],
+      "description": "",
+      "uuid": "d6938297-bcfb-5403-886f-26a3973b645e",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "03_leds",
+      "schematic_xy": [
+        420.37,
+        39.37
+      ]
+    },
+    {
+      "ref": "J10",
+      "value": "MODE: PC G SW",
+      "footprint": "NC03:Connector_JST_JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical",
+      "pins": {
+        "1": "MODE_PC_N",
+        "2": "GND",
+        "3": "MODE_SWITCH_N"
+      },
+      "xy": [
+        61,
+        124
+      ],
+      "sch": [
+        54,
+        165
+      ],
+      "description": "",
+      "uuid": "4e577510-b7c9-5c06-b4aa-d226e55fb376",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          -12.7,
+          -0.0,
+          0
+        ],
+        "3": [
+          12.7,
+          -2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "01_controller",
+      "schematic_xy": [
+        160.02,
+        39.37
+      ]
+    },
+    {
+      "ref": "J11",
+      "value": "LINK: USB=open BLE=short",
+      "footprint": "NC03:Connector_JST_JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pins": {
+        "1": "LINK_USB_N",
+        "2": "GND"
+      },
+      "xy": [
+        73,
+        119
+      ],
+      "sch": [
+        54,
+        185
+      ],
+      "description": "",
+      "uuid": "86633bba-a67d-56a0-bbf5-4c7242d54382",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          12.7,
+          -2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "01_controller",
+      "schematic_xy": [
+        224.79,
+        39.37
+      ]
+    },
+    {
+      "ref": "R65",
+      "value": "10k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "MODE_PC_N"
+      },
+      "xy": [
+        70,
+        106
+      ],
+      "sch": [
+        105,
+        165
+      ],
+      "description": "",
+      "uuid": "a495d2ce-3e1e-526b-aa85-3b204718342b",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "01_controller",
+      "schematic_xy": [
+        160.02,
+        77.47
+      ]
+    },
+    {
+      "ref": "R66",
+      "value": "10k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "MODE_SWITCH_N"
+      },
+      "xy": [
+        70,
+        109.5
+      ],
+      "sch": [
+        145,
+        165
+      ],
+      "description": "",
+      "uuid": "57bcd3d6-34a4-532e-a6af-684b23461304",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "01_controller",
+      "schematic_xy": [
+        224.79,
+        77.47
+      ]
+    },
+    {
+      "ref": "R67",
+      "value": "10k",
+      "footprint": "NC03:Resistor_SMD_R_0805_2012Metric",
+      "pins": {
+        "1": "+3V3",
+        "2": "LINK_USB_N"
+      },
+      "xy": [
+        75,
+        113
+      ],
+      "sch": [
+        185,
+        165
+      ],
+      "description": "",
+      "uuid": "39e36f50-48a9-5a61-9fc0-3f7e5608676e",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric",
+      "pinxy": {
+        "1": [
+          -5.08,
+          0,
+          0
+        ],
+        "2": [
+          5.08,
+          0,
+          180
+        ]
+      },
+      "schematic_sheet": "01_controller",
+      "schematic_xy": [
+        289.56,
+        77.47
+      ]
+    },
+    {
+      "ref": "J15",
+      "value": "BATTERY: + GND",
+      "footprint": "NC03:Connector_JST_JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pins": {
+        "1": "BAT_PLUS",
+        "2": "GND"
+      },
+      "xy": [
+        58,
+        106
+      ],
+      "sch": [
+        300,
+        237
+      ],
+      "description": "",
+      "uuid": "a8b10eaa-f7b0-5ff2-8af9-b689f4b07244",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          12.7,
+          -2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "01_controller",
+      "schematic_xy": [
+        289.56,
+        39.37
+      ]
+    },
+    {
+      "ref": "J16",
+      "value": "BAT SWITCH: IN OUT",
+      "footprint": "NC03:Connector_JST_JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pins": {
+        "1": "BAT_PLUS",
+        "2": "BAT_SW"
+      },
+      "xy": [
+        58,
+        115
+      ],
+      "sch": [
+        345,
+        237
+      ],
+      "description": "",
+      "uuid": "c49f7def-597f-54fa-a2f0-150f7314fb96",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          12.7,
+          -2.54,
+          180
+        ]
+      },
+      "schematic_sheet": "01_controller",
+      "schematic_xy": [
+        355.6,
+        39.37
+      ]
+    },
+    {
+      "ref": "J17",
+      "value": "AUX: 3V3 SDA SCL G",
+      "footprint": "NC03:Connector_JST_JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "I2C_SDA",
+        "3": "I2C_SCL",
+        "4": "GND"
+      },
+      "xy": [
+        99,
+        119
+      ],
+      "sch": [
+        350,
+        205
+      ],
+      "description": "",
+      "uuid": "62caa145-f20d-5ea2-ba60-c3297af94aed",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          -12.7,
+          -0.0,
+          0
+        ],
+        "3": [
+          12.7,
+          -2.54,
+          180
+        ],
+        "4": [
+          12.7,
+          -0.0,
+          180
+        ]
+      },
+      "schematic_sheet": "01_controller",
+      "schematic_xy": [
+        420.37,
+        39.37
+      ]
+    },
+    {
+      "ref": "J18",
+      "value": "SWD: 3V3 IO CLK RST G",
+      "footprint": "NC03:Connector_JST_JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical",
+      "pins": {
+        "1": "+3V3",
+        "2": "SWDIO",
+        "3": "SWDCLK",
+        "4": "RESET_N",
+        "5": "GND"
+      },
+      "xy": [
+        82,
+        113
+      ],
+      "sch": [
+        54,
+        112
+      ],
+      "description": "",
+      "uuid": "fa38b875-df5e-5a2e-9b79-0c668d8ca9ff",
+      "types": {},
+      "names": {},
+      "datasheet": "",
+      "source_footprint": "Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical",
+      "pinxy": {
+        "1": [
+          -12.7,
+          -2.54,
+          0
+        ],
+        "2": [
+          -12.7,
+          -0.0,
+          0
+        ],
+        "3": [
+          -12.7,
+          2.54,
+          0
+        ],
+        "4": [
+          12.7,
+          -2.54,
+          180
+        ],
+        "5": [
+          12.7,
+          -0.0,
+          180
+        ]
+      },
+      "schematic_sheet": "01_controller",
+      "schematic_xy": [
+        485.14,
+        39.37
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "signal": "UP",
+      "xiao": "D0",
+      "nrf": "P0.02"
+    },
+    {
+      "signal": "DOWN",
+      "xiao": "D1",
+      "nrf": "P0.03"
+    },
+    {
+      "signal": "LEFT",
+      "xiao": "D2",
+      "nrf": "P0.28"
+    },
+    {
+      "signal": "RIGHT",
+      "xiao": "D3",
+      "nrf": "P0.29"
+    },
+    {
+      "signal": "B1",
+      "xiao": "D6",
+      "nrf": "P1.11"
+    },
+    {
+      "signal": "B2",
+      "xiao": "D7",
+      "nrf": "P1.12"
+    },
+    {
+      "signal": "B3",
+      "xiao": "D8",
+      "nrf": "P1.13"
+    },
+    {
+      "signal": "B4",
+      "xiao": "D9",
+      "nrf": "P1.14"
+    },
+    {
+      "signal": "B5",
+      "xiao": "D10",
+      "nrf": "P1.15"
+    },
+    {
+      "signal": "B6",
+      "xiao": "D11",
+      "nrf": "P0.15"
+    },
+    {
+      "signal": "1P",
+      "xiao": "D17",
+      "nrf": "P1.03"
+    },
+    {
+      "signal": "START",
+      "xiao": "D18",
+      "nrf": "P1.05"
+    }
+  ],
+  "board": {
+    "origin_mm": [
+      50,
+      50
+    ],
+    "size_mm": [
+      110,
+      85
+    ],
+    "mounts_mm": [
+      [
+        55,
+        55
+      ],
+      [
+        155,
+        55
+      ],
+      [
+        55,
+        130
+      ],
+      [
+        155,
+        130
+      ]
+    ],
+    "rf_keepout_mm": [
+      50,
+      85,
+      54,
+      97
+    ]
+  }
+}

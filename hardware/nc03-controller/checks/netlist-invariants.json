@@ -1,0 +1,15 @@
+{
+  "result": "pass",
+  "components": 89,
+  "direct_inputs": 12,
+  "pins_checked": 262,
+  "checks": [
+    "12 unique direct GPIOs, RC filters, pullups and physical switch headers",
+    "Plus pad map, NFC/GPIO selector pins, reserved battery ADC",
+    "fail-detecting profile selector and separate USB/BLE selector",
+    "battery switch, USB-only fused LED supply, default-off enable and load-switch pinout",
+    "all 16 individually resistor-limited LED sinks and I2C address 0x40",
+    "RGB translator supply, pinout, series termination and header polarity"
+  ],
+  "limits": "Static electrical invariants only; not firmware, USB/console/RF/ESD or physical validation."
+}

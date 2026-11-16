@@ -10,6 +10,12 @@ Bambu H3C向けの、交換式天板を備えた**汎用6ボタンのアーケ�
 
 GitHub Actionsでモデルの整合性とブラウザー動作を検証し、GitHub Pagesへ自動公開します。[ローカル実行・モデル更新・公開手順](web/README.md)。
 
+## USB／BLEコントローラー基板（A0試作）
+
+[XIAO nRF52840 Plus搭載KiCad設計](hardware/nc03-controller/README.md)を追加。12入力直結、16点の表示LED、前面・左右RGB用出力、バッテリー端子、PC／Switch／PS外部変換器とUSB／BLEの選択回路を備えます。[回路図PDF](hardware/nc03-controller/docs/schematic.pdf)／[基板図](hardware/nc03-controller/docs/board-top.svg)／[電子部品BOM](hardware/nc03-controller/BOM.csv)。
+
+**通信ファームウェアとSwitch／PSの実機互換性は未実装・未検証。** PSは市販認証変換器の選定・動作確認が必要です。基板は110×85mmの試作で、ケース取付台・Type-Cパネル開口は未設計。既存の下ケース・印刷ジョブは変更していません。
+
 ## 印刷前のレバー確認
 
 40 × 40 mm・厚さ4 mmの試験片でねじ4本の取付と8方向の操作を確認済み。製品用天板もMS板なしの直接取付へ更新しました。[測定・クリアランス](docs/fit/README.md)では本体突出28.1 mm、配線5 mm＋誤差1 mmを仮定した床余裕2.62 mmを確認。接続済み配線・LED・ケース全体の仮組みは未確認（Issue #5）。
