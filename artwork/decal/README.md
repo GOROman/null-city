@@ -98,3 +98,31 @@ Suite用のベクター確認絵柄は `NC03_panel_Suite_vector_art.svg`。`pyth
 [カット線入りPDF](NC03_deck_and_front_A4_cut_guide.pdf) は手切り・寸法確認用。[同じA4座標のカットSVG](NC03_deck_and_front_A4_cut.svg) も用意。組合せ版は天板単独版からY方向の配置を変えているため、既存の天板単独Suiteプロジェクトをそのまま位置合わせせずに使わないでください。組合せSVGのSuite読み込みと実機カットは未検証、自動位置合わせマークは含みません。
 
 再生成：`python3 scripts/export_combined_decal_a4.py`（Google Chromeが必要）。
+
+## 現行版 v1.1 / 2026-11-16：左右用と入稿風レイアウト
+
+- **A4一枚・全4枚**：[NC03_all_decals_A4_versioned.pdf](NC03_all_decals_A4_versioned.pdf)。天板、前面、左右をすべて原寸で配置。用紙の空きを詰めた省スペース版なので、3 mm塗り足し＋通常のトンボ余白は確保していません。
+- **A4二枚・余白付き**：[NC03_decals_A4_2sheets.pdf](NC03_decals_A4_2sheets.pdf)。1ページ目は天板、2ページ目は前面＋左右。前面・左右は3 mm塗り足し、トンボ、寸法ラベル、フッターの版数・日付付き。
+- [前面＋左右のみA4](NC03_front_and_sides_A4_prepress.pdf)／[カット線入り確認PDF](NC03_front_and_sides_A4_cut_guide.pdf)／[輪郭SVG](NC03_front_and_sides_A4_cut.svg)。トンボは矩形バウンディングボックスの位置を示します。最終外形は別のカット輪郭に従ってください。
+- **A3入稿風・全4枚**：[NC03_all_decals_A3_prepress.pdf](NC03_all_decals_A3_prepress.pdf)／[輪郭確認PDF](NC03_all_decals_A3_cut_guide.pdf)／[カットSVG](NC03_all_decals_A3_cut.svg)。原寸、3 mm塗り足し、トンボ、寸法ラベル、版数・日付付き。前面・左右の間隔を広く取っています。
+
+PDFの文字はNULL FONTのパス、埋め込み画像なし。ISOのA4/A3ページ寸法を数値確認。RGBベクター原稿であり、印刷所指定のCMYKプロファイル変換やPDF/X認証は行っていません。塗り足しは濃色のベースを輪郭の外へ延長したものです。トンボはSuite自動位置合わせ用のマークではありません。
+
+左右のロゴ帯は、側面乳白カバーの外面 `side.lens_front` を共通設定から読み、全周0.5 mm内側の形にしています。長辺が水平になるよう2.55°回転して紙へ配置。**各141.04 × 8.94 mm**の平行四辺形で、取付時はケース側面の傾きに戻します。左と右は輪郭だけ鏡対称、NULL CITYの文字は読みやすい向きを維持。寸法はモデル由来で、実物への貼付・光の透過は未検証。写真紙では白文字も透光しにくく、発光を残すための周囲0.5 mmの縁以外は覆います。
+
+### Suite確認用
+
+- [全4枚のA4重ね合わせ](NC03_all_decals_v1.1_REVIEW.lac)
+- [余白を取った前面＋左右のA4重ね合わせ](NC03_front_and_sides_A4_REVIEW.lac)
+
+いずれも絵柄とカット輪郭を読み込んだ**確認用**で、実行ジョブではありません。絵柄レイヤーを含んだまま加工しないでください。紙面配置を変えたため、古い単独天板の位置合わせをそのまま流用できません。Suiteの表示には互換ベクター絵柄を使用し、印刷は上記の正本PDFから行います。
+
+再生成順：
+
+```sh
+python3 scripts/export_all_decals_a4.py
+python3 scripts/export_decal_prepress.py
+python3 scripts/build_combined_suite_review.py
+```
+
+PDF生成にはGoogle Chrome、入稿風PDFにはPythonの`fonttools`と`pypdf`が必要。
