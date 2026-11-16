@@ -175,7 +175,7 @@ viewer.addEventListener('load',()=>{
   document.querySelector('#error-panel').hidden=true;
   restTarget=viewer.getCameraTarget();restRadius=viewer.getCameraOrbit().radius;
   emissive=viewer.model.materials.filter(material=>material.emissiveFactor.some(value=>value>0)).map(material=>({material,factor:[...material.emissiveFactor]}));
-  const ledStrengths={'Backlit translucent PLA illustration':5,'Magenta lighting illustration':5,'Indicator LED cyan':4,'Cool white lettering':3};
+  const ledStrengths={'Backlit translucent PLA illustration':5,'Magenta lighting illustration':5,'Indicator LED RGB':4,'Cool white lettering':3};
   for(const {material} of emissive){if(ledStrengths[material.name])material.setEmissiveStrength(ledStrengths[material.name]);}
   selectLEDMeshes();
   caseMaterials=viewer.model.materials.filter(material=>material.name==='Pearl white PETG').map(material=>({material,color:[...material.pbrMetallicRoughness.baseColorFactor],alpha:material.getAlphaMode(),doubleSided:material.getDoubleSided()}));

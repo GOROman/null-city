@@ -1,77 +1,75 @@
 {
-  "led_nominal_diameter_mm": 3,
-  "hole_diameter_mm": 3.2,
   "provisional": true,
   "leds": [
     {
       "name": "direction_000",
-      "x": -52.0,
+      "x": -50.0,
       "y": 18.0
     },
     {
       "name": "direction_045",
-      "x": -63.12994,
-      "y": 44.87006
+      "x": -61.715729,
+      "y": 46.284271
     },
     {
       "name": "direction_090",
       "x": -90.0,
-      "y": 56.0
+      "y": 58.0
     },
     {
       "name": "direction_135",
-      "x": -116.87006,
-      "y": 44.87006
+      "x": -118.284271,
+      "y": 46.284271
     },
     {
       "name": "direction_180",
-      "x": -128.0,
+      "x": -130.0,
       "y": 18.0
     },
     {
       "name": "direction_225",
-      "x": -116.87006,
-      "y": -8.87006
+      "x": -118.284271,
+      "y": -10.284271
     },
     {
       "name": "direction_270",
       "x": -90.0,
-      "y": -20.0
+      "y": -22.0
     },
     {
       "name": "direction_315",
-      "x": -63.12994,
-      "y": -8.87006
+      "x": -61.715729,
+      "y": -10.284271
     },
     {
       "name": "button_1",
       "x": -24,
-      "y": 49
+      "y": 50
     },
     {
       "name": "button_2",
       "x": 9,
-      "y": 63
+      "y": 64
     },
     {
       "name": "button_3",
       "x": -31,
-      "y": -31.5
+      "y": -32.5
     },
     {
       "name": "button_4",
       "x": 44.5,
-      "y": 57
+      "y": 58
     },
     {
       "name": "button_5",
       "x": 2.5,
-      "y": -17.5
+      "y": -18.5
     },
     {
       "name": "button_6",
       "x": 38,
-      "y": -23.5
+      "y": -24.5
     },
     {
       "name": "1P",
@@ -84,6 +82,36 @@
       "y": 12
     }
   ],
-  "direction_radius_mm": 38,
-  "note": "Direction LED ring expanded from 25 to 38 mm to keep the bores clear of direct 40x40 mounting holes. LED package, lead routing and housing/PCB interference require physical verification; no spacer gap is assumed."
+  "direction_radius_mm": 40,
+  "note": "Square 4mm windows. Direction ring 40mm and button indicators 22mm from button centers leave >=2mm conservative web to 9.5mm seats. Module retention, light leakage, wires, lever housing and full assembly require real fit checks.",
+  "aperture_shape": "square",
+  "aperture_size_mm": 4.0,
+  "module_seat": {
+    "reference": "Adafruit NeoPixel Mini PCB #1612 or dimensionally matched WS2812-compatible module",
+    "source": "https://www.adafruit.com/product/1612",
+    "nominal_module_size_mm": [
+      9.1,
+      9.1,
+      3.2
+    ],
+    "pcb_size_mm": 9.5,
+    "pcb_recess_depth_mm": 0.6,
+    "package_size_mm": 5.6,
+    "package_recess_depth_mm": 2.2,
+    "retention": "PCB registration shoulder plus removable insulating retaining tape across the back; no snap latch. Verify module PCB/package thickness and lead routing with a coupon.",
+    "wiring": "5V/GND/DIN/DOUT soldered at the accessible module back; daisy chain all 16 windows, then front/side strips."
+  },
+  "surface_logo": {
+    "origin_mm": [
+      -70,
+      -70
+    ],
+    "letter_height_mm": 20,
+    "recess_depth_mm": 0.6,
+    "color_thickness_mm": 0.6,
+    "base_color": "blue",
+    "letter_color": "white",
+    "slash_color": "magenta",
+    "process": "Single assembled print, color volumes only in the near-surface layers; no separately assembled logo pieces."
+  }
 }

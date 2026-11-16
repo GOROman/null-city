@@ -10,6 +10,14 @@ Bambu H3C向けの、交換式天板を備えた**汎用6ボタンのアーケ�
 
 GitHub Actionsでモデルの整合性とブラウザー動作を検証し、GitHub Pagesへ自動公開します。[ローカル実行・モデル更新・公開手順](web/README.md)。
 
+## 表面マルチカラー天板・四角LED窓
+
+[H3C用マルチカラー3MF](print/h3c/03_control_panel_multicolor_sliced.3mf)を追加。天板は1枚の一体造形で、NULL FONTのNULL CITYを0.6mm凹ませ、底面だけ白、`///`はマゼンタで同時印刷します。別部品の組付けは不要。青以外を使うのは20層中15〜17層目のみ、見積は約3時間・90gです。[設定・LED取付手順](print/h3c/PANEL_MULTICOLOR.md)
+
+![表面だけマルチカラーの天板](docs/images/panel-multicolor.jpg)
+
+LED窓は4×4mmの正方形16個へ変更。裏側に9.1mm角NeoPixel/WS2812互換モジュール用の段付き受け座を設けました。新しい3色印刷・LED装着・全体干渉は未検証です。過去の印刷写真は旧丸LED穴版。印刷中の白い上フレームと下ケースの形状は変更していません。
+
 ## USB／BLEコントローラー基板（A0試作）
 
 [XIAO nRF52840 Plus搭載KiCad設計](hardware/nc03-controller/README.md)を追加。12入力直結、16点の表示LED、前面・左右RGB用出力、バッテリー端子、PC／Switch／PS外部変換器とUSB／BLEの選択回路を備えます。[回路図PDF](hardware/nc03-controller/docs/schematic.pdf)／[基板図](hardware/nc03-controller/docs/board-top.svg)／[電子部品BOM](hardware/nc03-controller/BOM.csv)。
@@ -27,7 +35,7 @@ GitHub Actionsでモデルの整合性とブラウザー動作を検証し、Git
 | レバー取付・操作 | 厚さ4 mmの試験片で元ねじ4本の固定と8方向動作を確認済み |
 | レバー本体の突出 | 板厚込み32.1 mm − 板厚4 mm = 裏面下28.1 mm。ユーザー実測確認済み |
 | 天板の実機印刷 | 青色PLAの完成品をIMG_9794/9797/9798で確認。レバー・主ボタン6個・補助1個の装着写真あり。残り補助1穴は未装着 |
-| 製品用データ | 40 × 40 mmの直接取付穴・方向LED半径38 mmをモデル、STL、3MF、デカールと下記画像へ反映済み |
+| 製品用データ | 40 × 40 mmの直接取付穴・方向LED半径40 mm・四角窓・凹ロゴをモデル、STL、3MF、デカールと下記画像へ反映済み |
 | 底面クリアランス | 前後95 mm包絡・配線突出5 mm・誤差1 mmという仮定で2.620 mm。ケース全体の仮組みは未実施 |
 | LED・ボタン・配線 | 実部品の保持・足・締付リング・コネクタとケース内の干渉確認が必要。[Issue #5](https://github.com/GOROman/null-city/issues/5)を継続 |
 
@@ -94,7 +102,7 @@ GitHub Actionsでモデルの整合性とブラウザー動作を検証し、Git
 | 操作部 | メイン穴6個 φ30.4、補助2個 φ24.4（φ24ボタン用）、レバー穴 φ24 mm。主操作部はBlast City 1Pの6ボタン配列。実スイッチを取り付ける場合はメーカーの推奨天板厚を確認 |
 | レバー固定 | ゲーセンバッグ実物レバーの本体へ直接固定。40 × 40 mmピッチ、逃げ穴φ4.5 mmを4個。元のねじを流用し、MS板・スペーサーは使用しない。厚さ4 mmの試験片で取付と8方向動作を確認済み |
 | 筐体照明 | 前面1枚・左右各1枚の乳白カバー（厚さ1.2 mm）。細幅5 Vテープ用の溝と配線穴、前面黒マスクを用意。天板は4 mm一体板のまま |
-| LED穴 | レバー周囲8方向＋メインボタン6個＋1P／START各1個の計16穴。3 mm丸型LED想定のφ3.2 mm仮寸法。レバー周囲は半径38 mm |
+| LED穴 | レバー周囲8方向＋メインボタン6個＋1P／START各1個の計16穴。4×4mmの正方形。裏に9.5mm角のモジュール受け座、レバー周囲は半径40mm |
 | 四隅の取付 | M3クリアランス φ3.4 mm。下ケースの熱圧入インサート下穴は φ4.1 × 7.5 mm（6 mmインサート＋樹脂の逃げ1.5 mm）。実部品に合わせて試験片で調整 |
 
 ## Bambu Studio の設定
@@ -138,7 +146,7 @@ Bambu Studio 02.09.01.70のH3C公式プロファイルを使用。機種は **Ba
 - `PRINT_SETTINGS.md` に造形設定を記載。`print/h3c/NC03_H3C_6plates_lighting_sliced.3mf` はH3C／0.4 mm向けの6プレート版（本体PLA、脚TPU、カバー半透明PLAの仮設定）。
 - LEDの足を逃がすスペーサーの隙間はない。LED本体・足・絶縁を含む配線とレバーハウジング／基板の干渉を実物で確認する。まずLEDなしでレバー・ボタン・接続済みハーネスを仮組みする。
 - `artwork/control_layout.json` は主操作部の共通座標。Slagcoinの[Sega 1P配列図](https://www.slagcoin.com/joystick/layout.html)と[寸法図](https://www.slagcoin.com/joystick/layout/sega1_m.png)を参照し、Blast City用の高いレバー位置と下段中央の右0.5 mm補正を反映。左上ボタン中心を維持し、レバー中心を右3 mm・奥27 mmへ移動した。左上ボタンはレバー中心から右66 mm・奥10 mm。1P／STARTの位置は維持。
-- レバー固定穴は実物試験済みの40 × 40 mm、逃げ穴φ4.5 mmの4個。元の本体固定ねじを流用し、MS金属板と3 mmスペーサーは使わない。レバー／ボタン中心はBlast City配列を維持。方向LED8個は固定穴との干渉を避けて半径38 mmへ移動。LED保持・配線は未確認。
+- レバー固定穴は実物試験済みの40 × 40 mm、逃げ穴φ4.5 mmの4個。元の本体固定ねじを流用し、MS金属板と3 mmスペーサーは使わない。レバー／ボタン中心はBlast City配列を維持。方向LED8個は半径40mmの四角窓へ更新。裏側のシリアルLED受け座・保持・配線は実物確認待ち。
 - `scripts/update_wordmark.py` でロゴを生成し、`scripts/export_decals.py` で共通座標から天板テクスチャ・デカールPDF・カットガイドを再生成する。
 - `artwork/led_layout.json` にLED座標と仮の穴径を記載。ボタンを照らす光学部品・LED固定具・配線・制御基板は未設計。現モデルは各ボタン付近の独立した表示LEDを想定。
 - `scripts/render_readme.py` は現行BlenderモデルからREADME画像を再生成する。`scripts/render_lighting.py` は前面・側面の点灯イメージと、カバーを外した実際の下ケースを描画する。

@@ -66,7 +66,7 @@ rest=raw[20+length:]
 path.write_bytes(struct.pack('<III',0x46546C67,2,20+len(data)+len(rest))+struct.pack('<II',len(data),0x4E4F534A)+data+rest)
 inputs=['NULL_CITY_NC03.blend','NULL_CITY_NC03.py','artwork/lighting_layout.json',
         'artwork/control_layout.json','artwork/led_layout.json','artwork/logo/wordmark.json',
-        'artwork/panel.png','artwork/usb_relief.json','scripts/usb_relief.py','scripts/export_web_model.py']
+        'artwork/panel.png','scripts/panel_features.py','artwork/usb_relief.json','scripts/usb_relief.py','scripts/export_web_model.py']
 manifest={'name':'NULL CITY NC-03','license':'CC-BY-4.0','geometry_count':len(geometry),
           'print_part_count':20,'dimensions_mm':[300,190,55],
           'inputs':{name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in inputs},

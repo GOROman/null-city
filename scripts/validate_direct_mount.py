@@ -19,12 +19,12 @@ holes += [('mount', x+dx, y+dy, m['clearance_diameter_mm']/2)
           for dx in (-20, 20) for dy in (-20, 20)]
 holes += [('main', *p, c['main_button_hole_diameter_mm']/2) for p in c['buttons']]
 holes += [('menu', *p, c['menu_button_hole_diameter_mm']/2) for p in c['menu_buttons']]
-holes += [(p['name'], p['x'], p['y'], l['hole_diameter_mm']/2) for p in l['leds']]
+holes += [(p['name'], p['x'], p['y'], l['aperture_size_mm']/math.sqrt(2)) for p in l['leds']]
 holes += [('corner', px, py, 1.7) for px in (-135, 135) for py in (-80, 80)]
 assert len(holes) == 33
 gap = min(math.hypot(a[1]-b[1], a[2]-b[2])-a[3]-b[3]
           for i, a in enumerate(holes) for b in holes[i+1:])
-assert gap >= 4.19, gap
+assert gap >= 3.9, gap
 parts = [o for o in bpy.data.objects if o.type == 'MESH' and o.name.startswith('PRINT_')]
 assert len(parts) == 20
 for obj in parts:
@@ -46,14 +46,48 @@ for obj in parts:
         tree = BVHTree.FromBMesh(bm)
         for name, hx, hy, _ in holes:
             assert tree.ray_cast((hx, hy, 60), (0, 0, -1), 30)[0] is None, name
+        # A square must clear its corners and retain material immediately outside.
+        half=l['aperture_size_mm']/2
+        for led in l['leds']:
+            hx,hy=led['x'],led['y']
+            for dx,dy in [(half-.1,half-.1),(-half+.1,half-.1)]:
+                assert tree.ray_cast((hx+dx,hy+dy,60),(0,0,-1),30)[0] is None
+            hit=tree.ray_cast((hx+half+.15,hy,60),(0,0,-1),30)[0]
+            assert hit and abs(hit.z-47)<1e-3
+            # PCB shoulder and LED package relief are actual stepped cavities.
+            for delta,roof in [(4.6,43.6),(2.7,45.2)]:
+                hit=tree.ray_cast((hx+delta,hy+delta,40),(0,0,1),10)[0]
+                assert hit and abs(hit.z-roof)<1e-3,(led['name'],hit)
         # Former 40x85 mounting holes must now be solid material.
         for dx in (-20, 20):
             for dy in (-42.5, 42.5):
                 assert tree.ray_cast((x+dx, y+dy, 60), (0, 0, -1), 30)[0] is not None
     bm.free()
+# Validate the exported monochrome STL too: color cavities must be filled to the same recess.
+bpy.ops.wm.stl_import(filepath=str(root/'STL/PRINT_03_control_panel.stl'))
+stl=bpy.context.object;bm=bmesh.new();bm.from_mesh(stl.data)
+assert all(e.is_manifold for e in bm.edges),'Monochrome STL must be watertight'
+assert len(bm.verts)-len(bm.edges)+len(bm.faces)==-64
+stree=BVHTree.FromBMesh(bm)
+for name in ('COLOR_control_panel_white','COLOR_control_panel_magenta'):
+    color=bpy.data.objects[name];cbm=bmesh.new();cbm.from_mesh(color.data)
+    assert all(e.is_manifold for e in cbm.edges),name
+    assert cbm.calc_volume()>0
+    for face in cbm.faces:
+        if face.normal.z>.99:
+            center=face.calc_center_median();hit=stree.ray_cast((center.x,center.y,10),(0,0,-1),20)[0]
+            assert hit and abs(hit.z-3.4)<1e-3,(name,hit)
+    cbm.free()
+bm.free();bpy.data.objects.remove(stl,do_unlink=True)
+# Exact rectangle-to-circle web check for the rear PCB seats.
+seat=l['module_seat']['pcb_size_mm']/2
+circle_holes=[h for h in holes if not any(h[0]==led['name'] for led in l['leds'])]
+seat_web=min(math.hypot(max(abs(led['x']-h[1])-seat,0),max(abs(led['y']-h[2])-seat,0))-h[3] for led in l['leds'] for h in circle_holes)
+assert seat_web>=2.049,seat_web
+print(f'PASS: monochrome STL and color volumes watertight; logo floor Z=3.4 mm; rear-seat web {seat_web:.3f} mm')
 t = math.radians(2.55)
 z = 43-m['body_depth_below_panel_underside_mm']-m['wire_depth_allowance_mm']
 lowest = 43+(y-m['clearance_envelope_half_depth_mm'])*math.sin(t)+(z-43)*math.cos(t)
 clearance = lowest-5-m['vertical_tolerance_allowance_mm']
 assert clearance >= m['required_clearance_mm'], clearance
-print(f'PASS: 20 manifold parts; 33 bores; min web {gap:.3f} mm; assumed wired clearance {clearance:.3f} mm')
+print(f'PASS: 20 manifold parts; 33 apertures including 16 square windows and stepped LED seats; min web {gap:.3f} mm; assumed wired clearance {clearance:.3f} mm')

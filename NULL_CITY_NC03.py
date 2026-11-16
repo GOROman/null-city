@@ -164,14 +164,11 @@ for i,(x,y) in enumerate(buttons):
 menu_buttons=control_layout['menu_buttons']
 for i,(x,y) in enumerate(menu_buttons):
  cut(panel,cyl('menu bore',x,y,45,control_layout['menu_button_hole_diameter_mm']/2,12));cap('PRINT_menu_cap_%d'%i,x,y,11.2,green);bezel('VISUAL_menu_bezel_%d'%i,x,y,12,green)
-# Provisional 3 mm discrete indicator LEDs; actual LED hardware is not specified yet.
-with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'artwork','led_layout.json')) as f:
- led_layout=json.load(f)
-led_material=emission('Indicator LED cyan',(.02,.65,1),2)
-for led in led_layout['leds']:
- x,y=led['x'],led['y']
- cut(panel,cyl('LED bore '+led['name'],x,y,45,led_layout['hole_diameter_mm']/2,12))
- cyl('VISUAL_LED_'+led['name'],x,y,47.4,1.5,.8,led_material,32)
+# Square windows, rear serial-pixel seats and co-printed recessed logo.
+with open(os.path.join(OUT,'artwork','led_layout.json')) as f:led_layout=json.load(f)
+led_material=emission('Indicator LED RGB',(.02,.65,1),2)
+from panel_features import add_features,finish_panel
+panel_colors=add_features(panel,OUT,cube,cut,boolean,navy,mat('Co-printed logo white',(.93,.94,.98)),pink,led_material)
 # Direct housing mount confirmed with the 40 x 40 x 4 mm fit coupon.
 mount=control_layout['lever_mount']
 assert mount['mounting_mode']=='direct_housing'
@@ -196,18 +193,20 @@ for x in (-135,135):
 for x in (-113,113):
  for y in (-66,66):cyl('PRINT_TPU_foot_%d_%d'%(x,y),x,y,-2,11,4,black)
 usb_bridges=add_usb_relief(base,ivory,cube,cyl,boolean,cut,os.path.dirname(os.path.abspath(__file__)))
+mono_panel_mesh=finish_panel(panel,panel_colors,OUT,boolean)
 # Use planar local coordinates for the exposed deck, preserving physical holes.
-texture=mat('Printed NC-03 graphic',(1,1,1),.03,.38)
+texture=mat('Printed PLA blue deck',(.012,.019,.075),.03,.38)
 panel.data.materials.append(texture);texture_index=len(panel.data.materials)-1;uv=panel.data.uv_layers.new(name='Deck artwork')
 uv.active_render=True
 for face in panel.data.polygons:
  if face.normal.z>.999 and face.center.z>46.9:face.material_index=texture_index
+ # Decal remains an optional artwork asset; the print preview shows actual filament colors.
  for li in face.loop_indices:
   v=panel.data.vertices[panel.data.loops[li].vertex_index].co
   uv.data[li].uv=(v.x/288+.5,v.y/178+.5)
 img=bpy.data.images.load(os.path.join(os.path.dirname(os.path.abspath(__file__)),'artwork','panel.png'));img.pack()
 tex=texture.node_tree.nodes.new('ShaderNodeTexImage');tex.image=img
-texture.node_tree.links.new(tex.outputs['Color'],texture.node_tree.nodes.get('Principled BSDF').inputs['Base Color'])
+# The optional decal image is packed for editing, but the rendered print uses actual PLA regions.
 # Rotate the deck and its controls together; slope only the upper portion of the frame.
 from mathutils import Matrix
 tilt=Matrix.Translation((0,0,43)) @ Matrix.Rotation(radians(2.55),4,'X') @ Matrix.Translation((0,0,-43))
@@ -217,7 +216,7 @@ for obj in list(bpy.context.scene.objects):
    if v.co.z>24.001:
     mix=(v.co.z-24)/19
     v.co=v.co.lerp(tilt @ v.co,min(1,mix))
- elif obj==panel or obj.location.z>=43:
+ elif obj==panel or obj in panel_colors or obj.name.startswith('VISUAL_LED_') or obj.location.z>=43:
   obj.matrix_world=tilt @ obj.matrix_world
 bpy.context.view_layer.update()
 def aim(obj,point):obj.rotation_euler=(Vector(point)-obj.location).to_track_quat('-Z','Y').to_euler()
@@ -238,7 +237,7 @@ deps=bpy.context.evaluated_depsgraph_get()
 exportdir=os.path.join(OUT,'STL');os.makedirs(exportdir,exist_ok=True)
 for obj in list(scene.objects):
  if not obj.name.startswith('PRINT_'):continue
- mesh=bpy.data.meshes.new_from_object(obj.evaluated_get(deps))
+ mesh=mono_panel_mesh.copy() if obj==panel else bpy.data.meshes.new_from_object(obj.evaluated_get(deps))
  mesh.transform(Matrix.Translation((0,0,-min(v.co.z for v in mesh.vertices))))
  temp=bpy.data.objects.new('Temporary export',mesh);scene.collection.objects.link(temp)
  bpy.ops.object.select_all(action='DESELECT');temp.select_set(True);bpy.context.view_layer.objects.active=temp

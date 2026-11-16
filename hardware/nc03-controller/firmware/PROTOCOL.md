@@ -45,7 +45,7 @@ Debounce selector changes for 20ms, send an all-released report over the old tra
 4. Use low-current strips or cap brightness/pixel count. The RGB connector is not for full-brightness metre-long strips. A fuse cannot substitute for the firmware budget.
 5. To switch the rail off, set RGB data low and all PCA outputs OFF before deasserting LED_ENABLE. The TI translator's inputs tolerate voltage independently of its supply; validate leakage with USB removed. QOD discharges the switched output through the TPS22918 internal path.
 
-The 16 existing 3mm LEDs are monochrome with individual PWM. Front/side strips are RGB. Replacing all panel indicators with RGB LEDs requires another LED board and mechanical validation; this PCB does not drive 16 discrete RGB LEDs.
+Current square-window deck: connect 16 off-board NeoPixel/WS2812-compatible pixel modules in series on J14, followed by front/side strips. Allocate the 150mA RGB budget across the entire chain. No carrier PCB change is needed; pixel count and order must be configured in firmware. The PCA9685/J12/J13 circuits described above are legacy options for the old round-window monochrome LEDs and can remain unpopulated. Do not connect those sink outputs to pixel DIN. Pixel-module physical fit, current and firmware are unverified.
 
 ## Required measurements
 

@@ -17,7 +17,7 @@ if(hash(glb)!==manifest.glb_sha256)throw new Error('GLB hash differs from its ex
 const report=await validator.validateBytes(new Uint8Array(glb),{uri:'nc03.glb',maxIssues:30});
 if(report.issues.numErrors)throw new Error(JSON.stringify(report.issues,null,2));
 const doc=JSON.parse(glb.subarray(20,20+glb.readUInt32LE(12)).toString());
-if(doc.animations?.[0]?.name!=='Assembly'||!doc.images?.length)throw new Error('Missing assembly animation or deck artwork');
+if(doc.animations?.[0]?.name!=='Assembly'||!doc.materials?.some(m=>m.name==='Co-printed logo white'))throw new Error('Missing assembly animation or co-printed logo material');
 if(!doc.extensionsUsed.includes('KHR_materials_transmission'))throw new Error('Missing PBR glass transmission');
 await mkdir(path.join(web,'public/project'),{recursive:true});
 for(const [source,target] of [

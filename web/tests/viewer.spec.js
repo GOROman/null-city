@@ -16,7 +16,7 @@ test('PBR model, meter scale, artwork, camera and assembly controls',async({page
   const model=await page.locator('#viewer').evaluate(v=>({size:v.getDimensions(),animations:v.availableAnimations,materials:v.model.materials.map(m=>m.name)}));
   expect(model.size.x).toBeCloseTo(.3,3);expect(model.size.z).toBeCloseTo(.19,3);
   expect(model.animations).toEqual(['Assembly']);
-  expect(model.materials).toContain('Printed NC-03 graphic');
+  expect(model.materials).toContain('Co-printed logo white');
   await page.getByRole('button',{name:'右側面',exact:true}).click();
   await expect(page.getByRole('button',{name:'右側面',exact:true})).toHaveAttribute('aria-pressed','true');
   await page.locator('#assembly').evaluate(e=>{e.value='100';e.dispatchEvent(new Event('input',{bubbles:true}));});

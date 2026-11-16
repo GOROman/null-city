@@ -1,0 +1,16 @@
+{
+  "aperture": "4 x 4 mm square",
+  "pixel_seat": "9.5 mm PCB pocket / 5.6 mm LED package relief",
+  "logo_recess_mm": 0.6,
+  "one_assembled_object": true,
+  "color_volumes": 3,
+  "color_layer_range_zero_based": [
+    14,
+    16
+  ],
+  "total_layers": 20,
+  "prediction_seconds": 10803,
+  "weight_g": 90.06,
+  "shared_origin_preserved": true,
+  "physical_fit": "not tested"
+}
